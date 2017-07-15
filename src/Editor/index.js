@@ -218,9 +218,11 @@ export const Editor = class WysiwygEditor extends Component {
 
   onChange: Function = (editorState: Object): void => {
     const { readOnly, onEditorStateChange } = this.props;
-    if (!readOnly &&
-      !(getSelectedBlocksType(editorState) === 'atomic' &&
-      editorState.getSelection().isCollapsed)) {
+    const isAtomic = getSelectedBlocksType(editorState) === 'atomic';
+    const isCollapsed = editorState.getSelection().isCollapsed();
+    // Checking for atomic and collapsed actually breaks the image L/C/R functionality
+    // since the onEditorStateChange won't trigger unless you make other changes
+    if (!readOnly /* && !(isAtomic && isCollapsed) */) {
       if (onEditorStateChange) {
         onEditorStateChange(editorState, this.props.wrapperId);
       }
