@@ -7,7 +7,7 @@ import './styles.css';
 
 import { stopPropagation } from '../../../utils/common';
 
-export default class Dropdown extends Component {
+export const Dropdown = class Dropdown_ extends Component {
 
   static propTypes = {
     children: PropTypes.any,
@@ -111,6 +111,7 @@ export default class Dropdown extends Component {
   }
 }
 
+export default Dropdown;
 
   // onKeyDown: Function = (event: Object): void => {
   //   const { expanded, children, doCollapse } = this.props;

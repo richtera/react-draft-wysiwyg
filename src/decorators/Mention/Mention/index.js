@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import './styles.css';
 
-class Mention {
+export const Mention = class Mention_ {
   constructor(className) {
     this.className = className;
   }
@@ -42,4 +42,4 @@ Mention.prototype.findMentionEntities = (contentBlock, callback, contentState) =
   );
 };
 
-module.exports = Mention;
+export default Mention;

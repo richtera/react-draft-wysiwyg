@@ -24,19 +24,19 @@ class LayoutComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      blockTypes: this.getBlockTypes(props.translations),
+      blockTypes: this.getBlockTypes(props.translations, props.config),
     };
   }
 
   componentWillReceiveProps(properties: Object): void {
     if (this.props.translations !== properties.translations) {
       this.setState({
-        blockTypes: this.getBlockTypes(properties.translations),
+        blockTypes: this.getBlockTypes(properties.translations, properties.config),
       });
     }
   }
 
-  getBlockTypes = translations => [
+  getBlockTypes = (translations, config) => [
     { label: 'Normal', displayName: translations['components.controls.blocktype.normal'] },
     { label: 'H1', displayName: translations['components.controls.blocktype.h1'] },
     { label: 'H2', displayName: translations['components.controls.blocktype.h2'] },
@@ -45,7 +45,7 @@ class LayoutComponent extends Component {
     { label: 'H5', displayName: translations['components.controls.blocktype.h5'] },
     { label: 'H6', displayName: translations['components.controls.blocktype.h6'] },
     { label: 'Blockquote', displayName: translations['components.controls.blocktype.blockquote'] },
-  ];
+  ].concat(config.customBlockTypes || []);
 
   renderFlat(blocks: Array<Object>): void {
     const { config: { className }, onChange, currentState: { blockType } } = this.props;

@@ -6,7 +6,7 @@ import { getSelectedBlocksMetadata, setBlockData } from 'draftjs-utils';
 
 import LayoutComponent from './Component';
 
-export default class TextAlign extends Component {
+export const TextAlign = class TextAlign_ extends Component {
 
   static propTypes = {
     editorState: PropTypes.object.isRequired,
@@ -87,3 +87,5 @@ export default class TextAlign extends Component {
     );
   }
 }
+
+export default TextAlign;

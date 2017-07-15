@@ -9,7 +9,7 @@ import {
 
 import LayoutComponent from './Component';
 
-class ColorPicker extends Component {
+export const ColorPicker = class ColorPicker_ extends Component {
 
   static propTypes = {
     onChange: PropTypes.func.isRequired,

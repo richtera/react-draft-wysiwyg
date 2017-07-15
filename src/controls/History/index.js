@@ -6,7 +6,7 @@ import { EditorState } from 'draft-js';
 
 import LayoutComponent from './Component';
 
-export default class History extends Component {
+export const History = class History_ extends Component {
 
   static propTypes = {
     onChange: PropTypes.func.isRequired,
@@ -95,3 +95,5 @@ export default class History extends Component {
     );
   }
 }
+
+export default History;

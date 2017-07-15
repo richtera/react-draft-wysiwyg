@@ -1,4 +1,4 @@
-module.exports = {
+export const ko = {
 
   // Generic
   'generic.add': '입력',
@@ -36,3 +36,4 @@ module.exports = {
   'components.controls.link.linkTarget': '링크 타겟',
   'components.controls.link.linkTargetOption': '새창으로 열기',
 };
+export default ko;

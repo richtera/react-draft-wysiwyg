@@ -1,29 +1,44 @@
-import inline from './Inline';
-import blockType from './BlockType';
-import fontSize from './FontSize';
-import fontFamily from './FontFamily';
-import list from './List';
-import textAlign from './TextAlign';
-import colorPicker from './ColorPicker';
-import link from './Link';
-import embedded from './Embedded';
-import emoji from './Emoji';
-import image from './Image';
-import remove from './Remove';
-import history from './History';
+import InlineC from './Inline';
+import BlockTypeC from './BlockType';
+import FontSizeC from './FontSize';
+import FontFamilyC from './FontFamily';
+import ListC from './List';
+import TextAlignC from './TextAlign';
+import ColorPickerC from './ColorPicker';
+import LinkC from './Link';
+import EmbeddedC from './Embedded';
+import EmojiC from './Emoji';
+import ImageC from './Image';
+import RemoveC from './Remove';
+import HistoryC from './History';
 
-module.exports = {
-  inline,
-  blockType,
-  fontSize,
-  fontFamily,
-  list,
-  textAlign,
-  colorPicker,
-  link,
-  embedded,
-  emoji,
-  image,
-  remove,
-  history,
+export default {
+  inline: InlineC,
+  blockType: BlockTypeC,
+  fontSize: FontSizeC,
+  fontFamily: FontFamilyC,
+  list: ListC,
+  textAlign: TextAlignC,
+  colorPicker: ColorPickerC,
+  link: LinkC,
+  embedded: EmbeddedC,
+  emoji: EmojiC,
+  image: ImageC,
+  remove: RemoveC,
+  history: HistoryC
+};
+export {
+  InlineC as Inline,
+  BlockTypeC as BlockType,
+  FontSizeC as FontSize,
+  FontFamilyC as FontFamily,
+  ListC as List,
+  TextAlignC as TextAlign,
+  ColorPickerC as ColorPicker,
+  LinkC as Link,
+  EmbeddedC as Embedded,
+  EmojiC as Emoji,
+  ImageC as Image,
+  RemoveC as Remove,
+  HistoryC as History
 };

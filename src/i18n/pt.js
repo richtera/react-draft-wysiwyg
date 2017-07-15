@@ -1,4 +1,4 @@
-module.exports = {
+export const pt = {
 
   // Generic
   'generic.add': 'Ok',
@@ -36,3 +36,4 @@ module.exports = {
   'components.controls.link.linkTarget': 'Alvo do link',
   'components.controls.link.linkTargetOption': 'Abrir link em outra janela',
 };
+export default pt;

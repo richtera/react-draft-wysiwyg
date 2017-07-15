@@ -11,7 +11,7 @@ import {
 
 import LayoutComponent from './Component';
 
-class Link extends Component {
+export const Link = class Link_ extends Component {
 
   static propTypes = {
     editorState: PropTypes.object.isRequired,

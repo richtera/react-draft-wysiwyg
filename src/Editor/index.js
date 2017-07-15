@@ -3,12 +3,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Editor,
+  Editor as BaseEditor,
   EditorState,
   RichUtils,
   convertToRaw,
   convertFromRaw,
   CompositeDecorator,
+  DefaultDraftBlockRenderMap
 } from 'draft-js';
 import {
   changeDepth,
@@ -35,7 +36,7 @@ import localeTranslations from '../i18n';
 import './styles.css';
 import '../../css/Draft.css';
 
-export default class WysiwygEditor extends Component {
+export const Editor = class WysiwygEditor extends Component {
 
   static propTypes = {
     onChange: PropTypes.func,
@@ -81,6 +82,7 @@ export default class WysiwygEditor extends Component {
     customBlockRenderFunc: PropTypes.func,
     wrapperId: PropTypes.number,
     customDecorators: PropTypes.array,
+    customBlockRenderMap: PropTypes.object
   };
 
   static defaultProps = {
@@ -111,6 +113,7 @@ export default class WysiwygEditor extends Component {
     }, props.customBlockRenderFunc);
     this.editorProps = this.filterEditorProps(props);
     this.customStyleMap = getCustomStyleMap();
+    this.blockRenderMap = DefaultDraftBlockRenderMap.merge(props.customBlockRenderMap);
   }
 
   componentWillMount(): void {
@@ -319,7 +322,7 @@ export default class WysiwygEditor extends Component {
     'localization', 'toolbarOnFocus', 'toolbar', 'toolbarCustomButtons', 'toolbarClassName',
     'editorClassName', 'toolbarHidden', 'wrapperClassName', 'toolbarStyle', 'editorStyle',
     'wrapperStyle', 'uploadCallback', 'onFocus', 'onBlur', 'onTab', 'mention', 'hashtag',
-    'ariaLabel', 'customBlockRenderFunc', 'customDecorators',
+    'ariaLabel', 'customBlockRenderFunc', 'customDecorators', 'blockRenderMap'
   ]);
 
   changeEditorState = (contentState) => {
@@ -330,7 +333,10 @@ export default class WysiwygEditor extends Component {
     return editorState;
   };
 
-  focusEditor: Function = (): void => {
+  focusEditor: Function = (event): void => {
+    if (event.target.tagName === 'INPUT') {
+      return;
+    }
     setTimeout(() => {
       this.editor.focus();
     });
@@ -437,7 +443,7 @@ export default class WysiwygEditor extends Component {
           onKeyDown={KeyDownHandler.onKeyDown}
           onMouseDown={this.onEditorMouseDown}
         >
-          <Editor
+          <BaseEditor
             ref={this.setEditorReference}
             onTab={this.onTab}
             onUpArrow={this.onUpDownArrow}
@@ -448,6 +454,7 @@ export default class WysiwygEditor extends Component {
             customStyleMap={getCustomStyleMap()}
             handleReturn={this.handleReturn}
             blockRendererFn={this.blockRendererFn}
+            blockRenderMap={this.blockRenderMap}
             handleKeyCommand={this.handleKeyCommand}
             ariaLabel={ariaLabel || 'rdw-editor'}
             {...this.editorProps}
@@ -457,5 +464,8 @@ export default class WysiwygEditor extends Component {
     );
   }
 }
+
+export default Editor;
+
 // todo: evaluate draftjs-utils to move some methods here
 // todo: move color near font-family

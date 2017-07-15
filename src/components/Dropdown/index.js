@@ -1,9 +1,4 @@
 /* @flow */
 
-import Dropdown from './Dropdown';
-import DropdownOption from './DropdownOption';
-
-module.exports = {
-  Dropdown,
-  DropdownOption,
-};
+export * from './Dropdown';
+export * from './DropdownOption';

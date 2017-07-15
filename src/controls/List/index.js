@@ -7,7 +7,7 @@ import { changeDepth, getSelectedBlocksType } from 'draftjs-utils';
 
 import LayoutComponent from './Component';
 
-export default class List extends Component {
+export const List = class List_ extends Component {
 
   static propTypes = {
     onChange: PropTypes.func.isRequired,
@@ -128,3 +128,5 @@ export default class List extends Component {
     );
   }
 }
+
+export default List;

@@ -6,7 +6,7 @@ import { AtomicBlockUtils } from 'draft-js';
 
 import LayoutComponent from './Component';
 
-class Embedded extends Component {
+export const Embedded = class Embedded_ extends Component {
 
   static propTypes: Object = {
     editorState: PropTypes.object.isRequired,

@@ -8,7 +8,7 @@ import { forEach } from '../../utils/common';
 
 import LayoutComponent from './Component';
 
-export default class Inline extends Component {
+export const Inline = class Inline_ extends Component {
 
   static propTypes = {
     onChange: PropTypes.func.isRequired,
@@ -119,4 +119,7 @@ export default class Inline extends Component {
     );
   }
 }
+
+export default Inline;
+
 // make subscript less low

@@ -1,4 +1,4 @@
-module.exports = {
+export const zh = {
 
   // Generic
   'generic.add': '添加',
@@ -36,3 +36,4 @@ module.exports = {
   'components.controls.link.linkTarget': '输入链接地址',
   'components.controls.link.linkTargetOption': '在新窗口中打开链接',
 };
+export default zh;

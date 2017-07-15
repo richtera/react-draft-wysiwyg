@@ -7,7 +7,7 @@ import { RichUtils } from 'draft-js';
 
 import LayoutComponent from './Component';
 
-class BlockType extends Component {
+export const BlockType = class BlockType_ extends Component {
 
   static propTypes = {
     onChange: PropTypes.func.isRequired,
@@ -23,7 +23,18 @@ class BlockType extends Component {
   };
 
   componentWillMount(): void {
-    const { editorState, modalHandler } = this.props;
+    const { editorState, modalHandler, config = {} } = this.props;
+    this.blocksTypes = [
+      { label: 'Normal', style: 'unstyled' },
+      { label: 'H1', style: 'header-one' },
+      { label: 'H2', style: 'header-two' },
+      { label: 'H3', style: 'header-three' },
+      { label: 'H4', style: 'header-four' },
+      { label: 'H5', style: 'header-five' },
+      { label: 'H6', style: 'header-six' },
+      { label: 'Blockquote', style: 'blockquote' },
+    ].concat(config.customBlockTypes || []);
+
     if (editorState) {
       this.setState({
         currentBlockType: getSelectedBlocksType(editorState),
@@ -56,17 +67,6 @@ class BlockType extends Component {
     });
     this.signalExpanded = false;
   }
-
-  blocksTypes: Array<Object> = [
-    { label: 'Normal', style: 'unstyled' },
-    { label: 'H1', style: 'header-one' },
-    { label: 'H2', style: 'header-two' },
-    { label: 'H3', style: 'header-three' },
-    { label: 'H4', style: 'header-four' },
-    { label: 'H5', style: 'header-five' },
-    { label: 'H6', style: 'header-six' },
-    { label: 'Blockquote', style: 'blockquote' },
-  ];
 
   doExpand: Function = (): void => {
     this.setState({

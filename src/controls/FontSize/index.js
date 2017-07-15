@@ -9,7 +9,7 @@ import {
 
 import LayoutComponent from './Component';
 
-export default class FontSize extends Component {
+export const FontSize = class FontSize_ extends Component {
 
   static propTypes = {
     onChange: PropTypes.func.isRequired,
@@ -104,3 +104,5 @@ export default class FontSize extends Component {
     );
   }
 }
+
+export default FontSize;

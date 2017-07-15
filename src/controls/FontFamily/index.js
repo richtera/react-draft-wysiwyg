@@ -9,7 +9,7 @@ import {
 
 import LayoutComponent from './Component';
 
-export default class FontFamily extends Component {
+export const FontFamily = class FontFamily_ extends Component {
 
   static propTypes = {
     onChange: PropTypes.func.isRequired,
@@ -103,3 +103,5 @@ export default class FontFamily extends Component {
     );
   }
 }
+
+export default FontFamily;
