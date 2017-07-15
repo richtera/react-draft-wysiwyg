@@ -334,8 +334,12 @@ export const Editor = class WysiwygEditor extends Component {
   };
 
   focusEditor: Function = (event): void => {
-    if (event.target.tagName === 'INPUT') {
-      return;
+    switch (event.target.tagName) {
+      case 'INPUT':
+      case 'TEXTAREA':
+      case 'BUTTON':
+      case 'CHECKBOX':
+        return;
     }
     setTimeout(() => {
       this.editor.focus();
