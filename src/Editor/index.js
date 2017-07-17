@@ -341,6 +341,7 @@ export const Editor = class WysiwygEditor extends Component {
       case 'TEXTAREA':
       case 'BUTTON':
       case 'CHECKBOX':
+      case 'SELECT':
         return;
     }
     setTimeout(() => {

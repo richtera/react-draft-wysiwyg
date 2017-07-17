@@ -101,6 +101,13 @@
   opacity: 0.3;
   cursor: default;
 }
+.rdw-hashtag-link {
+  text-decoration: none;
+  color: #1236ff;
+  background-color: #f0fbff;
+  padding: 1px 2px;
+  border-radius: 2px;
+}
 .rdw-link-decorator-wrapper {
   position: relative;
 }
@@ -110,13 +117,6 @@
   top: 0;
   cursor: pointer;
   background-color: white;
-}
-.rdw-hashtag-link {
-  text-decoration: none;
-  color: #1236ff;
-  background-color: #f0fbff;
-  padding: 1px 2px;
-  border-radius: 2px;
 }
 .rdw-spinner {
   display: flex;
@@ -183,22 +183,6 @@
   background-color: #f0fbff;
   padding: 1px 2px;
   border-radius: 2px;
-}
-.rdw-dropdownoption-default {
-  min-height: 25px;
-  display: flex;
-  align-items: center;
-  padding: 0 5px;
-}
-.rdw-dropdownoption-highlighted {
-  background: #F1F1F1;
-}
-.rdw-dropdownoption-active {
-  background: #f5f5f5;
-}
-.rdw-dropdownoption-disabled {
-  opacity: 0.3;
-  cursor: default;
 }
 .rdw-history-wrapper {
   display: flex;
@@ -275,12 +259,6 @@
 .rdw-dropdown-optionwrapper:hover {
   box-shadow: 1px 1px 0px #BFBDBD;
   background-color: #FFFFFF;
-}
-.rdw-remove-wrapper {
-  display: flex;
-  align-items: center;
-  margin-bottom: 6px;
-  position: relative;
 }
 .rdw-image-wrapper {
   display: flex;
@@ -412,6 +390,60 @@
   height: 100%;
   opacity: 0.5;
 }
+.rdw-dropdownoption-default {
+  min-height: 25px;
+  display: flex;
+  align-items: center;
+  padding: 0 5px;
+}
+.rdw-dropdownoption-highlighted {
+  background: #F1F1F1;
+}
+.rdw-dropdownoption-active {
+  background: #f5f5f5;
+}
+.rdw-dropdownoption-disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+.rdw-remove-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+  position: relative;
+}
+.rdw-emoji-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+  position: relative;
+}
+.rdw-emoji-modal {
+  overflow: auto;
+  position: absolute;
+  top: 35px;
+  left: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 235px;
+  height: 180px;
+  border: 1px solid #F1F1F1;
+  padding: 15px;
+  border-radius: 2px;
+  z-index: 100;
+  background: white;
+  box-shadow: 3px 3px 5px #BFBDBD;
+}
+.rdw-emoji-icon {
+  margin: 2.5px;
+  height: 24px;
+  width: 24px;
+  cursor: pointer;
+  font-size: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .rdw-embedded-wrapper {
   display: flex;
   align-items: center;
@@ -511,38 +543,6 @@
 .rdw-embedded-modal-size-input:focus {
   outline: none;
 }
-.rdw-emoji-wrapper {
-  display: flex;
-  align-items: center;
-  margin-bottom: 6px;
-  position: relative;
-}
-.rdw-emoji-modal {
-  overflow: auto;
-  position: absolute;
-  top: 35px;
-  left: 5px;
-  display: flex;
-  flex-wrap: wrap;
-  width: 235px;
-  height: 180px;
-  border: 1px solid #F1F1F1;
-  padding: 15px;
-  border-radius: 2px;
-  z-index: 100;
-  background: white;
-  box-shadow: 3px 3px 5px #BFBDBD;
-}
-.rdw-emoji-icon {
-  margin: 2.5px;
-  height: 24px;
-  width: 24px;
-  cursor: pointer;
-  font-size: 22px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 .rdw-link-wrapper {
   display: flex;
   align-items: center;
@@ -627,20 +627,6 @@
 }
 .rdw-history-dropdown {
   width: 50px;
-}
-.rdw-list-wrapper {
-  display: flex;
-  align-items: center;
-  margin-bottom: 6px;
-}
-.rdw-list-dropdown {
-  width: 50px;
-  z-index: 90;
-}
-.rdw-list-dropdownOption {
-  height: 40px;
-  display: flex;
-  justify-content: center;
 }
 .rdw-colorpicker-wrapper {
   display: flex;
@@ -747,6 +733,20 @@
 .rdw-justify-aligned-block > div {
   display: inline-block;
 }
+.rdw-list-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.rdw-list-dropdown {
+  width: 50px;
+  z-index: 90;
+}
+.rdw-list-dropdownOption {
+  height: 40px;
+  display: flex;
+  justify-content: center;
+}
 .rdw-fontfamily-wrapper {
   display: flex;
   align-items: center;
@@ -776,6 +776,14 @@
   display: flex;
   justify-content: center;
 }
+.rdw-block-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.rdw-block-dropdown {
+  width: 110px;
+}
 .rdw-inline-wrapper {
   display: flex;
   margin-bottom: 6px;
@@ -787,14 +795,6 @@
   height: 40px;
   display: flex;
   justify-content: center;
-}
-.rdw-block-wrapper {
-  display: flex;
-  align-items: center;
-  margin-bottom: 6px;
-}
-.rdw-block-dropdown {
-  width: 110px;
 }
 
 /*# sourceMappingURL=react-draft-wysiwyg.css.map*/
