@@ -57,7 +57,7 @@ export const MediaControl = class ImageControl_ extends Component {
     const { editorState, onChange } = this.props;
     const entityKey = editorState
       .getCurrentContent()
-      .createEntity(mimeType.split('/')[0].toUpperCase(), 'MUTABLE', { src, height, width })
+      .createEntity(mimeType.split('/')[0].toUpperCase(), 'MUTABLE', { src, height, width, mimeType })
       .getLastCreatedEntityKey();
     const newEditorState = AtomicBlockUtils.insertAtomicBlock(
       editorState,

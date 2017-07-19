@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import Option from '../../../components/Option';
 import Spinner from '../../../components/Spinner';
 import './styles.css';
+import mime from 'mime-types';
 
 class LayoutComponent extends Component {
 
@@ -95,8 +96,9 @@ class LayoutComponent extends Component {
   };
 
   addMediaFromState: Function = (): void => {
-    const { mimeType, mediaSrc, height, width } = this.state;
+    let { mimeType, mediaSrc, height, width } = this.state;
     const { onChange } = this.props;
+    mimeType = mimeType || mime.lookup(mediaSrc);
     onChange(mimeType, mediaSrc, height, width);
   };
 

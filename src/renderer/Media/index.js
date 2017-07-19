@@ -80,7 +80,8 @@ const getMediaComponent = config => class Media extends Component {
     const { hovered } = this.state;
     const { isReadOnly, isMediaAlignmentEnabled } = config;
     const entity = contentState.getEntity(block.getEntityAt(0));
-    const {loop = false, autoPlay = false, mimeType} = entity.getData();
+    const data = entity.getData();
+    const {loop = false, autoPlay = false, mimeType} = data;
     return (
       <div
         className={classNames(
@@ -131,7 +132,7 @@ const getMediaComponent = config => class Media extends Component {
     const { hovered } = this.state;
     const { isReadOnly, isMediaAlignmentEnabled } = config;
     const entity = contentState.getEntity(block.getEntityAt(0));
-    const { src, mimeType, alignment, height, width, autoPlay } = entity.getData();
+    const { src, mimeType, alignment, height, width, autoPlay, loop } = entity.getData();
 
     return (
       <span
@@ -151,6 +152,7 @@ const getMediaComponent = config => class Media extends Component {
             <video
               width="100%"
               controls
+              loop={loop}
               style={{
                 height,
                 width,
@@ -161,6 +163,7 @@ const getMediaComponent = config => class Media extends Component {
           )}
           { entity.type === 'AUDIO' && (
             <audio
+              loop={loop}
               controls>
               <source src={src} type={mimeType}/>
               Your browser does not support the audio tag.
