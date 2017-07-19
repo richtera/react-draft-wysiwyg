@@ -48,7 +48,7 @@ class LayoutComponent extends Component {
   ].concat(config.customBlockTypes || []);
 
   renderFlat(blocks: Array<Object>): void {
-    const { config: { className }, onChange, currentState: { blockType } } = this.props;
+    const { config: { className }, onChange, currentState: { blockType, rawBlockType } } = this.props;
     return (
       <div className={classNames('rdw-inline-wrapper', className)}>
         {
@@ -58,6 +58,7 @@ class LayoutComponent extends Component {
             value={block.label}
             active={blockType === block.label}
             onClick={onChange}
+            disabled={rawBlockType === 'atomic'}
           >
             {block.displayName}
           </Option>),
@@ -70,7 +71,7 @@ class LayoutComponent extends Component {
   renderInDropdown(blocks: Array<Object>): void {
     const {
       config: { className, dropdownClassName, title },
-      currentState: { blockType },
+      currentState: { blockType, rawBlockType },
       expanded,
       doExpand,
       onExpandEvent,
@@ -92,8 +93,9 @@ class LayoutComponent extends Component {
           doCollapse={doCollapse}
           onExpandEvent={onExpandEvent}
           title={title}
+          disabled={rawBlockType === 'atomic'}
         >
-          <span>{currentLabel || translations['components.controls.blocktype.blocktype']}</span>
+          <span>{rawBlockType === 'atomic' ? (translations['components.controls.blocktype.atomic'] || 'Atomic') : (currentLabel || translations['components.controls.blocktype.blocktype'])}</span>
           {
             blocks.map((block, index) =>
               (<DropdownOption

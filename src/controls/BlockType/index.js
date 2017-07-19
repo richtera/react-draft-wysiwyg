@@ -101,7 +101,7 @@ export const BlockType = class BlockType_ extends Component {
       <BlockTypeComponent
         config={config}
         translations={translations}
-        currentState={{ blockType: blockType && blockType.label }}
+        currentState={{ blockType: blockType && blockType.label, rawBlockType: currentBlockType }}
         onChange={this.toggleBlockType}
         expanded={expanded}
         onExpandEvent={this.onExpandEvent}

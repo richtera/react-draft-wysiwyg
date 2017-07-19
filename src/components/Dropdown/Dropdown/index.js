@@ -49,8 +49,8 @@ export const Dropdown = class Dropdown_ extends Component {
   };
 
   toggleExpansion: Function = (): void => {
-    const { doExpand, doCollapse, expanded } = this.props;
-    if (expanded) {
+    const { doExpand, doCollapse, expanded, disabled } = this.props;
+    if (expanded || disabled) {
       doCollapse();
     } else {
       doExpand();
@@ -66,6 +66,7 @@ export const Dropdown = class Dropdown_ extends Component {
       ariaLabel,
       onExpandEvent,
       title,
+      disabled
     } = this.props;
     const { highlighted } = this.state;
     const options = children.slice(1, children.length);
@@ -75,20 +76,29 @@ export const Dropdown = class Dropdown_ extends Component {
         aria-expanded={expanded}
         aria-label={ariaLabel || 'rdw-dropdown'}
       >
-        <a
-          className="rdw-dropdown-selectedtext"
-          onClick={onExpandEvent}
-          title={title}
-        >
-          {children[0]}
-          <div
-            className={classNames({
-              'rdw-dropdown-carettoclose': expanded,
-              'rdw-dropdown-carettoopen': !expanded,
-            })}
-          />
-        </a>
-        {expanded ?
+        {disabled ? (
+          <span
+            className="rdw-dropdown-selectedtext"
+            title={title}
+          >
+            {children[0]}
+          </span>
+        ) : (
+          <a
+            className="rdw-dropdown-selectedtext"
+            onClick={onExpandEvent}
+            title={title}
+          >
+            {children[0]}
+            <div
+              className={classNames({
+                'rdw-dropdown-carettoclose': expanded,
+                'rdw-dropdown-carettoopen': !expanded,
+              })}
+            />
+          </a>
+        )}
+        {expanded && !disabled ?
           <ul
             className={classNames('rdw-dropdown-optionwrapper', optionWrapperClassName)}
             onClick={stopPropagation}
