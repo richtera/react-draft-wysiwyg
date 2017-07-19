@@ -31,6 +31,11 @@ export const en = {
   'components.controls.image.byURL': 'URL',
   'components.controls.image.dropFileText': 'Drop the file or click to upload',
 
+  // Media
+  'components.controls.media.fileUpload': 'File Upload',
+  'components.controls.media.byURL': 'URL',
+  'components.controls.media.dropFileText': 'Drop the file or click to upload',
+
   // Link
   'components.controls.link.linkTitle': 'Link Title',
   'components.controls.link.linkTarget': 'Link Target',

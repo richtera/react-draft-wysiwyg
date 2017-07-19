@@ -31,6 +31,11 @@ export const pt = {
   'components.controls.image.byURL': 'URL',
   'components.controls.image.dropFileText': 'Arraste uma imagem aqui ou clique para carregar',
 
+  // Image
+  'components.controls.media.fileUpload': 'Carregar arquivo',
+  'components.controls.media.byURL': 'URL',
+  'components.controls.media.dropFileText': 'Arraste uma imagem aqui ou clique para carregar',
+
   // Link
   'components.controls.link.linkTitle': 'Título do link',
   'components.controls.link.linkTarget': 'Alvo do link',

@@ -31,6 +31,11 @@ export const fr = {
   'components.controls.image.byURL': 'URL',
   'components.controls.image.dropFileText': 'Glisser une image ou cliquer pour télécharger',
 
+  // Media
+  'components.controls.media.fileUpload': 'Téléchargement',
+  'components.controls.media.byURL': 'URL',
+  'components.controls.media.dropFileText': 'Glisser une image ou cliquer pour télécharger',
+
   // Link
   'components.controls.link.linkTitle': 'Titre du lien',
   'components.controls.link.linkTarget': 'Cible du lien',

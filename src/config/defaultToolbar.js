@@ -162,6 +162,22 @@ export default {
     },
     title: 'Image',
   },
+  media: {
+    icon: image,
+    className: undefined,
+    component: undefined,
+    popupClassName: undefined,
+    urlEnabled: true,
+    uploadEnabled: true,
+    alignmentEnabled: true,
+    uploadCallback: undefined,
+    inputAccept: 'image/*,video/*,audio/*',
+    defaultSize: {
+      height: 'auto',
+      width: 'auto',
+    },
+    title: 'Media',
+  },
   remove: { icon: eraser, className: undefined, component: undefined, title: 'Remove' },
   history: {
     inDropdown: false,

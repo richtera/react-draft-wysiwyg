@@ -108,6 +108,7 @@ export const Editor = class WysiwygEditor extends Component {
     this.blockRendererFn = getBlockRenderFunc({
       isReadOnly: this.isReadOnly,
       isImageAlignmentEnabled: this.isImageAlignmentEnabled,
+      isMediaAlignmentEnabled: this.isMediaAlignmentEnabled,
       getEditorState: this.getEditorState,
       onChange: this.onChange,
     }, props.customBlockRenderFunc);
@@ -283,6 +284,7 @@ export const Editor = class WysiwygEditor extends Component {
   isReadOnly = () => this.props.readOnly;
 
   isImageAlignmentEnabled = () => this.state.toolbar.image.alignmentEnabled;
+  isMediaAlignmentEnabled = () => this.state.toolbar.media.alignmentEnabled;
 
   createEditorState = (compositeDecorator) => {
     let editorState;
@@ -431,7 +433,7 @@ export const Editor = class WysiwygEditor extends Component {
             {toolbar.options.map((opt, index) => {
               const Control = Controls[opt];
               const config = toolbar[opt];
-              if (opt === 'image' && uploadCallback) {
+              if ((opt === 'image' || opt === 'media') && uploadCallback) {
                 config.uploadCallback = uploadCallback;
               }
               return <Control key={index} {...controlProps} config={config} />;

@@ -11,6 +11,7 @@ import EmojiC from './Emoji';
 import ImageC from './Image';
 import RemoveC from './Remove';
 import HistoryC from './History';
+import MediaC from './Media';
 
 export default {
   inline: InlineC,
@@ -25,7 +26,8 @@ export default {
   emoji: EmojiC,
   image: ImageC,
   remove: RemoveC,
-  history: HistoryC
+  history: HistoryC,
+  media: MediaC
 };
 export {
   InlineC as Inline,
@@ -40,5 +42,6 @@ export {
   EmojiC as Emoji,
   ImageC as Image,
   RemoveC as Remove,
-  HistoryC as History
+  HistoryC as History,
+  MediaC as Media
 };

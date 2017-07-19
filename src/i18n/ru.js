@@ -31,6 +31,11 @@ export const ru = {
   'components.controls.image.byURL': 'URL',
   'components.controls.image.dropFileText': 'Переместите в эту область файлы или кликните для загрузки',
 
+  // Image
+  'components.controls.media.fileUpload': 'Файлы',
+  'components.controls.media.byURL': 'URL',
+  'components.controls.media.dropFileText': 'Переместите в эту область файлы или кликните для загрузки',
+
   // Link
   'components.controls.link.linkTitle': 'Текст',
   'components.controls.link.linkTarget': 'Адрес ссылки',
