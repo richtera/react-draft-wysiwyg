@@ -110,13 +110,13 @@ const getMediaComponent = config => class Media extends Component {
           R
         </Option>
         { /^(video|audio)\//.test(mimeType) && [
-          <Option
+          <Option key={1}
             onClick={this.toggleAutoPlay}
             className="rdw-media-additional-option"
           >
             {autoPlay ? "Playing" : "Stopped"}
           </Option>,
-          <Option
+          <Option key={2}
             onClick={this.toogleLoop}
             className="rdw-media-additional-option"
           >

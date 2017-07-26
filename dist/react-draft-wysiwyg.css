@@ -35,6 +35,44 @@
 .rdw-editor-wrapper {
   box-sizing: content-box;
 }
+.rdw-media-alignment-options-popup {
+  position: absolute;;
+  background: white;
+  display: flex;
+  padding: 5px 2px;
+  border-radius: 2px;
+  border: 1px solid #F1F1F1;
+  cursor: pointer;
+  z-index: 100;
+}
+.rdw-alignment-option-left {
+  justify-content: flex-start;
+}
+.rdw-media-alignment-option {
+  height: 15px;
+  width: 15px;
+  min-width: 15px;
+}
+.rdw-media-alignment {
+  position: relative;
+}
+.rdw-media-imagewrapper {
+  position: relative;
+}
+.rdw-media-center {
+  display: flex;
+  justify-content: center;
+}
+.rdw-media-left {
+  display: flex;
+}
+.rdw-media-right {
+  display: flex;
+  justify-content: flex-end;
+}
+.rdw-media-alignment-options-popup-right {
+  right: 0;
+}
 .rdw-option-wrapper {
   border: 1px solid #F1F1F1;
   padding: 5px;
@@ -101,43 +139,12 @@
 .rdw-image-alignment-options-popup-right {
   right: 0;
 }
-.rdw-media-alignment-options-popup {
-  position: absolute;;
-  background: white;
-  display: flex;
-  padding: 5px 2px;
+.rdw-hashtag-link {
+  text-decoration: none;
+  color: #1236ff;
+  background-color: #f0fbff;
+  padding: 1px 2px;
   border-radius: 2px;
-  border: 1px solid #F1F1F1;
-  cursor: pointer;
-  z-index: 100;
-}
-.rdw-alignment-option-left {
-  justify-content: flex-start;
-}
-.rdw-media-alignment-option {
-  height: 15px;
-  width: 15px;
-  min-width: 15px;
-}
-.rdw-media-alignment {
-  position: relative;
-}
-.rdw-media-imagewrapper {
-  position: relative;
-}
-.rdw-media-center {
-  display: flex;
-  justify-content: center;
-}
-.rdw-media-left {
-  display: flex;
-}
-.rdw-media-right {
-  display: flex;
-  justify-content: flex-end;
-}
-.rdw-media-alignment-options-popup-right {
-  right: 0;
 }
 .rdw-link-decorator-wrapper {
   position: relative;
@@ -148,13 +155,6 @@
   top: 0;
   cursor: pointer;
   background-color: white;
-}
-.rdw-hashtag-link {
-  text-decoration: none;
-  color: #1236ff;
-  background-color: #f0fbff;
-  padding: 1px 2px;
-  border-radius: 2px;
 }
 .rdw-spinner {
   display: flex;
@@ -194,13 +194,6 @@
     transform: scale(1.0);
   }
 }
-.rdw-mention-link {
-  text-decoration: none;
-  color: #1236ff;
-  background-color: #f0fbff;
-  padding: 1px 2px;
-  border-radius: 2px;
-}
 .rdw-suggestion-wrapper {
   position: relative;
 }
@@ -221,6 +214,13 @@
 }
 .rdw-suggestion-option-active {
   background-color: #F1F1F1;
+}
+.rdw-mention-link {
+  text-decoration: none;
+  color: #1236ff;
+  background-color: #f0fbff;
+  padding: 1px 2px;
+  border-radius: 2px;
 }
 .rdw-media-wrapper {
   display: flex;
@@ -450,38 +450,6 @@
   margin-bottom: 6px;
   position: relative;
 }
-.rdw-emoji-wrapper {
-  display: flex;
-  align-items: center;
-  margin-bottom: 6px;
-  position: relative;
-}
-.rdw-emoji-modal {
-  overflow: auto;
-  position: absolute;
-  top: 35px;
-  left: 5px;
-  display: flex;
-  flex-wrap: wrap;
-  width: 235px;
-  height: 180px;
-  border: 1px solid #F1F1F1;
-  padding: 15px;
-  border-radius: 2px;
-  z-index: 100;
-  background: white;
-  box-shadow: 3px 3px 5px #BFBDBD;
-}
-.rdw-emoji-icon {
-  margin: 2.5px;
-  height: 24px;
-  width: 24px;
-  cursor: pointer;
-  font-size: 22px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 .rdw-image-wrapper {
   display: flex;
   align-items: center;
@@ -612,31 +580,21 @@
   height: 100%;
   opacity: 0.5;
 }
-.rdw-link-wrapper {
+.rdw-emoji-wrapper {
   display: flex;
   align-items: center;
   margin-bottom: 6px;
   position: relative;
 }
-.rdw-link-dropdown {
-  width: 50px;
-}
-.rdw-link-dropdownOption {
-  height: 40px;
-  display: flex;
-  justify-content: center;
-}
-.rdw-link-dropdownPlaceholder {
-  margin-left: 8px;
-}
-.rdw-link-modal {
+.rdw-emoji-modal {
+  overflow: auto;
   position: absolute;
   top: 35px;
   left: 5px;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   width: 235px;
-  height: 205px;
+  height: 180px;
   border: 1px solid #F1F1F1;
   padding: 15px;
   border-radius: 2px;
@@ -644,58 +602,15 @@
   background: white;
   box-shadow: 3px 3px 5px #BFBDBD;
 }
-.rdw-link-modal-label {
-  font-size: 15px;
-}
-.rdw-link-modal-input {
-  margin-top: 5px;
-  border-radius: 2px;
-  border: 1px solid #F1F1F1;
-  height: 25px;
-  margin-bottom: 15px;
-  padding: 0 5px;
-}
-.rdw-link-modal-input:focus {
-  outline: none;
-}
-.rdw-link-modal-buttonsection {
-  margin: 0 auto;
-}
-.rdw-link-modal-target-option {
-  margin-bottom: 20px;
-}
-.rdw-link-modal-target-option > span {
-  margin-left: 5px;
-}
-.rdw-link-modal-btn {
-  margin-left: 10px;
-  width: 75px;
-  height: 30px;
-  border: 1px solid #F1F1F1;
-  border-radius: 2px;
+.rdw-emoji-icon {
+  margin: 2.5px;
+  height: 24px;
+  width: 24px;
   cursor: pointer;
-  background: white;
-  text-transform: capitalize;
-}
-.rdw-link-modal-btn:hover {
-  box-shadow: 1px 1px 0px #BFBDBD;
-}
-.rdw-link-modal-btn:active {
-  box-shadow: 1px 1px 0px #BFBDBD inset;
-}
-.rdw-link-modal-btn:focus {
-  outline: none !important;
-}
-.rdw-link-modal-btn:disabled {
-  background: #ece9e9;
-}
-.rdw-link-dropdownoption {
-  height: 40px;
+  font-size: 22px;
   display: flex;
   justify-content: center;
-}
-.rdw-history-dropdown {
-  width: 50px;
+  align-items: center;
 }
 .rdw-embedded-wrapper {
   display: flex;
@@ -795,6 +710,91 @@
 }
 .rdw-embedded-modal-size-input:focus {
   outline: none;
+}
+.rdw-link-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+  position: relative;
+}
+.rdw-link-dropdown {
+  width: 50px;
+}
+.rdw-link-dropdownOption {
+  height: 40px;
+  display: flex;
+  justify-content: center;
+}
+.rdw-link-dropdownPlaceholder {
+  margin-left: 8px;
+}
+.rdw-link-modal {
+  position: absolute;
+  top: 35px;
+  left: 5px;
+  display: flex;
+  flex-direction: column;
+  width: 235px;
+  height: 205px;
+  border: 1px solid #F1F1F1;
+  padding: 15px;
+  border-radius: 2px;
+  z-index: 100;
+  background: white;
+  box-shadow: 3px 3px 5px #BFBDBD;
+}
+.rdw-link-modal-label {
+  font-size: 15px;
+}
+.rdw-link-modal-input {
+  margin-top: 5px;
+  border-radius: 2px;
+  border: 1px solid #F1F1F1;
+  height: 25px;
+  margin-bottom: 15px;
+  padding: 0 5px;
+}
+.rdw-link-modal-input:focus {
+  outline: none;
+}
+.rdw-link-modal-buttonsection {
+  margin: 0 auto;
+}
+.rdw-link-modal-target-option {
+  margin-bottom: 20px;
+}
+.rdw-link-modal-target-option > span {
+  margin-left: 5px;
+}
+.rdw-link-modal-btn {
+  margin-left: 10px;
+  width: 75px;
+  height: 30px;
+  border: 1px solid #F1F1F1;
+  border-radius: 2px;
+  cursor: pointer;
+  background: white;
+  text-transform: capitalize;
+}
+.rdw-link-modal-btn:hover {
+  box-shadow: 1px 1px 0px #BFBDBD;
+}
+.rdw-link-modal-btn:active {
+  box-shadow: 1px 1px 0px #BFBDBD inset;
+}
+.rdw-link-modal-btn:focus {
+  outline: none !important;
+}
+.rdw-link-modal-btn:disabled {
+  background: #ece9e9;
+}
+.rdw-link-dropdownoption {
+  height: 40px;
+  display: flex;
+  justify-content: center;
+}
+.rdw-history-dropdown {
+  width: 50px;
 }
 .rdw-colorpicker-wrapper {
   display: flex;
@@ -915,26 +915,6 @@
   display: flex;
   justify-content: center;
 }
-.rdw-fontsize-wrapper {
-  display: flex;
-  align-items: center;
-  margin-bottom: 6px;
-}
-.rdw-fontsize-dropdown {
-  min-width: 40px;
-}
-.rdw-fontsize-option {
-  display: flex;
-  justify-content: center;
-}
-.rdw-block-wrapper {
-  display: flex;
-  align-items: center;
-  margin-bottom: 6px;
-}
-.rdw-block-dropdown {
-  width: 110px;
-}
 .rdw-fontfamily-wrapper {
   display: flex;
   align-items: center;
@@ -952,6 +932,18 @@
 .rdw-fontfamily-optionwrapper {
   width: 140px;
 }
+.rdw-fontsize-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.rdw-fontsize-dropdown {
+  min-width: 40px;
+}
+.rdw-fontsize-option {
+  display: flex;
+  justify-content: center;
+}
 .rdw-inline-wrapper {
   display: flex;
   margin-bottom: 6px;
@@ -963,6 +955,14 @@
   height: 40px;
   display: flex;
   justify-content: center;
+}
+.rdw-block-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.rdw-block-dropdown {
+  width: 110px;
 }
 
 /*# sourceMappingURL=react-draft-wysiwyg.css.map*/
