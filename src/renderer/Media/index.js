@@ -48,7 +48,7 @@ const getMediaComponent = config => class Media extends Component {
   };
 
   toogleLoop: Function = (): void => {
-    const loop = !this.state.autoPlay;
+    const loop = !this.state.loop;
     const { block, contentState } = this.props;
     const entityKey = block.getEntityAt(0);
     contentState.mergeEntityData(

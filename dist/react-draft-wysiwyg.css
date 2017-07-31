@@ -35,6 +35,33 @@
 .rdw-editor-wrapper {
   box-sizing: content-box;
 }
+.rdw-option-wrapper {
+  border: 1px solid #F1F1F1;
+  padding: 5px;
+  min-width: 25px;
+  height: 20px;
+  border-radius: 2px;
+  margin: 0 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background: white;
+  text-transform: capitalize;
+}
+.rdw-option-wrapper:hover {
+  box-shadow: 1px 1px 0px #BFBDBD;
+}
+.rdw-option-wrapper:active {
+  box-shadow: 1px 1px 0px #BFBDBD inset;
+}
+.rdw-option-active {
+  box-shadow: 1px 1px 0px #BFBDBD inset;
+}
+.rdw-option-disabled {
+  opacity: 0.3;
+  cursor: default;
+}
 .rdw-media-alignment-options-popup {
   position: absolute;;
   background: white;
@@ -72,33 +99,6 @@
 }
 .rdw-media-alignment-options-popup-right {
   right: 0;
-}
-.rdw-option-wrapper {
-  border: 1px solid #F1F1F1;
-  padding: 5px;
-  min-width: 25px;
-  height: 20px;
-  border-radius: 2px;
-  margin: 0 4px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  background: white;
-  text-transform: capitalize;
-}
-.rdw-option-wrapper:hover {
-  box-shadow: 1px 1px 0px #BFBDBD;
-}
-.rdw-option-wrapper:active {
-  box-shadow: 1px 1px 0px #BFBDBD inset;
-}
-.rdw-option-active {
-  box-shadow: 1px 1px 0px #BFBDBD inset;
-}
-.rdw-option-disabled {
-  opacity: 0.3;
-  cursor: default;
 }
 .rdw-image-alignment-options-popup {
   position: absolute;;
@@ -221,6 +221,19 @@
   background-color: #f0fbff;
   padding: 1px 2px;
   border-radius: 2px;
+}
+.rdw-history-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.rdw-history-dropdownoption {
+  height: 40px;
+  display: flex;
+  justify-content: center;
+}
+.rdw-history-dropdown {
+  width: 50px;
 }
 .rdw-media-wrapper {
   display: flex;
@@ -351,19 +364,6 @@
   width: 100%;
   height: 100%;
   opacity: 0.5;
-}
-.rdw-history-wrapper {
-  display: flex;
-  align-items: center;
-  margin-bottom: 6px;
-}
-.rdw-history-dropdownoption {
-  height: 40px;
-  display: flex;
-  justify-content: center;
-}
-.rdw-history-dropdown {
-  width: 50px;
 }
 .rdw-dropdownoption-default {
   min-height: 25px;
@@ -580,38 +580,6 @@
   height: 100%;
   opacity: 0.5;
 }
-.rdw-emoji-wrapper {
-  display: flex;
-  align-items: center;
-  margin-bottom: 6px;
-  position: relative;
-}
-.rdw-emoji-modal {
-  overflow: auto;
-  position: absolute;
-  top: 35px;
-  left: 5px;
-  display: flex;
-  flex-wrap: wrap;
-  width: 235px;
-  height: 180px;
-  border: 1px solid #F1F1F1;
-  padding: 15px;
-  border-radius: 2px;
-  z-index: 100;
-  background: white;
-  box-shadow: 3px 3px 5px #BFBDBD;
-}
-.rdw-emoji-icon {
-  margin: 2.5px;
-  height: 24px;
-  width: 24px;
-  cursor: pointer;
-  font-size: 22px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 .rdw-embedded-wrapper {
   display: flex;
   align-items: center;
@@ -710,6 +678,38 @@
 }
 .rdw-embedded-modal-size-input:focus {
   outline: none;
+}
+.rdw-emoji-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+  position: relative;
+}
+.rdw-emoji-modal {
+  overflow: auto;
+  position: absolute;
+  top: 35px;
+  left: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 235px;
+  height: 180px;
+  border: 1px solid #F1F1F1;
+  padding: 15px;
+  border-radius: 2px;
+  z-index: 100;
+  background: white;
+  box-shadow: 3px 3px 5px #BFBDBD;
+}
+.rdw-emoji-icon {
+  margin: 2.5px;
+  height: 24px;
+  width: 24px;
+  cursor: pointer;
+  font-size: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .rdw-link-wrapper {
   display: flex;
@@ -932,6 +932,14 @@
 .rdw-fontfamily-optionwrapper {
   width: 140px;
 }
+.rdw-block-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.rdw-block-dropdown {
+  width: 110px;
+}
 .rdw-fontsize-wrapper {
   display: flex;
   align-items: center;
@@ -955,14 +963,6 @@
   height: 40px;
   display: flex;
   justify-content: center;
-}
-.rdw-block-wrapper {
-  display: flex;
-  align-items: center;
-  margin-bottom: 6px;
-}
-.rdw-block-dropdown {
-  width: 110px;
 }
 
 /*# sourceMappingURL=react-draft-wysiwyg.css.map*/
