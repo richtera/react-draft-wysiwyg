@@ -110,7 +110,7 @@ export const Editor = class WysiwygEditor extends Component {
       isImageAlignmentEnabled: this.isImageAlignmentEnabled,
       isMediaAlignmentEnabled: this.isMediaAlignmentEnabled,
       getEditorState: this.getEditorState,
-      onChange: this.onChange,
+      onChange: this.onChange.bind(this, true),
     }, props.customBlockRenderFunc);
     this.editorProps = this.filterEditorProps(props);
     this.customStyleMap = getCustomStyleMap();
@@ -191,7 +191,7 @@ export const Editor = class WysiwygEditor extends Component {
     if (!onTab || !onTab(event)) {
       const editorState = changeDepth(this.state.editorState, event.shiftKey ? -1 : 1, 4);
       if (editorState && editorState !== this.state.editorState) {
-        this.onChange(editorState);
+        this.onChange(false, editorState);
         event.preventDefault();
       }
     }
@@ -217,13 +217,11 @@ export const Editor = class WysiwygEditor extends Component {
     }
   };
 
-  onChange: Function = (editorState: Object): void => {
+  onChange: Function = (force: boolean, editorState: Object): void => {
     const { readOnly, onEditorStateChange } = this.props;
     const isAtomic = getSelectedBlocksType(editorState) === 'atomic';
     const isCollapsed = editorState.getSelection().isCollapsed();
-    // Checking for atomic and collapsed actually breaks the image L/C/R functionality
-    // since the onEditorStateChange won't trigger unless you make other changes
-    if (!readOnly /* && !(isAtomic && isCollapsed) */) {
+    if (!readOnly && (!(isAtomic && isCollapsed) || force)) {
       if (onEditorStateChange) {
         onEditorStateChange(editorState, this.props.wrapperId);
       }
@@ -250,7 +248,7 @@ export const Editor = class WysiwygEditor extends Component {
     if (this.props.mention) {
       decorators.push(...getMentionDecorators({
         ...this.props.mention,
-        onChange: this.onChange,
+        onChange: this.onChange.bind(this, true),
         getEditorState: this.getEditorState,
         getSuggestions: this.getSuggestions,
         getWrapperRef: this.getWrapperRef,
@@ -355,7 +353,7 @@ export const Editor = class WysiwygEditor extends Component {
     const { editorState } = this.state;
     const newState = RichUtils.handleKeyCommand(editorState, command);
     if (newState) {
-      this.onChange(newState);
+      this.onChange(false, newState);
       return true;
     }
     return false;
@@ -367,7 +365,7 @@ export const Editor = class WysiwygEditor extends Component {
     }
     const editorState = handleNewLine(this.state.editorState, event);
     if (editorState) {
-      this.onChange(editorState);
+      this.onChange(false, editorState);
       return true;
     }
     return false;
@@ -406,7 +404,7 @@ export const Editor = class WysiwygEditor extends Component {
     const controlProps = {
       modalHandler: this.modalHandler,
       editorState,
-      onChange: this.onChange,
+      onChange: this.onChange.bind(this, true),
       translations: { ...localeTranslations[locale || newLocale], ...translations },
     };
 
@@ -458,7 +456,7 @@ export const Editor = class WysiwygEditor extends Component {
             onUpArrow={this.onUpDownArrow}
             onDownArrow={this.onUpDownArrow}
             editorState={editorState}
-            onChange={this.onChange}
+            onChange={this.onChange.bind(this, false)}
             blockStyleFn={blockStyleFn}
             customStyleMap={getCustomStyleMap()}
             handleReturn={this.handleReturn}
