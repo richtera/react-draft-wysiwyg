@@ -98,7 +98,11 @@ class LayoutComponent extends Component {
   addMediaFromState: Function = (): void => {
     let { mimeType, mediaSrc, height, width } = this.state;
     const { onChange } = this.props;
-    mimeType = mimeType || mime.lookup(mediaSrc);
+    let lookupSrc = mediaSrc;
+    if (mediaSrc.indexOf('?')) {
+      lookupSrc = mediaSrc.split('?')[0];
+    }
+    mimeType = mimeType || mime.lookup(lookupSrc);
     onChange(mimeType, mediaSrc, height, width);
   };
 
@@ -122,9 +126,20 @@ class LayoutComponent extends Component {
   };
 
   updateValue: Function = (event: Object): void => {
-    this.setState({
+    const update = {
       [`${event.target.name}`]: event.target.value,
-    });
+    };
+    const {mediaSrc} = Object.assign({}, this.state, update);
+    if (mediaSrc) {
+      let lookupSrc = mediaSrc;
+      if (mediaSrc.indexOf('?')) {
+        lookupSrc = mediaSrc.split('?')[0];
+      }
+      update.mimeType = mime.lookup(lookupSrc);
+    } else {
+      update.mimeType = null;
+    }
+    this.setState(update);
   };
 
   selectMedia: Function = (event: Object): void => {
@@ -166,7 +181,7 @@ class LayoutComponent extends Component {
   };
 
   renderAddMediaModal(): Object {
-    const { mediaSrc, uploadHighlighted, showMediaLoading, dragEnter, height, width } = this.state;
+    const { mediaSrc, mimeType, uploadHighlighted, showMediaLoading, dragEnter, height, width } = this.state;
     const {
       config: { popupClassName, uploadCallback, uploadEnabled, urlEnabled, inputAccept },
       doCollapse,
@@ -266,7 +281,7 @@ class LayoutComponent extends Component {
           <button
             className="rdw-media-modal-btn"
             onClick={this.addMediaFromState}
-            disabled={!mediaSrc || !height || !width}
+            disabled={!mediaSrc || !height || !width || !mimeType}
           >
             {translations['generic.add']}
           </button>
