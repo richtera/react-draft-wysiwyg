@@ -9,6 +9,8 @@ import Spinner from '../../../components/Spinner';
 import './styles.css';
 import mime from 'mime-types';
 
+const youTubeReg = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/;
+
 class LayoutComponent extends Component {
 
   static propTypes: Object = {
@@ -96,19 +98,26 @@ class LayoutComponent extends Component {
   };
 
   addMediaFromState: Function = (): void => {
-    let { mimeType, mediaSrc, height, width } = this.state;
+    let { mimeType, mediaSrc, height, width, videoId } = this.state;
     const { onChange } = this.props;
-    let lookupSrc = mediaSrc;
-    if (mediaSrc.indexOf('?')) {
-      lookupSrc = mediaSrc.split('?')[0];
+    if (!mimeType) {
+      let lookupSrc = mediaSrc;
+      if (mediaSrc.indexOf('?')) {
+        lookupSrc = mediaSrc.split('?')[0];
+      }
+      mimeType = mimeType || mime.lookup(lookupSrc);
     }
-    mimeType = mimeType || mime.lookup(lookupSrc);
-    onChange(mimeType, mediaSrc, height, width);
+    onChange(mimeType, mimeType === 'video/x-youtube' ? videoId : mediaSrc, height, width);
   };
 
   addMediaFromSrcLink: Function = (mimeType: string, mediaSrc: string): void => {
     const { height, width } = this.state;
     const { onChange } = this.props;
+    const match = youTubeReg.exec(mediaSrc);
+    if (match) {
+      mediaSrc = match[5];
+      mimeType = 'video/x-youtube';
+    }
     onChange(mimeType, mediaSrc, height, width);
   };
 
@@ -131,11 +140,18 @@ class LayoutComponent extends Component {
     };
     const {mediaSrc} = Object.assign({}, this.state, update);
     if (mediaSrc) {
-      let lookupSrc = mediaSrc;
-      if (mediaSrc.indexOf('?')) {
-        lookupSrc = mediaSrc.split('?')[0];
+      const match = youTubeReg.exec(mediaSrc);
+      if (match) {
+        update.videoId = match[5];
+        update.mimeType = 'video/x-youtube';
+      } else {
+        let lookupSrc = mediaSrc;
+        if (mediaSrc.indexOf('?')) {
+          lookupSrc = mediaSrc.split('?')[0];
+        }
+        update.mimeType = mime.lookup(lookupSrc);
+        update.videoId = null;
       }
-      update.mimeType = mime.lookup(lookupSrc);
     } else {
       update.mimeType = null;
     }

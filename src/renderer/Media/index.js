@@ -4,6 +4,7 @@ import { EditorState } from 'draft-js';
 import classNames from 'classnames';
 import Option from '../../components/Option';
 import './styles.css';
+import YouTube from 'react-youtube';
 
 const getMediaComponent = config => class Media extends Component {
   static propTypes: Object = {
@@ -148,7 +149,16 @@ const getMediaComponent = config => class Media extends Component {
         )}
       >
         <span className="rdw-media-mediawrapper">
-          { entity.type === 'VIDEO' && (
+          { entity.type === 'VIDEO' && (mimeType === 'video/x-youtube' ? (
+            <YouTube videoId={src} opts={{
+              playerVars: {
+                controls: 1,
+                loop,
+                width,
+                height
+              }
+            }}/>
+          ) : (
             <video
               width="100%"
               controls
@@ -160,7 +170,7 @@ const getMediaComponent = config => class Media extends Component {
               <source src={src} type={mimeType}/>
               Your browser does not support the video tag.
             </video>
-          )}
+          ))}
           { entity.type === 'AUDIO' && (
             <audio
               loop={loop}
