@@ -46,7 +46,8 @@ export default {
   },
   blockType: {
     inDropdown: true,
-    options: ['Normal', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'Blockquote', 'Code'],
+    options: ['Normal', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'Blockquote'],
+    customBlockTypes: [], // [{label: 'Custom Type', displayName: 'Custom Type Display', style: 'custom-style'}]
     className: undefined,
     component: undefined,
     dropdownClassName: undefined,
@@ -162,7 +163,23 @@ export default {
     },
     title: undefined,
   },
-  remove: { icon: eraser, className: undefined, component: undefined, title: undefined },
+  media: {
+    icon: image,
+    className: undefined,
+    component: undefined,
+    popupClassName: undefined,
+    urlEnabled: true,
+    uploadEnabled: true,
+    alignmentEnabled: true,
+    uploadCallback: undefined,
+    inputAccept: 'image/*,video/*,audio/*',
+    defaultSize: {
+      height: 'auto',
+      width: 'auto',
+    },
+    title: 'Media',
+  },
+  remove: { icon: eraser, className: undefined, component: undefined, title: 'Remove' },
   history: {
     inDropdown: false,
     className: undefined,

@@ -55,6 +55,11 @@ module.exports = {
   'components.controls.inline.superscript': '위 첨자',
   'components.controls.inline.subscript': '아래 첨자',
 
+  // Image
+  'components.controls.media.fileUpload': '파일 업로드',
+  'components.controls.media.byURL': '주소',
+  'components.controls.media.dropFileText': '파일을 드롭하거나 클릭하여 업로드하세요',
+
   // Link
   'components.controls.link.linkTitle': '링크 제목',
   'components.controls.link.linkTarget': '링크 타겟',

@@ -55,6 +55,11 @@ module.exports = {
   'components.controls.inline.superscript': 'Sobrescrito',
   'components.controls.inline.subscript': 'Subscrito',
 
+  // Image
+  'components.controls.media.fileUpload': 'Carregar arquivo',
+  'components.controls.media.byURL': 'URL',
+  'components.controls.media.dropFileText': 'Arraste uma imagem aqui ou clique para carregar',
+
   // Link
   'components.controls.link.linkTitle': 'Título do link',
   'components.controls.link.linkTarget': 'Alvo do link',

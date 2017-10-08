@@ -46,6 +46,11 @@ module.exports = {
   'components.controls.image.byURL': 'URL',
   'components.controls.image.dropFileText': 'Переместите в эту область файлы или кликните для загрузки',
 
+  // Image
+  'components.controls.media.fileUpload': 'Файлы',
+  'components.controls.media.byURL': 'URL',
+  'components.controls.media.dropFileText': 'Переместите в эту область файлы или кликните для загрузки',
+
   // Inline
   'components.controls.inline.bold': 'Жирный',
   'components.controls.inline.italic': 'Курсив',

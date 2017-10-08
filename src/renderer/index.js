@@ -1,5 +1,6 @@
 import Embedded from './Embedded';
 import getImageComponent from '../renderer/Image';
+import getMediaComponent from '../renderer/Media';
 
 const getBlockRenderFunc = (config, customBlockRenderer) => (block) => {
   if (typeof customBlockRenderer === 'function') {
@@ -17,6 +18,11 @@ const getBlockRenderFunc = (config, customBlockRenderer) => (block) => {
     } else if (entity && entity.type === 'EMBEDDED_LINK') {
       return {
         component: Embedded,
+        editable: false,
+      };
+    } else if (entity && (entity.type === 'VIDEO' || entity.type === 'AUDIO')) {
+      return {
+        component: getMediaComponent(config),
         editable: false,
       };
     }

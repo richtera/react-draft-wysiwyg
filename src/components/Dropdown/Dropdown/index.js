@@ -48,8 +48,8 @@ export default class Dropdown extends Component {
   };
 
   toggleExpansion: Function = (): void => {
-    const { doExpand, doCollapse, expanded } = this.props;
-    if (expanded) {
+    const { doExpand, doCollapse, expanded, disabled } = this.props;
+    if (expanded || disabled) {
       doCollapse();
     } else {
       doExpand();
@@ -65,6 +65,7 @@ export default class Dropdown extends Component {
       ariaLabel,
       onExpandEvent,
       title,
+      disabled
     } = this.props;
     const { highlighted } = this.state;
     const options = children.slice(1, children.length);
@@ -74,20 +75,29 @@ export default class Dropdown extends Component {
         aria-expanded={expanded}
         aria-label={ariaLabel || 'rdw-dropdown'}
       >
-        <a
-          className="rdw-dropdown-selectedtext"
-          onClick={onExpandEvent}
-          title={title}
-        >
-          {children[0]}
-          <div
-            className={classNames({
-              'rdw-dropdown-carettoclose': expanded,
-              'rdw-dropdown-carettoopen': !expanded,
-            })}
-          />
-        </a>
-        {expanded ?
+        {disabled ? (
+          <span
+            className="rdw-dropdown-selectedtext"
+            title={title}
+          >
+            {children[0]}
+          </span>
+        ) : (
+          <a
+            className="rdw-dropdown-selectedtext"
+            onClick={onExpandEvent}
+            title={title}
+          >
+            {children[0]}
+            <div
+              className={classNames({
+                'rdw-dropdown-carettoclose': expanded,
+                'rdw-dropdown-carettoopen': !expanded,
+              })}
+            />
+          </a>
+        )}
+        {expanded && !disabled ?
           <ul
             className={classNames('rdw-dropdown-optionwrapper', optionWrapperClassName)}
             onClick={stopPropagation}
@@ -109,3 +119,35 @@ export default class Dropdown extends Component {
     );
   }
 }
+
+  // onKeyDown: Function = (event: Object): void => {
+  //   const { expanded, children, doCollapse } = this.props;
+  //   const { highlighted } = this.state;
+  //   let actioned = false;
+  //   if (event.key === 'ArrowDown' || event.key === 'ArrowRight') {
+  //     if (!expanded) {
+  //       this.toggleExpansion();
+  //       actioned = true;
+  //     } else {
+  //       this.setHighlighted((highlighted === children[1].length - 1) ? 0 : highlighted + 1);
+  //       actioned = true;
+  //     }
+  //   } else if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') {
+  //     this.setHighlighted(highlighted <= 0 ? children[1].length - 1 : highlighted - 1);
+  //     actioned = true;
+  //   } else if (event.key === 'Enter') {
+  //     if (highlighted > -1) {
+  //       this.onChange(this.props.children[1][highlighted].props.value);
+  //       actioned = true;
+  //     } else {
+  //       this.toggleExpansion();
+  //       actioned = true;
+  //     }
+  //   } else if (event.key === 'Escape') {
+  //     doCollapse();
+  //     actioned = true;
+  //   }
+  //   if (actioned) {
+  //     event.preventDefault();
+  //   }
+  // };

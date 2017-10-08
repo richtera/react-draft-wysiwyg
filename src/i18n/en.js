@@ -55,6 +55,11 @@ module.exports = {
   'components.controls.inline.superscript': 'Superscript',
   'components.controls.inline.subscript': 'Subscript',
 
+  // Media
+  'components.controls.media.fileUpload': 'File Upload',
+  'components.controls.media.byURL': 'URL',
+  'components.controls.media.dropFileText': 'Drop the file or click to upload',
+
   // Link
   'components.controls.link.linkTitle': 'Link Title',
   'components.controls.link.linkTarget': 'Link Target',

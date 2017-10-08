@@ -52,8 +52,9 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
-    "draftjs-utils": "^0.8.07",
-    "prop-types": "^15.5.10"
+    "draftjs-utils": "^0.8.03",
+    "prop-types": "^15.5.10",
+    "react-youtube": "^7.5.0"
   },
   "peerDependencies": {
     "draft-js": "^0.10.x",
