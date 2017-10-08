@@ -21,6 +21,10 @@ export default class TextAlign extends Component {
     translations: PropTypes.object,
   };
 
+  constructor(props, context) {
+    super(props, context);
+  }
+
   renderInFlatList(): Object {
     const {
       config: { options, left, center, right, justify, className },

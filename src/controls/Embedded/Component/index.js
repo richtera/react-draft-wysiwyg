@@ -24,6 +24,10 @@ class LayoutComponent extends Component {
     width: this.props.config.defaultSize.width,
   };
 
+  constructor(props, context) {
+    super(props, context);
+  }
+
   componentWillReceiveProps(props) {
     if (this.props.expanded && !props.expanded) {
       const { height, width } = this.props.config.defaultSize;

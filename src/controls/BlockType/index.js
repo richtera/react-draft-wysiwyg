@@ -21,6 +21,10 @@ class BlockType extends Component {
     currentBlockType: 'unstyled',
   };
 
+  constructor(props, context) {
+    super(props, context);
+  }
+
   componentWillMount(): void {
     const { editorState, modalHandler, config = {} } = this.props;
     this.blocksTypes = [

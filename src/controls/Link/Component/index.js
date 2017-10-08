@@ -29,6 +29,10 @@ class LayoutComponent extends Component {
     linkTargetOption: this.props.config.defaultTargetOption,
   };
 
+  constructor(props, context) {
+    super(props, context);
+  }
+
   componentWillReceiveProps(props) {
     if (this.props.expanded && !props.expanded) {
       this.setState({

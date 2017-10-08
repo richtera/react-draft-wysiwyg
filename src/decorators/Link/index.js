@@ -36,6 +36,10 @@ function getLinkComponent(config) {
       linkTab.focus();
     };
 
+    constructor(props, context) {
+      super(props, context);
+    }
+
     toggleShowPopOver: Function = () => {
       const showPopOver = !this.state.showPopOver;
       this.setState({

@@ -17,6 +17,10 @@ class LayoutComponent extends Component {
     translations: PropTypes.object,
   };
 
+  constructor(props, context) {
+    super(props, context);
+  }
+
   onChange: Function = (event: Object): void => {
     const { onChange } = this.props;
     onChange(event.target.innerHTML);

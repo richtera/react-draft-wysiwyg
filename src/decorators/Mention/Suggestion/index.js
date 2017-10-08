@@ -95,6 +95,10 @@ function getSuggestionComponent() {
       showSuggestions: true,
     };
 
+    constructor(props, context) {
+      super(props, context);
+    }
+
     componentDidMount() {
       const editorRect = config.getWrapperRef().getBoundingClientRect();
       const suggestionRect = this.suggestion.getBoundingClientRect();

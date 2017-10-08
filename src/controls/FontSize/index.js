@@ -23,6 +23,10 @@ export default class FontSize extends Component {
     currentFontSize: undefined,
   };
 
+  constructor(props, context) {
+    super(props, context);
+  }
+
   componentWillMount(): void {
     const { editorState, modalHandler } = this.props;
     if (editorState) {

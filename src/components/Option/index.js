@@ -17,6 +17,10 @@ export default class Option extends Component {
     title: PropTypes.string,
   };
 
+  constructor(props, context) {
+    super(props, context);
+  }
+
   onClick: Function = () => {
     const { disabled, onClick, value } = this.props;
     if (!disabled) {

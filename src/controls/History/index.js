@@ -21,6 +21,10 @@ export default class History extends Component {
     redoDisabled: false,
   };
 
+  constructor(props, context) {
+    super(props, context);
+  }
+
   componentWillMount(): void {
     const { editorState, modalHandler } = this.props;
     if (editorState) {

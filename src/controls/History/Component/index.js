@@ -21,6 +21,10 @@ export default class History extends Component {
     translations: PropTypes.object,
   };
 
+  constructor(props, context) {
+    super(props, context);
+  }
+
   onChange = (obj) => {
     const { onChange } = this.props;
     onChange(obj);

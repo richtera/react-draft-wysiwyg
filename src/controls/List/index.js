@@ -21,6 +21,10 @@ export default class List extends Component {
     currentBlock: undefined,
   };
 
+  constructor(props, context) {
+    super(props, context);
+  }
+
   componentWillMount(): void {
     const { editorState, modalHandler } = this.props;
     if (editorState) {

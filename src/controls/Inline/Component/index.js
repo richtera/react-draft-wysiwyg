@@ -22,6 +22,10 @@ export default class Inline extends Component {
     translations: PropTypes.object,
   };
 
+  constructor(props, context) {
+    super(props, context);
+  }
+
   renderInFlatList(): Object {
     const { config, currentState, onChange, translations } = this.props;
     return (

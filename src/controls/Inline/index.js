@@ -17,6 +17,10 @@ export default class Inline extends Component {
     translations: PropTypes.object,
   };
 
+  constructor(props, context) {
+    super(props, context);
+  }
+  
   state: Object = {
     currentStyles: {},
   };

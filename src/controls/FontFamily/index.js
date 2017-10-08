@@ -23,6 +23,10 @@ export default class FontFamily extends Component {
     currentFontFamily: undefined,
   };
 
+  constructor(props, context) {
+    super(props, context);
+  }
+
   componentWillMount(): void {
     const { editorState, modalHandler } = this.props;
     if (editorState) {

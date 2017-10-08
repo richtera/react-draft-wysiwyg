@@ -25,6 +25,10 @@ export default class Dropdown extends Component {
     highlighted: -1,
   };
 
+  constructor(props, context) {
+    super(props, context);
+  }
+
   componentWillReceiveProps(props) {
     if (this.props.expanded && !props.expanded) {
       this.setState({

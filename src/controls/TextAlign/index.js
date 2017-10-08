@@ -19,6 +19,10 @@ export default class TextAlign extends Component {
     currentTextAlignment: undefined,
   }
 
+  constructor(props, context) {
+    super(props, context);
+  }
+
   componentWillMount(): void {
     const { modalHandler } = this.props;
     modalHandler.registerCallBack(this.expandCollapse);

@@ -19,6 +19,10 @@ class Embedded extends Component {
     expanded: false,
   };
 
+  constructor(props, context) {
+    super(props, context);
+  }
+
   componentWillMount(): void {
     const { modalHandler } = this.props;
     modalHandler.registerCallBack(this.expandCollapse);

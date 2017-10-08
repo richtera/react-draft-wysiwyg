@@ -23,6 +23,10 @@ export default class LayoutComponent extends Component {
     defaultFontSize: undefined,
   };
 
+  constructor(props, context) {
+    super(props, context);
+  }
+
   componentDidMount(): void {
     const editorElm = document.getElementsByClassName('DraftEditor-root');
     if (editorElm && editorElm.length > 0) {

@@ -23,6 +23,10 @@ export default class LayoutComponent extends Component {
     outdentDisabled: PropTypes.bool,
   };
 
+  constructor(props, context) {
+    super(props, context);
+  }
+
   options: Array = ['unordered', 'ordered', 'indent', 'outdent'];
 
   toggleBlockType: Function = (blockType: String): void => {
