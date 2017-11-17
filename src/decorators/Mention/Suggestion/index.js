@@ -6,7 +6,7 @@ import KeyDownHandler from '../../../event-handler/keyDown';
 import SuggestionHandler from '../../../event-handler/suggestions';
 import './styles.css';
 
-class Suggestion {
+export class Suggestion {
   constructor(config) {
     const {
       separator,
@@ -262,4 +262,4 @@ function getSuggestionComponent() {
   };
 }
 
-module.exports = Suggestion;
+export default Suggestion;

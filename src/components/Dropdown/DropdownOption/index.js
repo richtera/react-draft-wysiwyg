@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import './styles.css';
 
-export class DropDownOption extends Component {
+export class DropdownOption extends Component {
   static propTypes = {
     children: PropTypes.any,
     value: PropTypes.any,
@@ -82,5 +82,5 @@ export class DropDownOption extends Component {
     );
   }
 }
-export default DropDownOption;
+export default DropdownOption;
 // todo: review classname use above.

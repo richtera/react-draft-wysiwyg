@@ -28,17 +28,17 @@ import blockStyleFn from '../utils/BlockStyle';
 import { mergeRecursive } from '../utils/toolbar';
 import { hasProperty, filter } from '../utils/common';
 import { handlePastedText } from '../utils/handlePaste';
-import Controls from '../controls';
+import * as Controls from '../controls';
 import getLinkDecorator from '../decorators/Link';
 import getMentionDecorators from '../decorators/Mention';
 import getHashtagDecorator from '../decorators/HashTag';
 import getBlockRenderFunc from '../renderer';
 import defaultToolbar from '../config/defaultToolbar';
-import localeTranslations from '../i18n';
+import * as localeTranslations from '../i18n';
 import './styles.css';
 import '../../css/Draft.css';
 
-export const Editor = class WysiwygEditor extends Component {
+export class Editor extends Component {
 
   static propTypes = {
     onChange: PropTypes.func,
