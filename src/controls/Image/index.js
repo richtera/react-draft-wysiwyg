@@ -6,7 +6,7 @@ import { AtomicBlockUtils } from 'draft-js';
 
 import LayoutComponent from './Component';
 
-class ImageControl extends Component {
+export class image extends Component {
   static propTypes: Object = {
     editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
@@ -93,4 +93,4 @@ class ImageControl extends Component {
   }
 }
 
-export default ImageControl;
+export default image;

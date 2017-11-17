@@ -11,7 +11,7 @@ import {
 
 import LayoutComponent from './Component';
 
-class Link extends Component {
+export class link extends Component {
   static propTypes = {
     editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
@@ -181,7 +181,7 @@ class Link extends Component {
   }
 }
 
-export default Link;
+export default link;
 
 // todo refct
 // 1. better action names here

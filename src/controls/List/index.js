@@ -7,7 +7,7 @@ import { changeDepth, getBlockBeforeSelectedBlock, getSelectedBlock, isListBlock
 
 import LayoutComponent from './Component';
 
-export default class List extends Component {
+export class list extends Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     editorState: PropTypes.object.isRequired,
@@ -151,3 +151,5 @@ export default class List extends Component {
     );
   }
 }
+
+export default list;

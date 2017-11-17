@@ -6,7 +6,7 @@ import { AtomicBlockUtils } from 'draft-js';
 
 import LayoutComponent from './Component';
 
-export const MediaControl = class ImageControl_ extends Component {
+export class media extends Component {
 
   static propTypes: Object = {
     editorState: PropTypes.object.isRequired,
@@ -90,4 +90,4 @@ export const MediaControl = class ImageControl_ extends Component {
   }
 }
 
-export default MediaControl;
+export default media;

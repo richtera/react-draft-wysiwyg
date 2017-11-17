@@ -1,31 +1,14 @@
-import inline from './Inline';
-import blockType from './BlockType';
-import fontSize from './FontSize';
-import fontFamily from './FontFamily';
-import list from './List';
-import textAlign from './TextAlign';
-import colorPicker from './ColorPicker';
-import link from './Link';
-import embedded from './Embedded';
-import emoji from './Emoji';
-import image from './Image';
-import remove from './Remove';
-import history from './History';
-import media from './Media';
-
-module.exports = {
-  inline,
-  blockType,
-  fontSize,
-  fontFamily,
-  list,
-  textAlign,
-  colorPicker,
-  link,
-  embedded,
-  emoji,
-  image,
-  remove,
-  history,
-  media,
-};
+export * from './Inline';
+export * from './BlockType';
+export * from './FontSize';
+export * from './FontFamily';
+export * from './List';
+export * from './TextAlign';
+export * from './ColorPicker';
+export * from './Link';
+export * from './Embedded';
+export * from './Emoji';
+export * from './Image';
+export * from './Remove';
+export * from './History';
+export * from './Media';

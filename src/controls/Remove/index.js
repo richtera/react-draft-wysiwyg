@@ -8,7 +8,7 @@ import { getSelectionCustomInlineStyle } from 'draftjs-utils';
 import { forEach } from '../../utils/common';
 import LayoutComponent from './Component';
 
-export const Remove = class Remove_ extends Component {
+export class remove extends Component {
 
   static propTypes = {
     onChange: PropTypes.func.isRequired,
@@ -114,4 +114,4 @@ export const Remove = class Remove_ extends Component {
 }
 
 // todo: unit test coverage
-export default Remove;
+export default remove;

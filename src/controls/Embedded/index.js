@@ -6,7 +6,7 @@ import { AtomicBlockUtils } from 'draft-js';
 
 import LayoutComponent from './Component';
 
-class Embedded extends Component {
+export class embedded extends Component {
   static propTypes: Object = {
     editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
@@ -89,6 +89,6 @@ class Embedded extends Component {
   }
 }
 
-export default Embedded;
+export default embedded;
 
 // todo: make default heights configurable

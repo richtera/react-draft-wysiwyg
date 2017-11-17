@@ -9,7 +9,7 @@ import {
 
 import LayoutComponent from './Component';
 
-class ColorPicker extends Component {
+export class colorPicker extends Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     editorState: PropTypes.object.isRequired,
@@ -113,4 +113,4 @@ class ColorPicker extends Component {
   }
 }
 
-export default ColorPicker;
+export default colorPicker;
