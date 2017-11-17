@@ -1,4 +1,4 @@
-module.exports = {
+export const nl = {
 
   // Generic
   'generic.add': 'Toevoegen',

@@ -1,4 +1,4 @@
-module.exports = {
+export const zh_tw = {
 
     // Generic
     'generic.add': '新增',

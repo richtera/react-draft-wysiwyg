@@ -1,4 +1,4 @@
-module.exports = {
+export const zh = {
 
   // Generic
   'generic.add': '添加',

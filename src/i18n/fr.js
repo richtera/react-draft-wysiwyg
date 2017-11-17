@@ -1,4 +1,4 @@
-module.exports = {
+export const fr = {
   // Generic
   'generic.add': 'Ok',
   'generic.cancel': 'Annuler',

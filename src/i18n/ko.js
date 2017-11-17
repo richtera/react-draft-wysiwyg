@@ -1,4 +1,4 @@
-module.exports = {
+export const ko = {
 
   // Generic
   'generic.add': '입력',

@@ -1,4 +1,4 @@
-module.exports = {
+export const da = {
 
   // Generic
   'generic.add': 'Tilføj',
