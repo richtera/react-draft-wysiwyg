@@ -375,7 +375,7 @@ export class Editor extends Component {
 
   handlePastedText = (text, html) => {
     const { editorState } = this.state;    
-    return handlePastedText(text, html, editorState, this.onChange);
+    return handlePastedText(text, html, editorState, this.onChange.bind(this, true));
   }
 
   preventDefault: Function = (event: Object) => {
