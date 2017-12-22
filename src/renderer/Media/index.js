@@ -128,9 +128,24 @@ const getMediaComponent = config => class Media extends Component {
     );
   }
 
+  onError = (event) => {
+    let error = new Error("Unable to play back file.");
+    if (event.target && event.target.error) {
+      error = event.target.error;
+    } else if (event.currentTarget && event.currentTarget.error) {
+      error = event.currentTarget.error;
+    } else if (event.originalTarget && event.originalTarget.error) {
+      error = event.originalTarget.error;
+    }
+    if (error) {
+      this.setState({error});
+      console.error(error);
+    }
+  }
+
   render(): Object {
     const { block, contentState } = this.props;
-    const { hovered } = this.state;
+    const { hovered, error } = this.state;
     const { isReadOnly, isMediaAlignmentEnabled } = config;
     const entity = contentState.getEntity(block.getEntityAt(0));
     const { src, mimeType, alignment, height, width, autoPlay, loop } = entity.getData();
@@ -149,6 +164,7 @@ const getMediaComponent = config => class Media extends Component {
         )}
       >
         <span className="rdw-media-mediawrapper">
+          {error && <div className="alert alert-danger">Error: {error.message}</div>}
           { entity.type === 'VIDEO' && (mimeType === 'video/x-youtube' ? (
             <YouTube videoId={src} opts={{
               playerVars: {
@@ -163,6 +179,7 @@ const getMediaComponent = config => class Media extends Component {
               width="100%"
               controls
               loop={loop}
+              onError={this.onError}
               style={{
                 height,
                 width,
