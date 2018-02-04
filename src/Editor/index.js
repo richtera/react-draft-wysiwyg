@@ -44,6 +44,7 @@ export class Editor extends Component {
     onChange: PropTypes.func,
     onEditorStateChange: PropTypes.func,
     onContentStateChange: PropTypes.func,
+    onFocusEditor: PropTypes.func,
     // initialContentState is deprecated
     initialContentState: PropTypes.object,
     defaultContentState: PropTypes.object,
@@ -338,6 +339,11 @@ export class Editor extends Component {
   };
 
   focusEditor: Function = (event): void => {
+    if (this.props.onFocusEditor) {
+      if (!this.props.onFocusEditor(event)) {
+        return;
+      }
+    }
     switch (event.target.tagName) {
       case 'INPUT':
       case 'TEXTAREA':
