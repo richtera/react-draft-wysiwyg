@@ -139,7 +139,6 @@ const getMediaComponent = config => class Media extends Component {
     }
     if (error) {
       this.setState({error});
-      console.error(error);
     }
   }
 
@@ -164,7 +163,9 @@ const getMediaComponent = config => class Media extends Component {
         )}
       >
         <span className="rdw-media-mediawrapper">
-          {error && <div className="alert alert-danger">Error: {error.message}</div>}
+          {error && <div className="alert alert-danger" title={error.message}>
+            File Format is invalid. Please use MP4 for best performance and stability.
+          </div>}
           { entity.type === 'VIDEO' && (mimeType === 'video/x-youtube' ? (
             <YouTube videoId={src} opts={{
               playerVars: {
