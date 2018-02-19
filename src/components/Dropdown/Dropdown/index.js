@@ -1,11 +1,11 @@
 /* @flow */
 
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import './styles.css';
 
-import { stopPropagation } from '../../../utils/common';
+import {stopPropagation} from '../../../utils/common';
 
 export class Dropdown extends Component {
   static propTypes = {

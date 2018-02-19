@@ -1,10 +1,10 @@
 /* @flow */
 
 import React from 'react';
-import { expect, assert } from 'chai';
-import { shallow } from 'enzyme';
-import { getAllBlocks } from 'draftjs-utils';
-import { convertFromHTML, AtomicBlockUtils, ContentState, EditorState } from 'draft-js';
+import {assert, expect} from 'chai';
+import {shallow} from 'enzyme';
+import {getAllBlocks} from 'draftjs-utils';
+import {AtomicBlockUtils, ContentState, convertFromHTML, EditorState} from 'draft-js';
 
 import getImageComponent from '../index';
 

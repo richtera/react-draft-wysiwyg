@@ -1,8 +1,8 @@
 /* @flow */
 
 import React from 'react';
-import { expect, assert } from 'chai';
-import { shallow } from 'enzyme';
+import {assert, expect} from 'chai';
+import {shallow} from 'enzyme';
 import Editor from '..';
 
 describe('Editor test suite', () => {

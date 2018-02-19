@@ -1,8 +1,4 @@
-import {
-  convertFromHTML,
-  ContentState,
-  EditorState,
-} from 'draft-js';
+import {ContentState, convertFromHTML, EditorState,} from 'draft-js';
 
 const contentBlocks = convertFromHTML('<p>Lorem ipsum ' +
       'dolor sit amet, consectetur adipiscing elit. Mauris tortor felis, volutpat sit amet ' +

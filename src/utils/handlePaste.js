@@ -1,7 +1,7 @@
-import { getSelectedBlock } from 'draftjs-utils';
-import { Modifier, EditorState, ContentState } from 'draft-js';
+import {getSelectedBlock} from 'draftjs-utils';
+import {EditorState, Modifier} from 'draft-js';
 import htmlToDraft from 'html-to-draftjs';
-import { OrderedMap } from 'immutable';
+import {OrderedMap} from 'immutable';
 
 export const handlePastedText = (text, html, editorState, onChange) => {
   const selectedBlock = getSelectedBlock(editorState);

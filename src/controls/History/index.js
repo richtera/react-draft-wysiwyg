@@ -1,8 +1,8 @@
 /* @flow */
 
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { EditorState } from 'draft-js';
+import {EditorState} from 'draft-js';
 
 import LayoutComponent from './Component';
 

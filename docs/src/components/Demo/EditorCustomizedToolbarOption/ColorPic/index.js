@@ -1,8 +1,8 @@
 /* @flow */
 
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { BlockPicker } from 'react-color';
+import {BlockPicker} from 'react-color';
 
 import icon from '../../../../icons/palette.svg';
 import './styles.css';

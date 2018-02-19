@@ -1,14 +1,10 @@
 /* @flow */
 
 import React from 'react';
-import {
-  EditorState,
-  convertFromHTML,
-  ContentState,
-} from 'draft-js';
-import { expect, assert } from 'chai';
-import { spy } from 'sinon';
-import { shallow, mount } from 'enzyme';
+import {ContentState, convertFromHTML, EditorState,} from 'draft-js';
+import {assert, expect} from 'chai';
+import {spy} from 'sinon';
+import {mount, shallow} from 'enzyme';
 import InlineControl from '..';
 import defaultToolbar from '../../../config/defaultToolbar';
 import ModalHandler from '../../../event-handler/modals';

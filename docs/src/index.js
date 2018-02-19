@@ -2,16 +2,10 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, IndexRoute, Route, hashHistory } from 'react-router';
+import {hashHistory, IndexRoute, Route, Router} from 'react-router';
 import '../css/fonts.css'; // eslint-disable-line no-unused-vars
 import '../css/normalize.css'; // eslint-disable-line no-unused-vars
-import {
-    App,
-    Home,
-    Demo,
-    Docs,
-    Author,
-} from './components';
+import {App, Author, Demo, Docs, Home,} from './components';
 import '../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css'; // eslint-disable-line no-unused-vars
 
 ReactDOM.render(<Router history={hashHistory}>

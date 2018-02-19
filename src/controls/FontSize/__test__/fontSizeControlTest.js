@@ -1,15 +1,11 @@
 /* @flow */
 
 import React from 'react';
-import { expect, assert } from 'chai';
-import { mount } from 'enzyme';
-import {
-  EditorState,
-  convertFromHTML,
-  ContentState,
-} from 'draft-js';
+import {assert, expect} from 'chai';
+import {mount} from 'enzyme';
+import {ContentState, convertFromHTML, EditorState,} from 'draft-js';
 import FontSizeControl from '..';
-import { Dropdown } from '../../../components/Dropdown';
+import {Dropdown} from '../../../components/Dropdown';
 import defaultToolbar from '../../../config/defaultToolbar';
 import ModalHandler from '../../../event-handler/modals';
 import localeTranslations from '../../../i18n';

@@ -1,7 +1,7 @@
 /* @flow */
 
 import React from 'react';
-import { Editor } from '../../src';
+import {Editor} from '../../src';
 
 const Basic = () =>
   (<div className="rdw-storybook-root">

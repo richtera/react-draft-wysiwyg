@@ -1,7 +1,7 @@
 /* @flow */
 
 import React from 'react';
-import { Editor } from '../../src';
+import {Editor} from '../../src';
 import './styles.css';
 
 const FloatingToolbar = () =>

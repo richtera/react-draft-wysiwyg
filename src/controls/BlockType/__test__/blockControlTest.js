@@ -1,13 +1,9 @@
 /* @flow */
 
 import React from 'react';
-import { expect } from 'chai';
-import { mount } from 'enzyme';
-import {
-  EditorState,
-  convertFromHTML,
-  ContentState,
-} from 'draft-js';
+import {expect} from 'chai';
+import {mount} from 'enzyme';
+import {ContentState, convertFromHTML, EditorState,} from 'draft-js';
 import Block from '..';
 import defaultToolbar from '../../../config/defaultToolbar';
 import ModalHandler from '../../../event-handler/modals';

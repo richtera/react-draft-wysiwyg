@@ -1,7 +1,7 @@
 /* @flow */
 
 import React from 'react';
-import { Editor } from 'react-draft-wysiwyg';
+import {Editor} from 'react-draft-wysiwyg';
 import Codemirror from 'react-codemirror';
 
 import bold from '../../../../images/demo/bold.gif';

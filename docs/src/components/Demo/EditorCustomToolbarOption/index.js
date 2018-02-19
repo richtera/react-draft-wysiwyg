@@ -1,9 +1,9 @@
 /* @flow */
 
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { EditorState, Modifier } from 'draft-js';
-import { Editor } from 'react-draft-wysiwyg';
+import {EditorState, Modifier} from 'draft-js';
+import {Editor} from 'react-draft-wysiwyg';
 import Codemirror from 'react-codemirror';
 
 class CustomOption extends Component {

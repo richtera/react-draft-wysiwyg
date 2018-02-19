@@ -1,8 +1,8 @@
 /* @flow */
 
-import React, { Component } from 'react';
-import { EditorState, convertToRaw, ContentState } from 'draft-js';
-import { Editor } from 'react-draft-wysiwyg';
+import React, {Component} from 'react';
+import {ContentState, convertToRaw, EditorState} from 'draft-js';
+import {Editor} from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
 import Codemirror from 'react-codemirror';

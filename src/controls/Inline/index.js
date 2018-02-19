@@ -1,10 +1,10 @@
 /* @flow */
 
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { getSelectionInlineStyle } from 'draftjs-utils';
-import { RichUtils, EditorState, Modifier } from 'draft-js';
-import { forEach } from '../../utils/common';
+import {getSelectionInlineStyle} from 'draftjs-utils';
+import {EditorState, Modifier, RichUtils} from 'draft-js';
+import {forEach} from '../../utils/common';
 
 import LayoutComponent from './Component';
 

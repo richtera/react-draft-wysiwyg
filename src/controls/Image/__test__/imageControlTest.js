@@ -1,13 +1,9 @@
 /* @flow */
 
 import React from 'react';
-import {
-  EditorState,
-  convertFromHTML,
-  ContentState,
-} from 'draft-js';
-import { expect, assert } from 'chai';
-import { mount } from 'enzyme';
+import {ContentState, convertFromHTML, EditorState,} from 'draft-js';
+import {assert, expect} from 'chai';
+import {mount} from 'enzyme';
 
 import ImageControl from '..';
 import defaultToolbar from '../../../config/defaultToolbar';

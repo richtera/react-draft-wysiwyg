@@ -1,23 +1,23 @@
 /* @flow */
 
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {
+  CompositeDecorator,
+  convertFromRaw,
+  convertToRaw,
+  DefaultDraftBlockRenderMap,
   Editor as BaseEditor,
   EditorState,
-  RichUtils,
-  convertToRaw,
-  convertFromRaw,
-  CompositeDecorator,
-  DefaultDraftBlockRenderMap
+  RichUtils
 } from 'draft-js';
 import {
-  changeDepth,
-  handleNewLine,
   blockRenderMap,
-  getCustomStyleMap,
+  changeDepth,
   extractInlineStyle,
+  getCustomStyleMap,
   getSelectedBlocksType,
+  handleNewLine,
 } from 'draftjs-utils';
 import classNames from 'classnames';
 import ModalHandler from '../event-handler/modals';
@@ -25,9 +25,9 @@ import FocusHandler from '../event-handler/focus';
 import KeyDownHandler from '../event-handler/keyDown';
 import SuggestionHandler from '../event-handler/suggestions';
 import blockStyleFn from '../utils/BlockStyle';
-import { mergeRecursive } from '../utils/toolbar';
-import { hasProperty, filter } from '../utils/common';
-import { handlePastedText } from '../utils/handlePaste';
+import {mergeRecursive} from '../utils/toolbar';
+import {filter, hasProperty} from '../utils/common';
+import {handlePastedText} from '../utils/handlePaste';
 import * as Controls from '../controls';
 import getLinkDecorator from '../decorators/Link';
 import getMentionDecorators from '../decorators/Mention';
@@ -380,7 +380,7 @@ export class Editor extends Component {
   };
 
   handlePastedText = (text, html) => {
-    const { editorState } = this.state;    
+    const { editorState } = this.state;
     return handlePastedText(text, html, editorState, this.onChange.bind(this, true));
   }
 

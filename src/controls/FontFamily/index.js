@@ -1,11 +1,8 @@
 /* @flow */
 
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {
-  toggleCustomInlineStyle,
-  getSelectionCustomInlineStyle,
-} from 'draftjs-utils';
+import {getSelectionCustomInlineStyle, toggleCustomInlineStyle,} from 'draftjs-utils';
 
 import LayoutComponent from './Component';
 

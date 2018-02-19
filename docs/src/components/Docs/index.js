@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Installation from './Installation';
 import Usage from './Usage';
 import Props from './Props';

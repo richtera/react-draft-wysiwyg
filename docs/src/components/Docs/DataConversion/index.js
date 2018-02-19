@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Codemirror from 'react-codemirror';
-import { RawEditorStateLink } from '../Props/EditorStateProp';
+import {RawEditorStateLink} from '../Props/EditorStateProp';
 
 export default () => (
   <div className="docs-section">

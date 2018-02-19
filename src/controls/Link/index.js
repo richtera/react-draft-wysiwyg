@@ -1,13 +1,9 @@
 /* @flow */
 
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { RichUtils, EditorState, Modifier } from 'draft-js';
-import {
-  getSelectionText,
-  getEntityRange,
-  getSelectionEntity,
-} from 'draftjs-utils';
+import {EditorState, Modifier, RichUtils} from 'draft-js';
+import {getEntityRange, getSelectionEntity, getSelectionText,} from 'draftjs-utils';
 
 import LayoutComponent from './Component';
 

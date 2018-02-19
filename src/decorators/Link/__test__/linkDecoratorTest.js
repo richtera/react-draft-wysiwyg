@@ -1,9 +1,9 @@
 /* @flow */
 
 import React from 'react';
-import { expect, assert } from 'chai';
-import { shallow, mount } from 'enzyme';
-import { convertFromHTML, ContentState } from 'draft-js';
+import {assert, expect} from 'chai';
+import {mount, shallow} from 'enzyme';
+import {ContentState, convertFromHTML} from 'draft-js';
 import getLinkDecorator from '..';
 
 describe('LinkDecorator test suite', () => {

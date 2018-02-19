@@ -1,5 +1,5 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
+import {storiesOf} from '@storybook/react';
 import Basic from './Basic';
 import BasicControlled from './BasicControlled';
 import BasicContentState from './BasicContentState';

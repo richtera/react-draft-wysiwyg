@@ -1,12 +1,12 @@
 /* @flow */
 
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { getFirstIcon } from '../../../utils/toolbar';
+import {getFirstIcon} from '../../../utils/toolbar';
 import Option from '../../../components/Option';
-import { Dropdown, DropdownOption } from '../../../components/Dropdown';
+import {Dropdown, DropdownOption} from '../../../components/Dropdown';
 
 import './styles.css';
 

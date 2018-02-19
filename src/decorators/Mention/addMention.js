@@ -1,8 +1,5 @@
-import {
-  EditorState,
-  Modifier,
-} from 'draft-js';
-import { getSelectedBlock } from 'draftjs-utils';
+import {EditorState, Modifier,} from 'draft-js';
+import {getSelectedBlock} from 'draftjs-utils';
 
 export default function addMention(
   editorState: EditorState,

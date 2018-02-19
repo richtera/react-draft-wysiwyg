@@ -1,7 +1,7 @@
 /* @flow */
 
-import React, { Component } from 'react';
-import { Editor } from '../../src';
+import React, {Component} from 'react';
+import {Editor} from '../../src';
 
 import './styles.css';
 

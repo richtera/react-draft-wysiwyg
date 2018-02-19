@@ -1,9 +1,9 @@
 /* @flow */
 
 import React from 'react';
-import { expect } from 'chai';
-import { spy } from 'sinon';
-import { shallow, mount } from 'enzyme';
+import {expect} from 'chai';
+import {spy} from 'sinon';
+import {mount, shallow} from 'enzyme';
 import Option from '..';
 
 describe('Option test suite', () => {

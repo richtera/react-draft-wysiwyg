@@ -1,10 +1,7 @@
 /* @flow */
 
-import React, { Component } from 'react';
-import draftToHtml from 'draftjs-to-html';
-import { convertToRaw } from 'draft-js';
-import draftToMarkdown from 'draftjs-to-markdown';
-import { Editor } from 'react-draft-wysiwyg';
+import React, {Component} from 'react';
+import {Editor} from 'react-draft-wysiwyg';
 import EditorConvertToHTML from './EditorConvertToHTML';
 import EditorConvertToJSON from './EditorConvertToJSON';
 import EditorConvertToMarkdown from './EditorConvertToMarkdown';

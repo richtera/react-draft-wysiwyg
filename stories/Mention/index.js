@@ -1,7 +1,7 @@
 /* @flow */
 
 import React from 'react';
-import { Editor } from '../../src';
+import {Editor} from '../../src';
 
 /**
  * Default trigger is '@' and default separator between words is ' '.

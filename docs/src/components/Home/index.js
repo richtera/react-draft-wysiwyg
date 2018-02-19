@@ -1,7 +1,7 @@
 /* @flow */
 
-import React, { Component } from 'react';
-import { Editor } from 'react-draft-wysiwyg';
+import React, {Component} from 'react';
+import {Editor} from 'react-draft-wysiwyg';
 import uploadImageCallBack from '../../util/uploadImageCallBack';
 import './styles.css';
 

@@ -1,7 +1,7 @@
 /* @flow */
 
 import React from 'react';
-import { Editor } from '../../src';
+import {Editor} from '../../src';
 
 const SelectedOptions = () =>
 (<div className="rdw-storybook-root">

@@ -1,6 +1,6 @@
 /* @flow */
 
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './styles.css';
 
 export default class Demo1 extends Component {

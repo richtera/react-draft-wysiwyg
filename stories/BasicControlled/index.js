@@ -1,8 +1,8 @@
 /* @flow */
 
-import React, { Component } from 'react';
-import { EditorState } from 'draft-js';
-import { Editor } from '../../src';
+import React, {Component} from 'react';
+import {EditorState} from 'draft-js';
+import {Editor} from '../../src';
 
 class BasicControlled extends Component {
   state = {

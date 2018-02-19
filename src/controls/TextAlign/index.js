@@ -1,8 +1,8 @@
 /* @flow */
 
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { getSelectedBlocksMetadata, setBlockData } from 'draftjs-utils';
+import {getSelectedBlocksMetadata, setBlockData} from 'draftjs-utils';
 
 import LayoutComponent from './Component';
 

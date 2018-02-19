@@ -1,9 +1,9 @@
 /* @flow */
 
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { getSelectedBlocksType } from 'draftjs-utils';
-import { RichUtils } from 'draft-js';
+import {getSelectedBlocksType} from 'draftjs-utils';
+import {RichUtils} from 'draft-js';
 
 import LayoutComponent from './Component';
 

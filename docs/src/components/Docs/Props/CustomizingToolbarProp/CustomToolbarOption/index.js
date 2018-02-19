@@ -1,6 +1,6 @@
 import React from 'react';
 import Codemirror from 'react-codemirror';
-import { EditorStateLink } from '../../EditorStateProp';
+import {EditorStateLink} from '../../EditorStateProp';
 
 export default () => (
   <div>
