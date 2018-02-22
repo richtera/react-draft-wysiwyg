@@ -8,7 +8,7 @@ import './styles.css';
 
 import {stopPropagation} from '../../../utils/common';
 
-export class Dropdown extends Component {
+export class Dropdown extends Component<any, any> {
   static propTypes = {
     children: PropTypes.any,
     onChange: PropTypes.func,

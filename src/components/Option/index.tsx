@@ -6,7 +6,7 @@ import {PropTypes} from 'prop-types';
 import * as classNames from 'classnames';
 import './styles.css';
 
-export default class Option extends Component {
+export default class Option extends Component<any, any> {
   static propTypes = {
     onClick: PropTypes.func.isRequired,
     children: PropTypes.any,

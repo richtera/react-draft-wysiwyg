@@ -11,7 +11,7 @@ import Option from '../../../components/Option';
 import {Dropdown, DropdownOption} from '../../../components/Dropdown';
 import './styles.css';
 
-class LayoutComponent extends Component {
+class LayoutComponent extends Component<any, any> {
   static propTypes = {
     expanded: PropTypes.bool,
     doExpand: PropTypes.func,

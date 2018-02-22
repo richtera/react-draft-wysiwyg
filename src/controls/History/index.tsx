@@ -7,7 +7,7 @@ import {EditorState} from 'draft-js';
 
 import LayoutComponent from './Component';
 
-export class history extends Component {
+export class history extends Component<any, any> {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     editorState: PropTypes.object,

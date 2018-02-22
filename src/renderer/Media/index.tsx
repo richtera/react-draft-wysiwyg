@@ -7,7 +7,7 @@ import Option from '../../components/Option';
 import './styles.css';
 import YouTube from 'react-youtube';
 
-const getMediaComponent = config => class Media extends Component {
+const getMediaComponent = config => class Media extends Component<any, any> {
   static propTypes: Object = {
     block: PropTypes.object,
     contentState: PropTypes.object,

@@ -11,7 +11,7 @@ import {Dropdown, DropdownOption} from '../../../components/Dropdown';
 
 import './styles.css';
 
-export default class Inline extends Component {
+export default class Inline extends Component<any, any> {
   static propTypes = {
     expanded: PropTypes.bool,
     doExpand: PropTypes.func,

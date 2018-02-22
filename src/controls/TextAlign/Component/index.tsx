@@ -10,7 +10,7 @@ import {Dropdown, DropdownOption} from '../../../components/Dropdown';
 import {getFirstIcon} from '../../../utils/toolbar';
 import './styles.css';
 
-export default class TextAlign extends Component {
+export default class TextAlign extends Component<any, any> {
   static propTypes = {
     expanded: PropTypes.bool,
     doExpand: PropTypes.func,

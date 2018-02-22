@@ -7,7 +7,7 @@ import {getSelectionCustomInlineStyle, toggleCustomInlineStyle,} from 'draftjs-u
 
 import LayoutComponent from './Component';
 
-export class colorPicker extends Component {
+export class colorPicker extends Component<any, any> {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     editorState: PropTypes.object.isRequired,

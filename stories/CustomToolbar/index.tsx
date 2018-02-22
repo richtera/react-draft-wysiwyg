@@ -8,7 +8,7 @@ import {Editor} from '../../src';
 
 import './styles.css';
 
-class CustomOption extends Component {
+class CustomOption extends Component<any, any> {
   static propTypes = {
     onChange: PropTypes.func,
     editorState: PropTypes.object,

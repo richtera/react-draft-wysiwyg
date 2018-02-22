@@ -5,7 +5,7 @@ import {Component} from 'react';
 import {convertToRaw, EditorState} from 'draft-js';
 import {Editor} from '../../src';
 
-class ConvertToRawDraftContent extends Component {
+class ConvertToRawDraftContent extends Component<any, any> {
   state = {
     editorState: EditorState.createEmpty(),
   }

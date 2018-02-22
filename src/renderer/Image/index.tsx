@@ -6,7 +6,7 @@ import * as classNames from 'classnames';
 import Option from '../../components/Option';
 import './styles.css';
 
-const getImageComponent = config => class Image extends Component {
+const getImageComponent = config => class Image extends Component<any, any> {
   static propTypes: Object = {
     block: PropTypes.object,
     contentState: PropTypes.object,

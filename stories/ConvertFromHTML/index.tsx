@@ -6,7 +6,7 @@ import {ContentState, EditorState} from 'draft-js';
 import htmlToDraft from 'html-to-draftjs';
 import {Editor} from '../../src';
 
-class ConvertToRawDraftContent extends Component {
+class ConvertToRawDraftContent extends Component<any, any> {
 
   constructor(props) {
     super(props);

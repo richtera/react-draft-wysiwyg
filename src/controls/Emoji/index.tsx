@@ -7,7 +7,7 @@ import {EditorState, Modifier} from 'draft-js';
 
 import LayoutComponent from './Component';
 
-export class emoji extends Component {
+export class emoji extends Component<any, any> {
   static propTypes: Object = {
     editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,

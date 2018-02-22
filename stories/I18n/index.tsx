@@ -6,7 +6,7 @@ import {Editor} from '../../src';
 
 import './styles.css';
 
-class I18n extends Component {
+class I18n extends Component<any, any> {
 
   state: any = {
     locale: 'en',

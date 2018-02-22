@@ -8,7 +8,7 @@ import * as classNames from 'classnames';
 import {Dropdown, DropdownOption} from '../../../components/Dropdown';
 import './styles.css';
 
-class LayoutComponent extends Component {
+class LayoutComponent extends Component<any, any> {
   static propTypes = {
     expanded: PropTypes.bool,
     onExpandEvent: PropTypes.func,

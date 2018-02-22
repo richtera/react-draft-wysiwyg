@@ -85,7 +85,7 @@ export class Suggestion {
 
 function getSuggestionComponent() {
   const { config } = this;
-  return class SuggestionComponent extends Component {
+  return class SuggestionComponent extends Component<any, any> {
     static propTypes = {
       children: PropTypes.array,
     };

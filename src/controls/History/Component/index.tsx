@@ -10,7 +10,7 @@ import Option from '../../../components/Option';
 import {Dropdown, DropdownOption} from '../../../components/Dropdown';
 import './styles.css';
 
-export default class History extends Component {
+export default class History extends Component<any, any> {
   static propTypes = {
     expanded: PropTypes.bool,
     doExpand: PropTypes.func,

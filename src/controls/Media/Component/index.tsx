@@ -14,7 +14,7 @@ require('./styles.css');
 
 const youTubeReg = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/;
 
-class LayoutComponent extends Component {
+class LayoutComponent extends Component<any, any> {
 
   static propTypes: Object = {
     expanded: PropTypes.bool,

@@ -5,7 +5,7 @@ import {Component} from 'react';
 import {EditorState} from 'draft-js';
 import {Editor} from '../../src';
 
-class BasicControlled extends Component {
+class BasicControlled extends Component<any, any> {
   state = {
     editorState: EditorState.createEmpty(),
   }

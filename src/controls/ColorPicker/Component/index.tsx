@@ -9,7 +9,7 @@ import {stopPropagation} from '../../../utils/common';
 import Option from '../../../components/Option';
 import './styles.css';
 
-class LayoutComponent extends Component {
+class LayoutComponent extends Component<any, any> {
   static propTypes = {
     expanded: PropTypes.bool,
     onExpandEvent: PropTypes.func,

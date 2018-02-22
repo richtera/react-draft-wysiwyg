@@ -9,7 +9,7 @@ import {getSelectionCustomInlineStyle} from 'draftjs-utils';
 import {forEach} from '../../utils/common';
 import LayoutComponent from './Component';
 
-export class remove extends Component {
+export class remove extends Component<any, any> {
 
   static propTypes = {
     onChange: PropTypes.func.isRequired,

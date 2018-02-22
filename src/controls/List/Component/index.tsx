@@ -10,7 +10,7 @@ import {Dropdown, DropdownOption} from '../../../components/Dropdown';
 import Option from '../../../components/Option';
 import './styles.css';
 
-export default class LayoutComponent extends Component {
+export default class LayoutComponent extends Component<any, any> {
   static propTypes = {
     expanded: PropTypes.bool,
     doExpand: PropTypes.func,

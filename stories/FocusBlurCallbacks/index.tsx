@@ -6,7 +6,7 @@ import {Editor} from '../../src';
 
 import './styles.css';
 
-class FocusBlurCallbacks extends Component {
+class FocusBlurCallbacks extends Component<any, any> {
 
   state: any = {
     state: 'blurred',

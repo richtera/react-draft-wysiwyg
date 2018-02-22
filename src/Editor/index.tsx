@@ -39,7 +39,7 @@ import * as localeTranslations from '../i18n';
 import './styles.css';
 import '../../css/Draft.css';
 
-export class Editor extends Component {
+export class Editor extends Component<any, any> {
 
   static propTypes = {
     onChange: PropTypes.func,

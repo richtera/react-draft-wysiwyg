@@ -6,7 +6,7 @@ import {convertToRaw, EditorState} from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
 import {Editor} from '../../src';
 
-class ConvertToRawDraftContent extends Component {
+class ConvertToRawDraftContent extends Component<any, any> {
   state = {
     editorState: EditorState.createEmpty(),
   }

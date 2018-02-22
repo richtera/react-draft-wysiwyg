@@ -6,7 +6,7 @@ import {Editor} from '../../src';
 
 import './styles.css';
 
-class ToolbarHidden extends Component {
+class ToolbarHidden extends Component<any, any> {
 
   state: any = {
     toolbarHidden: false,

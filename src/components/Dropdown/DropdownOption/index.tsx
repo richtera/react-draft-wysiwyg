@@ -6,7 +6,7 @@ import {PropTypes} from 'prop-types';
 import * as classNames from 'classnames';
 import './styles.css';
 
-export class DropdownOption extends Component {
+export class DropdownOption extends Component<any, any> {
   static propTypes = {
     children: PropTypes.any,
     value: PropTypes.any,

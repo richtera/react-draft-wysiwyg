@@ -7,7 +7,7 @@ import {getSelectionCustomInlineStyle, toggleCustomInlineStyle,} from 'draftjs-u
 
 import LayoutComponent from './Component';
 
-export class fontFamily extends Component {
+export class fontFamily extends Component<any, any> {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     editorState: PropTypes.object,

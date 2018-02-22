@@ -9,7 +9,7 @@ import Option from '../../../components/Option';
 import Spinner from '../../../components/Spinner';
 import './styles.css';
 
-class LayoutComponent extends Component {
+class LayoutComponent extends Component<any, any> {
   static propTypes: Object = {
     expanded: PropTypes.bool,
     onExpandEvent: PropTypes.func,

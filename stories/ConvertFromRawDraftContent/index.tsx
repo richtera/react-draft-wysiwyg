@@ -5,7 +5,7 @@ import {Component} from 'react';
 import {convertFromRaw, EditorState} from 'draft-js';
 import {Editor} from '../../src';
 
-class ConvertFromRawDraftContent extends Component {
+class ConvertFromRawDraftContent extends Component<any, any> {
   constructor(props) {
     super(props);
     const contentState = convertFromRaw({"entityMap":{},"blocks":[{"key":"637gr","text":"Initialized from content state.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]});

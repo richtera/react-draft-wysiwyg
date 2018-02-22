@@ -9,7 +9,7 @@ import {forEach} from '../../utils/common';
 
 import LayoutComponent from './Component';
 
-export class inline extends Component {
+export class inline extends Component<any, any> {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     editorState: PropTypes.object.isRequired,

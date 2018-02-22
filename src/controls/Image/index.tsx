@@ -7,7 +7,7 @@ import {AtomicBlockUtils} from 'draft-js';
 
 import LayoutComponent from './Component';
 
-export class image extends Component {
+export class image extends Component<any, any> {
   static propTypes: Object = {
     editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,

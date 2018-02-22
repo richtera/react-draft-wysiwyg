@@ -8,7 +8,7 @@ import {getEntityRange, getSelectionEntity, getSelectionText,} from 'draftjs-uti
 
 import LayoutComponent from './Component';
 
-export class link extends Component {
+export class link extends Component<any, any> {
   static propTypes = {
     editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
