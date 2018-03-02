@@ -1,11 +1,11 @@
 /* @flow */
 
-import * as React from 'react';
-import {Component} from 'react';
-import {PropTypes} from 'prop-types';
-import {AtomicBlockUtils} from 'draft-js';
+import React from "react";
+import {Component} from "react";
+import {PropTypes} from "prop-types";
+import {AtomicBlockUtils} from "draft-js";
 
-import LayoutComponent from './Component';
+import LayoutComponent from "./Component";
 
 export class image extends Component<any, any> {
   static propTypes: Object = {

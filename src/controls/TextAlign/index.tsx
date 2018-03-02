@@ -1,11 +1,11 @@
 /* @flow */
 
-import * as React from 'react';
-import {Component} from 'react';
-import {PropTypes} from 'prop-types';
-import {getSelectedBlocksMetadata, setBlockData} from 'draftjs-utils';
+import React from "react";
+import {Component} from "react";
+import {PropTypes} from "prop-types";
+import {getSelectedBlocksMetadata, setBlockData} from "draftjs-utils";
 
-import LayoutComponent from './Component';
+import LayoutComponent from "./Component";
 
 export class textAlign extends Component<any, any> {
   static propTypes = {

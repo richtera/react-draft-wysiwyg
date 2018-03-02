@@ -1,7 +1,7 @@
 /* @flow */
 
-import * as React from 'react';
-import {Editor} from '../../src';
+import * as React from "react";
+import {Editor} from "../../src";
 
 function uploadImageCallBack(file) {
   return new Promise(

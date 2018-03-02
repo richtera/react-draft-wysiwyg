@@ -1,13 +1,13 @@
 /* @flow */
 
-import * as React from 'react';
-import {Component} from 'react';
-import {PropTypes} from 'prop-types';
-import * as classNames from 'classnames';
+import React from "react";
+import {Component} from "react";
+import {PropTypes} from "prop-types";
+import classNames from "classnames";
 
-import {getFirstIcon} from '../../../utils/toolbar';
-import Option from '../../../components/Option';
-import {Dropdown, DropdownOption} from '../../../components/Dropdown';
+import {getFirstIcon} from "../../../utils/toolbar";
+import Option from "../../../components/Option";
+import {Dropdown, DropdownOption} from "../../../components/Dropdown";
 import './styles.css';
 
 export default class History extends Component<any, any> {

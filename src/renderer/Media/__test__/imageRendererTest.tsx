@@ -1,12 +1,12 @@
 /* @flow */
 
-import * as React from 'react';
-import {assert, expect} from 'chai';
-import {shallow} from 'enzyme';
-import {getAllBlocks} from 'draftjs-utils';
-import {AtomicBlockUtils, ContentState, convertFromHTML, EditorState} from 'draft-js';
+import * as React from "react";
+import {assert, expect} from "chai";
+import {shallow} from "enzyme";
+import {getAllBlocks} from "draftjs-utils";
+import {AtomicBlockUtils, ContentState, convertFromHTML, EditorState} from "draft-js";
 
-import getImageComponent from '../index';
+import getImageComponent from "../index";
 
 describe('ImageRenderer test suite', () => {
   const contentBlocks = convertFromHTML('<div>test</div>');

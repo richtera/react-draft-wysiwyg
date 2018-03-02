@@ -1,13 +1,13 @@
 /* @flow */
 
-import * as React from 'react';
-import {Component} from 'react';
-import {PropTypes} from 'prop-types';
-import {EditorState, Modifier} from 'draft-js';
-import {getSelectionCustomInlineStyle} from 'draftjs-utils';
+import React from "react";
+import {Component} from "react";
+import {PropTypes} from "prop-types";
+import {EditorState, Modifier} from "draft-js";
+import {getSelectionCustomInlineStyle} from "draftjs-utils";
 
-import {forEach} from '../../utils/common';
-import LayoutComponent from './Component';
+import {forEach} from "../../utils/common";
+import LayoutComponent from "./Component";
 
 export class remove extends Component<any, any> {
 

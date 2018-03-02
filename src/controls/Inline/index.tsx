@@ -1,13 +1,13 @@
 /* @flow */
 
-import * as React from 'react';
-import {Component} from 'react';
-import {PropTypes} from 'prop-types';
-import {getSelectionInlineStyle} from 'draftjs-utils';
-import {EditorState, Modifier, RichUtils} from 'draft-js';
-import {forEach} from '../../utils/common';
+import React from "react";
+import {Component} from "react";
+import {PropTypes} from "prop-types";
+import {getSelectionInlineStyle} from "draftjs-utils";
+import {EditorState, Modifier, RichUtils} from "draft-js";
+import {forEach} from "../../utils/common";
 
-import LayoutComponent from './Component';
+import LayoutComponent from "./Component";
 
 export class inline extends Component<any, any> {
   static propTypes = {

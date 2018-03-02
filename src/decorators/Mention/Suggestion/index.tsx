@@ -1,10 +1,10 @@
-import * as React from 'react';
-import {Component} from 'react';
-import {PropTypes} from 'prop-types';
-import * as classNames from 'classnames';
-import addMention from '../addMention';
-import KeyDownHandler from '../../../event-handler/keyDown';
-import SuggestionHandler from '../../../event-handler/suggestions';
+import React from "react";
+import {Component} from "react";
+import {PropTypes} from "prop-types";
+import classNames from "classnames";
+import addMention from "../addMention";
+import KeyDownHandler from "../../../event-handler/keyDown";
+import SuggestionHandler from "../../../event-handler/suggestions";
 import './styles.css';
 
 export class Suggestion {

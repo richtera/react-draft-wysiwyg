@@ -1,9 +1,9 @@
-import * as React from 'react';
-import {Component} from 'react';
-import {PropTypes} from 'prop-types';
-import {EditorState} from 'draft-js';
-import * as classNames from 'classnames';
-import Option from '../../components/Option';
+import React from "react";
+import {Component} from "react";
+import {PropTypes} from "prop-types";
+import {EditorState} from "draft-js";
+import classNames from "classnames";
+import Option from "../../components/Option";
 import './styles.css';
 
 const getImageComponent = config => class Image extends Component<any, any> {

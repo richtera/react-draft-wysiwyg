@@ -1,10 +1,10 @@
 /* @flow */
 
-import * as React from 'react';
-import {expect} from 'chai';
-import {spy} from 'sinon';
-import {mount, shallow} from 'enzyme';
-import Option from '..';
+import * as React from "react";
+import {expect} from "chai";
+import {spy} from "sinon";
+import {mount, shallow} from "enzyme";
+import Option from "..";
 
 describe('Option test suite', () => {
   it('should have a div when rendered', () => {

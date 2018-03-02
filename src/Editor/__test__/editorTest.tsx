@@ -1,9 +1,9 @@
 /* @flow */
 
-import * as React from 'react';
-import {assert, expect} from 'chai';
-import {shallow} from 'enzyme';
-import Editor from '..';
+import * as React from "react";
+import {assert, expect} from "chai";
+import {shallow} from "enzyme";
+import Editor from "..";
 
 describe('Editor test suite', () => {
   it('should have a div when rendered', () => {

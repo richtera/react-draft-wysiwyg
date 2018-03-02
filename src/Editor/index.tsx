@@ -1,8 +1,8 @@
 /* @flow */
 
-import * as React from 'react';
-import {Component} from 'react';
-import {PropTypes} from 'prop-types';
+import React from "react";
+import {Component} from "react";
+import {PropTypes} from "prop-types";
 import {
   CompositeDecorator,
   convertFromRaw,
@@ -11,7 +11,7 @@ import {
   Editor as BaseEditor,
   EditorState,
   RichUtils
-} from 'draft-js';
+} from "draft-js";
 import {
   blockRenderMap,
   changeDepth,
@@ -19,23 +19,23 @@ import {
   getCustomStyleMap,
   getSelectedBlocksType,
   handleNewLine,
-} from 'draftjs-utils';
-import * as classNames from 'classnames';
-import ModalHandler from '../event-handler/modals';
-import FocusHandler from '../event-handler/focus';
-import KeyDownHandler from '../event-handler/keyDown';
-import SuggestionHandler from '../event-handler/suggestions';
-import blockStyleFn from '../utils/BlockStyle';
-import {mergeRecursive} from '../utils/toolbar';
-import {filter, hasProperty} from '../utils/common';
-import {handlePastedText} from '../utils/handlePaste';
-import * as Controls from '../controls';
-import getLinkDecorator from '../decorators/Link';
-import getMentionDecorators from '../decorators/Mention';
-import getHashtagDecorator from '../decorators/HashTag';
-import getBlockRenderFunc from '../renderer';
-import defaultToolbar from '../config/defaultToolbar';
-import * as localeTranslations from '../i18n';
+} from "draftjs-utils";
+import classNames from "classnames";
+import ModalHandler from "../event-handler/modals";
+import FocusHandler from "../event-handler/focus";
+import KeyDownHandler from "../event-handler/keyDown";
+import SuggestionHandler from "../event-handler/suggestions";
+import blockStyleFn from "../utils/BlockStyle";
+import {mergeRecursive} from "../utils/toolbar";
+import {filter, hasProperty} from "../utils/common";
+import {handlePastedText} from "../utils/handlePaste";
+import * as Controls from "../controls";
+import getLinkDecorator from "../decorators/Link";
+import getMentionDecorators from "../decorators/Mention";
+import getHashtagDecorator from "../decorators/HashTag";
+import getBlockRenderFunc from "../renderer";
+import defaultToolbar from "../config/defaultToolbar";
+import * as localeTranslations from "../i18n";
 import './styles.css';
 import '../../css/Draft.css';
 

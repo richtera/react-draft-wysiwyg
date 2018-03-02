@@ -1,14 +1,14 @@
 /* @flow */
 
-import * as React from 'react';
-import {assert, expect} from 'chai';
-import {mount} from 'enzyme';
-import {ContentState, convertFromHTML, EditorState,} from 'draft-js';
+import * as React from "react";
+import {assert, expect} from "chai";
+import {mount} from "enzyme";
+import {ContentState, convertFromHTML, EditorState,} from "draft-js";
 
-import LinkControl from '..';
-import defaultToolbar from '../../../config/defaultToolbar';
-import ModalHandler from '../../../event-handler/modals';
-import localeTranslations from '../../../i18n';
+import LinkControl from "..";
+import defaultToolbar from "../../../config/defaultToolbar";
+import ModalHandler from "../../../event-handler/modals";
+import localeTranslations from "../../../i18n";
 
 describe('LinkControl test suite', () => {
   const contentBlocks = convertFromHTML('<div>test</div>');

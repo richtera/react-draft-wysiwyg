@@ -1,11 +1,11 @@
-import * as React from 'react';
-import {Component} from 'react';
-import {PropTypes} from 'prop-types';
-import {EditorState} from 'draft-js';
-import * as classNames from 'classnames';
-import Option from '../../components/Option';
+import React from "react";
+import {Component} from "react";
+import {PropTypes} from "prop-types";
+import {EditorState} from "draft-js";
+import classNames from "classnames";
+import Option from "../../components/Option";
 import './styles.css';
-import YouTube from 'react-youtube';
+import YouTube from "react-youtube";
 
 const getMediaComponent = config => class Media extends Component<any, any> {
   static propTypes: Object = {

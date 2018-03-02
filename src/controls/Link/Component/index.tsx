@@ -1,14 +1,14 @@
 /* @flow */
 
-import * as React from 'react';
-import {Component} from 'react';
-import {PropTypes} from 'prop-types';
-import * as classNames from 'classnames';
+import React from "react";
+import {Component} from "react";
+import {PropTypes} from "prop-types";
+import classNames from "classnames";
 
-import {stopPropagation} from '../../../utils/common';
-import {getFirstIcon} from '../../../utils/toolbar';
-import Option from '../../../components/Option';
-import {Dropdown, DropdownOption} from '../../../components/Dropdown';
+import {stopPropagation} from "../../../utils/common";
+import {getFirstIcon} from "../../../utils/toolbar";
+import Option from "../../../components/Option";
+import {Dropdown, DropdownOption} from "../../../components/Dropdown";
 import './styles.css';
 
 class LayoutComponent extends Component<any, any> {

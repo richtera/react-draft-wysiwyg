@@ -1,6 +1,6 @@
 /* @flow */
 
-import * as React from 'react';
+import * as React from "react";
 import './styles.css';
 
 export default () =>

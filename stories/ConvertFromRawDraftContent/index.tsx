@@ -1,9 +1,9 @@
 /* @flow */
 
-import * as React from 'react';
-import {Component} from 'react';
-import {convertFromRaw, EditorState} from 'draft-js';
-import {Editor} from '../../src';
+import React from "react";
+import {Component} from "react";
+import {convertFromRaw, EditorState} from "draft-js";
+import {Editor} from "../../src";
 
 class ConvertFromRawDraftContent extends Component<any, any> {
   constructor(props) {

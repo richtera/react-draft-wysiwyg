@@ -1,9 +1,9 @@
 /* @flow */
 
-import * as React from 'react';
-import {Component} from 'react';
-import {PropTypes} from 'prop-types';
-import * as classNames from 'classnames';
+import React from "react";
+import {Component} from "react";
+import {PropTypes} from "prop-types";
+import classNames from "classnames";
 import './styles.css';
 
 export class DropdownOption extends Component<any, any> {

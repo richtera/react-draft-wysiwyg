@@ -1,13 +1,13 @@
 /* @flow */
 
-import * as React from 'react';
-import {expect} from 'chai';
-import {mount} from 'enzyme';
-import {ContentState, convertFromHTML, EditorState,} from 'draft-js';
-import Block from '..';
-import defaultToolbar from '../../../config/defaultToolbar';
-import ModalHandler from '../../../event-handler/modals';
-import localeTranslations from '../../../i18n';
+import * as React from "react";
+import {expect} from "chai";
+import {mount} from "enzyme";
+import {ContentState, convertFromHTML, EditorState,} from "draft-js";
+import Block from "..";
+import defaultToolbar from "../../../config/defaultToolbar";
+import ModalHandler from "../../../event-handler/modals";
+import localeTranslations from "../../../i18n";
 
 describe('Block test suite', () => {
   const contentBlocks = convertFromHTML('<div>test</div>');

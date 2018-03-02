@@ -1,5 +1,5 @@
-import Mention from './Mention';
-import Suggestion from './Suggestion';
+import Mention from "./Mention";
+import Suggestion from "./Suggestion";
 
 export const getDecorators = config => [
   (new Mention(config.mentionClassName)).getMentionDecorator(),

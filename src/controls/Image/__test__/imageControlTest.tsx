@@ -1,14 +1,14 @@
 /* @flow */
 
-import * as React from 'react';
-import {ContentState, convertFromHTML, EditorState,} from 'draft-js';
-import {assert, expect} from 'chai';
-import {mount} from 'enzyme';
+import * as React from "react";
+import {ContentState, convertFromHTML, EditorState,} from "draft-js";
+import {assert, expect} from "chai";
+import {mount} from "enzyme";
 
-import ImageControl from '..';
-import defaultToolbar from '../../../config/defaultToolbar';
-import ModalHandler from '../../../event-handler/modals';
-import localeTranslations from '../../../i18n';
+import ImageControl from "..";
+import defaultToolbar from "../../../config/defaultToolbar";
+import ModalHandler from "../../../event-handler/modals";
+import localeTranslations from "../../../i18n";
 
 describe('ImageControl test suite', () => {
   const contentBlocks = convertFromHTML('<div>test</div>');

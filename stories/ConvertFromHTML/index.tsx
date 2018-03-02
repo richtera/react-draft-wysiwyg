@@ -1,10 +1,10 @@
 /* @flow */
 
-import * as React from 'react';
-import {Component} from 'react';
-import {ContentState, EditorState} from 'draft-js';
-import htmlToDraft from 'html-to-draftjs';
-import {Editor} from '../../src';
+import React from "react";
+import {Component} from "react";
+import {ContentState, EditorState} from "draft-js";
+import htmlToDraft from "html-to-draftjs";
+import {Editor} from "../../src";
 
 class ConvertToRawDraftContent extends Component<any, any> {
 

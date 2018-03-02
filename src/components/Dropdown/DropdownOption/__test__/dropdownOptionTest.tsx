@@ -1,10 +1,10 @@
 /* @flow */
 
-import * as React from 'react';
-import {expect} from 'chai';
-import {spy} from 'sinon';
-import {mount, shallow} from 'enzyme';
-import DropdownOption from '..';
+import * as React from "react";
+import {expect} from "chai";
+import {spy} from "sinon";
+import {mount, shallow} from "enzyme";
+import DropdownOption from "..";
 
 describe('DropdownOption test suite', () => {
   it('should have a li when rendered', () => {

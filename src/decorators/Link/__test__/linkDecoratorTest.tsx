@@ -1,10 +1,10 @@
 /* @flow */
 
-import * as React from 'react';
-import {assert, expect} from 'chai';
-import {mount, shallow} from 'enzyme';
-import {ContentState, convertFromHTML} from 'draft-js';
-import getLinkDecorator from '..';
+import * as React from "react";
+import {assert, expect} from "chai";
+import {mount, shallow} from "enzyme";
+import {ContentState, convertFromHTML} from "draft-js";
+import getLinkDecorator from "..";
 
 describe('LinkDecorator test suite', () => {
   const LinkDecorator = getLinkDecorator({ showOpenOptionOnHover: true });

@@ -1,12 +1,12 @@
 /* @flow */
 
-import * as React from 'react';
-import {Component} from 'react';
-import {PropTypes} from 'prop-types';
-import {RichUtils} from 'draft-js';
-import {changeDepth, getBlockBeforeSelectedBlock, getSelectedBlock, isListBlock} from 'draftjs-utils';
+import React from "react";
+import {Component} from "react";
+import {PropTypes} from "prop-types";
+import {RichUtils} from "draft-js";
+import {changeDepth, getBlockBeforeSelectedBlock, getSelectedBlock, isListBlock} from "draftjs-utils";
 
-import LayoutComponent from './Component';
+import LayoutComponent from "./Component";
 
 export class list extends Component<any, any> {
   static propTypes = {
