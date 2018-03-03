@@ -7,7 +7,7 @@ const classNames = require('classnames');
 
 import Option from "../../../components/Option";
 import Spinner from "../../../components/Spinner";
-import mime from "mime-types";
+import * as mime from "mime-types";
 import * as _ from "lodash";
 
 require('./styles.css');
