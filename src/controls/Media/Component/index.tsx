@@ -9,10 +9,9 @@ import Option from "../../../components/Option";
 import Spinner from "../../../components/Spinner";
 import * as mime from "mime-types";
 import * as _ from "lodash";
+import ReactPlayer from "react-player";
 
 require('./styles.css');
-
-const youTubeReg = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/;
 
 class LayoutComponent extends Component<any, any> {
 
@@ -27,6 +26,7 @@ class LayoutComponent extends Component<any, any> {
 
   state: Object = {
     mediaSrc: '',
+    error: null,
     dragEnter: false,
     uploadHighlighted: this.props.config.uploadEnabled && !!this.props.config.uploadCallback,
     showMediaLoading: false,
@@ -106,26 +106,41 @@ class LayoutComponent extends Component<any, any> {
 
   addMediaFromState: Function = (): void => {
     let { mimeType, mediaSrc, height, width, videoId } = this.state;
-    const { onChange } = this.props;
-    if (!mimeType) {
-      let lookupSrc = mediaSrc;
-      if (mediaSrc.indexOf('?')) {
-        lookupSrc = mediaSrc.split('?')[0];
-      }
-      mimeType = mimeType || mime.lookup(lookupSrc);
+    if (!ReactPlayer.canPlay(mediaSrc)) {
+      this.setState({
+        error: "Invalid media URL."
+      });
+      return;
     }
-    onChange(mimeType, mimeType === 'video/x-youtube' ? videoId : mediaSrc, height, width);
+    this.setState({
+      error: null
+    }, () => {
+      const { onChange } = this.props;
+      if (!mimeType) {
+        let lookupSrc = mediaSrc;
+        if (mediaSrc.indexOf('?')) {
+          lookupSrc = mediaSrc.split('?')[0];
+        }
+        mimeType = mimeType || mime.lookup(lookupSrc) || 'video/any';
+      }
+      onChange(mimeType, mediaSrc, height, width);
+    });
   };
 
   addMediaFromSrcLink: Function = (mimeType: string, mediaSrc: string): void => {
     const { height, width } = this.state;
     const { onChange } = this.props;
-    const match = youTubeReg.exec(mediaSrc);
-    if (match) {
-      mediaSrc = match[5];
-      mimeType = 'video/x-youtube';
+    if (!ReactPlayer.canPlay(mediaSrc)) {
+      this.setState({
+        error: "This media cannot be played back."
+      });
+      return;
     }
-    onChange(mimeType, mediaSrc, height, width);
+    this.setState({
+      error: null
+    }, () => {
+      onChange(mimeType, mediaSrc, height, width);
+    });
   };
 
   showMediaURLOption: Function = (): void => {
@@ -142,25 +157,23 @@ class LayoutComponent extends Component<any, any> {
   };
 
   updateValue: Function = (event: Object): void => {
+    let {mimeType} = this.state;
     const update = {
       [`${event.target.name}`]: event.target.value,
+      error: null
     };
-    const {mediaSrc} = _.extend({}, this.state, update);
-    if (mediaSrc) {
-      const match = youTubeReg.exec(mediaSrc);
-      if (match) {
-        update.videoId = match[5];
-        update.mimeType = 'video/x-youtube';
-      } else {
-        let lookupSrc = mediaSrc;
-        if (mediaSrc.indexOf('?')) {
-          lookupSrc = mediaSrc.split('?')[0];
-        }
-        update.mimeType = mime.lookup(lookupSrc);
-        update.videoId = null;
+    if (event.target.name === 'mediaSrc') {
+      if (!ReactPlayer.canPlay(event.target.value)) {
+        this.setState({
+          error: "This media cannot be played back."
+        });
+        return;
       }
-    } else {
-      update.mimeType = null;
+      let mediaSrc = event.target.value;
+      if (mediaSrc.indexOf('?')) {
+        mediaSrc = mediaSrc.split('?')[0];
+      }
+      update.mimeType = mime.lookup(mediaSrc) || 'video/any';
     }
     this.setState(update);
   };
@@ -204,7 +217,7 @@ class LayoutComponent extends Component<any, any> {
   };
 
   renderAddMediaModal(): Object {
-    const { mediaSrc, mimeType, uploadHighlighted, showMediaLoading, dragEnter, height, width } = this.state;
+    const { mediaSrc, mimeType, uploadHighlighted, showMediaLoading, dragEnter, height, width, error } = this.state;
     const {
       config: { popupClassName, uploadCallback, uploadEnabled, urlEnabled, inputAccept },
       doCollapse,
@@ -315,6 +328,11 @@ class LayoutComponent extends Component<any, any> {
             {translations['generic.cancel']}
           </button>
         </span>
+        {error && (
+          <div className="rdw-media-modal-spinner">
+            {error}
+          </div>
+        )}
         {showMediaLoading ?
           <div className="rdw-media-modal-spinner">
             <Spinner />

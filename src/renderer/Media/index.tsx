@@ -5,7 +5,60 @@ import {EditorState} from "draft-js";
 import classNames from "classnames";
 import Option from "../../components/Option";
 import './styles.css';
-import YouTube from "react-youtube";
+import ReactPlayer from "react-player";
+
+export class ReactPlayerShowError extends Component<any, any> {
+  constructor(props, context) {
+    super(props, context);
+    this.state = _.extend({}, props);
+  }
+
+  componentWillReceiveProps(props) {
+    this.setState(props);
+  }
+
+  showError = (event) => {
+    let error = new Error("Unable to play back file.");
+    if (event.target && event.target.error) {
+      error = event.target.error;
+    } else if (event.currentTarget && event.currentTarget.error) {
+      error = event.currentTarget.error;
+    } else if (event.originalTarget && event.originalTarget.error) {
+      error = event.originalTarget.error;
+    }
+    if (error) {
+      this.setState({ error });
+    }
+  }
+
+  render() {
+    let { src, autoPlay, loop, width, height, error, mimeType } = this.state;
+    if (mimeType === 'video/x-youtube') {
+      src = `https://www.youtube.com/watch?v=${src}`;
+    }
+    // src = src.replace(/https:\/\/storage.googleapis.com\/[^\/]*\//, `https://storage.googleapis.com/${window.fb.storageBucket}/`);
+    return (
+      <span>
+        {error && <div className="alert alert-danger" title={error.message}>
+          File Format is invalid. Please use MP4 for best performance and stability.
+        </div>}
+        <ReactPlayer
+          url={src}
+          playing={autoPlay}
+          loop={loop}
+          width={width}
+          height={height}
+          controls={true}
+          onError={this.showError}
+          file={{
+            attributes: {
+              type: mimeType
+            }
+          }}/>
+      </span>
+    );
+  }
+}
 
 const getMediaComponent = config => class Media extends Component<any, any> {
   static propTypes: Object = {
@@ -167,29 +220,15 @@ const getMediaComponent = config => class Media extends Component<any, any> {
           {error && <div className="alert alert-danger" title={error.message}>
             File Format is invalid. Please use MP4 for best performance and stability.
           </div>}
-          { entity.type === 'VIDEO' && (mimeType === 'video/x-youtube' ? (
-            <YouTube videoId={src} opts={{
-              playerVars: {
-                controls: 1,
-                loop,
-                width,
-                height
-              }
-            }}/>
-          ) : (
-            <video
-              width="100%"
-              controls
+          { entity.type === 'VIDEO' && (
+            <ReactPlayerShowError
+              src={src}
+              mimeType={mimeType}
               loop={loop}
-              onError={this.onError}
-              style={{
-                height,
-                width,
-              }}>
-              <source src={src} type={mimeType}/>
-              Your browser does not support the video tag.
-            </video>
-          ))}
+              autoPlay={autoPlay}
+              width={width}
+              height={height}/>
+          )}
           { entity.type === 'AUDIO' && (
             <audio
               loop={loop}
