@@ -123,6 +123,9 @@ class LayoutComponent extends Component<any, any> {
         }
         mimeType = mimeType || mime.lookup(lookupSrc) || 'video/any';
       }
+      if (/^image\/svg/.test(mimeType) && !height && !width) {
+        height = '100px';
+      }
       onChange(mimeType, mediaSrc, height, width);
     });
   };
@@ -134,7 +137,10 @@ class LayoutComponent extends Component<any, any> {
     if (mediaSrc.indexOf('?')) {
       lookupSrc = mediaSrc.split('?')[0];
     }
-    const mimeType = mime.lookup(lookupSrc);
+    mimeType = mimeType || mime.lookup(lookupSrc);
+    if (/^image\/svg/.test(mimeType) && !height && !width) {
+      height = '100px';
+    }
     if (lookupSrc === '' || !mimeType) {
       this.setState({
         error: "This URL cannot be recognized."
