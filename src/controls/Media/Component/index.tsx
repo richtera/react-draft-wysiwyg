@@ -106,7 +106,7 @@ class LayoutComponent extends Component<any, any> {
 
   addMediaFromState: Function = (): void => {
     let { mimeType, mediaSrc, height, width, videoId } = this.state;
-    if (!ReactPlayer.canPlay(mediaSrc)) {
+    if (!ReactPlayer.canPlay(mediaSrc) && !/image\//.test(mimeType)) {
       this.setState({
         error: "Invalid media URL."
       });
@@ -130,9 +130,20 @@ class LayoutComponent extends Component<any, any> {
   addMediaFromSrcLink: Function = (mimeType: string, mediaSrc: string): void => {
     const { height, width } = this.state;
     const { onChange } = this.props;
-    if (!ReactPlayer.canPlay(mediaSrc)) {
+    let lookupSrc = mediaSrc;
+    if (mediaSrc.indexOf('?')) {
+      lookupSrc = mediaSrc.split('?')[0];
+    }
+    const mimeType = mime.lookup(lookupSrc);
+    if (lookupSrc === '' || !mimeType) {
       this.setState({
-        error: "This media cannot be played back."
+        error: "This URL cannot be recognized."
+      });
+      return;
+    }
+    if (!ReactPlayer.canPlay(mediaSrc) && !/^image\//.test(mimeType)) {
+      this.setState({
+        error: `This URL has type ${mimeType} and is not compatible.`
       });
       return;
     }
@@ -163,17 +174,24 @@ class LayoutComponent extends Component<any, any> {
       error: null
     };
     if (event.target.name === 'mediaSrc') {
-      if (!ReactPlayer.canPlay(event.target.value)) {
-        this.setState({
-          error: "This media cannot be played back."
-        });
-        return;
-      }
       let mediaSrc = event.target.value;
       if (mediaSrc.indexOf('?')) {
         mediaSrc = mediaSrc.split('?')[0];
       }
-      update.mimeType = mime.lookup(mediaSrc) || 'video/any';
+      const mimeType = mime.lookup(mediaSrc);
+      if (mediaSrc === '' || !mimeType) {
+        this.setState({
+          error: "This URL cannot be recognized."
+        });
+        return;
+      }
+      if (!ReactPlayer.canPlay(event.target.value) && !/^image\//.test(mimeType)) {
+        this.setState({
+          error: `This URL has type ${mimeType} and is not compatible.`
+        });
+        return;
+      }
+      update.mimeType = mimeType;
     }
     this.setState(update);
   };
@@ -329,7 +347,7 @@ class LayoutComponent extends Component<any, any> {
           </button>
         </span>
         {error && (
-          <div className="rdw-media-modal-spinner">
+          <div className="alert alert-danger">
             {error}
           </div>
         )}
