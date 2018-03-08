@@ -148,7 +148,7 @@ class LayoutComponent extends Component<any, any> {
     if (/^image\/svg/.test(mimeType) && !height && !width) {
       height = '100px';
     }
-    if (lookupSrc === '' || !mimeType) {
+    if (lookupSrc === '') {
       this.setState({
         error: "This URL cannot be recognized."
       });
@@ -196,7 +196,7 @@ class LayoutComponent extends Component<any, any> {
         mediaSrc = mediaSrc.split('?')[0];
       }
       const mimeType = mime.lookup(mediaSrc);
-      if (mediaSrc === '' || !mimeType) {
+      if (mediaSrc === '') {
         this.setState({
           error: "This URL cannot be recognized."
         });
@@ -352,7 +352,7 @@ class LayoutComponent extends Component<any, any> {
           <button
             className="rdw-media-modal-btn"
             onClick={this.addMediaFromState}
-            disabled={!mediaSrc || !height || !width || !mimeType}
+            disabled={!mediaSrc || !height || !width}
           >
             {translations['generic.add']}
           </button>
