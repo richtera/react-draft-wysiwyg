@@ -38,6 +38,13 @@ class LayoutComponent extends Component<any, any> {
     super(props, context);
   }
 
+  componentWillMount() {
+    this.mounted = true;
+  }
+  componentWillUnmount() {
+    this.mounted = false;
+  }
+
   componentWillReceiveProps(props: Object): void {
     if (this.props.expanded && !props.expanded) {
       this.setState({
@@ -153,11 +160,15 @@ class LayoutComponent extends Component<any, any> {
       });
       return;
     }
-    this.setState({
-      error: null
-    }, () => {
+    if (this.mounted) {
+      this.setState({
+        error: null
+      }, () => {
+        onChange(mimeType, mediaSrc, height, width);
+      });
+    } else {
       onChange(mimeType, mediaSrc, height, width);
-    });
+    }
   };
 
   showMediaURLOption: Function = (): void => {
