@@ -133,12 +133,19 @@ class LayoutComponent extends Component<any, any> {
       if (/^image\/svg/.test(mimeType) && !height && !width) {
         height = '100px';
       }
+
+      if (/^[0-9]*$/.test(width)) {
+        width = `${width}px`;
+      }
+      if (/^[0-9]*$/.test(height)) {
+        height = `${height}px`;
+      }
       onChange(mimeType, mediaSrc, height, width);
     });
   };
 
   addMediaFromSrcLink: Function = (mimeType: string, mediaSrc: string): void => {
-    const { height, width } = this.state;
+    let { height, width } = this.state;
     const { onChange } = this.props;
     let lookupSrc = mediaSrc;
     if (mediaSrc.indexOf('?')) {
@@ -159,6 +166,12 @@ class LayoutComponent extends Component<any, any> {
         error: `This URL has type ${mimeType} and is not compatible.`
       });
       return;
+    }
+    if (/^[0-9]*$/.test(width)) {
+      width = `${width}px`;
+    }
+    if (/^[0-9]*$/.test(height)) {
+      height = `${height}px`;
     }
     if (this.mounted) {
       this.setState({
