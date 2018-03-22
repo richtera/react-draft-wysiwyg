@@ -8,7 +8,7 @@ const classNames = require('classnames');
 import Option from "../../../components/Option";
 import Spinner from "../../../components/Spinner";
 import * as mime from "mime-types";
-import * as _ from "lodash";
+import _ from "lodash";
 import ReactPlayer from "react-player";
 
 require('./styles.css');
