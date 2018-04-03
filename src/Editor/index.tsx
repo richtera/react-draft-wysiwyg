@@ -475,7 +475,7 @@ export class Editor extends Component<any, any> {
             blockStyleFn={blockStyleFn}
             customStyleMap={getCustomStyleMap()}
             handleReturn={this.handleReturn}
-            handlePastedText={this.handlePastedText}
+            // handlePastedText={this.handlePastedText}
             blockRendererFn={this.blockRendererFn}
             blockRenderMap={this.blockRenderMap}
             handleKeyCommand={this.handleKeyCommand}
