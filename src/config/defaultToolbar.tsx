@@ -173,7 +173,7 @@ export default {
     uploadEnabled: true,
     alignmentEnabled: true,
     uploadCallback: undefined,
-    inputAccept: 'image/*,video/*,audio/*',
+    inputAccept: 'image/*,video/*,audio/*,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation,application/pdf,application/msword,application/zip,application/x-7z-compressed,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,application/vnd.visio,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
     defaultSize: {
       height: 'auto',
       width: 'auto',

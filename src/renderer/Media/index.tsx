@@ -6,6 +6,7 @@ import classNames from "classnames";
 import Option from "../../components/Option";
 import './styles.css';
 import ReactPlayer from "react-player";
+import _ from "lodash";
 
 export class ReactPlayerShowError extends Component<any, any> {
   constructor(props, context) {
@@ -66,7 +67,7 @@ const getMediaComponent = config => class Media extends Component<any, any> {
     contentState: PropTypes.object,
   };
 
-  state: Object = {
+  state: any = {
     hovered: false,
   };
 
@@ -95,14 +96,15 @@ const getMediaComponent = config => class Media extends Component<any, any> {
     });
   };
 
-  toggleHovered: Function = (): void => {
+  toggleHovered = (): boolean => {
     const hovered = !this.state.hovered;
     this.setState({
       hovered,
     });
+    return false;
   };
 
-  toogleLoop: Function = (): void => {
+  toogleLoop = (): void => {
     const loop = !this.state.loop;
     const { block, contentState } = this.props;
     const entityKey = block.getEntityAt(0);
@@ -116,7 +118,7 @@ const getMediaComponent = config => class Media extends Component<any, any> {
     });
   }
 
-  toggleAutoPlay: Function = (): void => {
+  toggleAutoPlay = (): void => {
     const autoPlay = !this.state.autoPlay;
     const { block, contentState } = this.props;
     const entityKey = block.getEntityAt(0);

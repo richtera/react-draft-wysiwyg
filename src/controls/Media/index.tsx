@@ -3,9 +3,10 @@
 import React from "react";
 import {Component} from "react";
 import {PropTypes} from "prop-types";
-import {AtomicBlockUtils} from "draft-js";
+import {AtomicBlockUtils, EditorState, Modifier} from "draft-js";
 
 import LayoutComponent from "./Component";
+import {getEntityRange} from "draftjs-utils";
 
 export class media extends Component<any, any> {
 
@@ -17,12 +18,16 @@ export class media extends Component<any, any> {
     translations: PropTypes.object,
   };
 
-  state: Object = {
+  state: any = {
     expanded: false,
+    matchMime: null
   };
+  signalExpanded: boolean;
 
   constructor(props, context) {
     super(props, context);
+    const { config: { inputAccept }} = this.props;
+    this.state.matchMime = new RegExp(`^(${inputAccept.split(',').map(item => `${item.replace('*', '.*')}`).join('|')})$`);
   }
 
   componentWillMount(): void {
@@ -59,6 +64,42 @@ export class media extends Component<any, any> {
   }
 
   addMedia: Function = (mimeType: string, src: string, height: string, width: string): void => {
+    if (this.state.matchMime.test(mimeType)) {
+      const { editorState, onChange } = this.props;
+      let selection = editorState.getSelection();
+
+      const entityKey = editorState
+        .getCurrentContent()
+        .createEntity('LINK', 'MUTABLE', { url: src, target: '_download' })
+        .getLastCreatedEntityKey();
+      let name: any = src.split('/');
+      name = name[name.length - 1];
+      let contentState = Modifier.replaceText(
+        editorState.getCurrentContent(),
+        selection,
+        `${name}`,
+        editorState.getCurrentInlineStyle(),
+        entityKey,
+      );
+      let newEditorState = EditorState.push(editorState, contentState, 'insert-characters');
+
+      // insert a blank space after link
+      selection = newEditorState.getSelection().merge({
+        anchorOffset: selection.get('anchorOffset') + name.length,
+        focusOffset: selection.get('anchorOffset') + name.length,
+      });
+      newEditorState = EditorState.acceptSelection(newEditorState, selection);
+      contentState = Modifier.insertText(
+        newEditorState.getCurrentContent(),
+        selection,
+        ' ',
+        newEditorState.getCurrentInlineStyle(),
+        undefined,
+      );
+      onChange(EditorState.push(newEditorState, contentState, 'insert-characters'));
+      this.doCollapse();
+      return;
+    }
     const { editorState, onChange } = this.props;
     const entityKey = editorState
       .getCurrentContent()

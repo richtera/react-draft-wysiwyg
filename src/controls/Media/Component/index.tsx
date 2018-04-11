@@ -24,18 +24,25 @@ class LayoutComponent extends Component<any, any> {
     translations: PropTypes.object,
   };
 
-  state: Object = {
+  state = {
     mediaSrc: '',
+    mimeType: '',
+    videoId: '',
     error: null,
     dragEnter: false,
     uploadHighlighted: this.props.config.uploadEnabled && !!this.props.config.uploadCallback,
     showMediaLoading: false,
     height: this.props.config.defaultSize.height,
     width: this.props.config.defaultSize.width,
+    matchMime: null
   };
+  mounted: boolean = false;
+  fileUpload: boolean = false;
 
   constructor(props, context) {
     super(props, context);
+    const { config: { inputAccept }} = this.props;
+    this.state.matchMime = new RegExp(`^(${inputAccept.split(',').map(item => `${item.replace('*', '.*')}`).join('|')})$`);
   }
 
   componentWillMount() {
@@ -45,7 +52,7 @@ class LayoutComponent extends Component<any, any> {
     this.mounted = false;
   }
 
-  componentWillReceiveProps(props: Object): void {
+  componentWillReceiveProps(props: any): void {
     if (this.props.expanded && !props.expanded) {
       this.setState({
         mediaSrc: '',
@@ -63,14 +70,14 @@ class LayoutComponent extends Component<any, any> {
     }
   }
 
-  onDragEnter: Function = (event: Object): void => {
+  onDragEnter = (event: any): void => {
     this.stopPropagation(event);
     this.setState({
       dragEnter: true,
     });
   };
 
-  onMediaDrop: Function = (event: Object): void => {
+  onMediaDrop = (event: any): void => {
     event.preventDefault();
     event.stopPropagation();
     this.setState({
@@ -97,7 +104,7 @@ class LayoutComponent extends Component<any, any> {
       } else if (data[i].kind === 'string' && data[i].type.match('^text/uri-list')) {
         // Drag data item is URI
         continue;
-      } else if ((!dataIsItems || data[i].kind === 'file') && data[i].type.match('^(video|audio|image)/')) {
+      } else if ((!dataIsItems || data[i].kind === 'file') && this.state.matchMime.test(data[i].type)) {
         // Drag data item is an media file
         const file = dataIsItems ? data[i].getAsFile() : data[i];
         this.uploadMedia(file);
@@ -105,7 +112,7 @@ class LayoutComponent extends Component<any, any> {
     }
   };
 
-  showMediaUploadOption: Function = (): void => {
+  showMediaUploadOption = (): void => {
     this.setState({
       uploadHighlighted: true,
     });
@@ -114,6 +121,14 @@ class LayoutComponent extends Component<any, any> {
   addMediaFromState: Function = (): void => {
     let { mimeType, mediaSrc, height, width, videoId } = this.state;
     if (!ReactPlayer.canPlay(mediaSrc) && !/image\//.test(mimeType)) {
+      if (this.state.matchMime.test(mimeType)) {
+        this.setState({
+          error: null
+        }, () => {
+          onChange(mimeType, mediaSrc, 0, 0);
+        });
+        return;
+      }
       this.setState({
         error: "Invalid media URL."
       });
@@ -162,6 +177,16 @@ class LayoutComponent extends Component<any, any> {
       return;
     }
     if (!ReactPlayer.canPlay(mediaSrc) && !/^image\//.test(mimeType)) {
+      if (this.state.matchMime.test(mimeType)) {
+        if (this.mounted) {
+          this.setState({
+            error: null
+          }, () => {
+            onChange(mimeType, mediaSrc, 0, 0);
+          });
+          return;
+        }
+      }
       this.setState({
         error: `This URL has type ${mimeType} and is not compatible.`
       });
@@ -190,7 +215,7 @@ class LayoutComponent extends Component<any, any> {
     });
   };
 
-  toggleShowMediaLoading: Function = (): void => {
+  toggleShowMediaLoading = (): void => {
     const showMediaLoading = !this.state.showMediaLoading;
     this.setState({
       showMediaLoading,
@@ -226,13 +251,13 @@ class LayoutComponent extends Component<any, any> {
     this.setState(update);
   };
 
-  selectMedia: Function = (event: Object): void => {
+  selectMedia = (event: any): void => {
     if (event.target.files && event.target.files.length > 0) {
       this.uploadMedia(event.target.files[0]);
     }
   };
 
-  uploadMedia: Function = (file: Object): void => {
+  uploadMedia = (file: Object): void => {
     this.toggleShowMediaLoading();
     const { uploadCallback } = this.props.config;
     uploadCallback(file)
@@ -243,11 +268,11 @@ class LayoutComponent extends Component<any, any> {
         });
         this.addMediaFromSrcLink(data.contentType, data.link);
       }).catch(() => {
-        this.setState({
-          showMediaLoading: false,
-          dragEnter: false,
-        });
+      this.setState({
+        showMediaLoading: false,
+        dragEnter: false,
       });
+    });
   };
 
   fileUploadClick = (event) => {
@@ -255,7 +280,7 @@ class LayoutComponent extends Component<any, any> {
     event.stopPropagation();
   }
 
-  stopPropagation: Function = (event: Object): void => {
+  stopPropagation = (event: any): void => {
     if (!this.fileUpload) {
       event.preventDefault();
       event.stopPropagation();
@@ -278,30 +303,30 @@ class LayoutComponent extends Component<any, any> {
       >
         <div className="rdw-media-modal-header">
           {uploadEnabled && uploadCallback &&
-            <span
-              onClick={this.showMediaUploadOption}
-              className="rdw-media-modal-header-option"
-            >
+          <span
+            onClick={this.showMediaUploadOption}
+            className="rdw-media-modal-header-option"
+          >
               {translations['components.controls.media.fileUpload']}
-              <span
-                className={classNames(
-                  'rdw-media-modal-header-label',
-                  { 'rdw-media-modal-header-label-highlighted': uploadHighlighted },
-                )}
-              />
+            <span
+              className={classNames(
+                'rdw-media-modal-header-label',
+                { 'rdw-media-modal-header-label-highlighted': uploadHighlighted },
+              )}
+            />
             </span>}
           { urlEnabled &&
-            <span
-              onClick={this.showMediaURLOption}
-              className="rdw-media-modal-header-option"
-            >
+          <span
+            onClick={this.showMediaURLOption}
+            className="rdw-media-modal-header-option"
+          >
               {translations['components.controls.media.byURL']}
-              <span
-                className={classNames(
-                  'rdw-media-modal-header-label',
-                  { 'rdw-media-modal-header-label-highlighted': !uploadHighlighted },
-                )}
-              />
+            <span
+              className={classNames(
+                'rdw-media-modal-header-label',
+                { 'rdw-media-modal-header-label-highlighted': !uploadHighlighted },
+              )}
+            />
             </span>}
         </div>
         {
@@ -312,8 +337,8 @@ class LayoutComponent extends Component<any, any> {
                 onDragOver={this.stopPropagation}
                 onDrop={this.onMediaDrop}
                 className={classNames(
-                'rdw-media-modal-upload-option',
-                { 'rdw-media-modal-upload-option-highlighted': dragEnter })}
+                  'rdw-media-modal-upload-option',
+                  { 'rdw-media-modal-upload-option-highlighted': dragEnter })}
               >
                 <label
                   htmlFor="file"
