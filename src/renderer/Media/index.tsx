@@ -132,13 +132,27 @@ const getMediaComponent = config => class Media extends Component<any, any> {
     });
   }
 
+  setData = (key, e) => {
+    const { block, contentState } = this.props;
+    const entityKey = block.getEntityAt(0);
+    const value = e.target.value;
+    contentState.mergeEntityData(
+      entityKey,
+      { [key]: value },
+    );
+    config.onChange(EditorState.push(config.getEditorState(), contentState, 'change-block-data'));
+    this.setState({
+      dummy: true,
+    });
+  }
+
   renderAlignmentOptions(alignment): Object {
     const { block, contentState } = this.props;
     const { hovered } = this.state;
     const { isReadOnly, isMediaAlignmentEnabled } = config;
     const entity = contentState.getEntity(block.getEntityAt(0));
     const data = entity.getData();
-    const {loop = false, autoPlay = false, mimeType} = data;
+    const {loop = false, autoPlay = false, mimeType, width, height} = data;
     return (
       <div
         className={classNames(
@@ -180,6 +194,14 @@ const getMediaComponent = config => class Media extends Component<any, any> {
             {loop ? "Looping" : "Once"}
           </Option>
         ]}
+        { false && /^(video|image)\//.test(mimeType) && (
+          <div className="form-horizontal rdw-media-additional-option">
+            <label>Width:</label>
+            <input value={width} onChange={this.setData.bind(this, 'width')}/>
+            <label>Height:</label>
+            <input value={width} onChange={this.setData.bind(this, 'height')}/>
+          </div>
+        )}
       </div>
     );
   }

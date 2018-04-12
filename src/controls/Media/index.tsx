@@ -27,7 +27,7 @@ export class media extends Component<any, any> {
   constructor(props, context) {
     super(props, context);
     const { config: { inputAccept }} = this.props;
-    this.state.matchMime = new RegExp(`^(${inputAccept.split(',').map(item => `${item.replace('*', '.*')}`).join('|')})$`);
+    this.state.matchMime = new RegExp(`^(${inputAccept.split(',').filter(item => !/^(video|audio|image)\/.*$/.test(item)).map(item => `${item.replace('*', '.*')}`).join('|')})$`);
   }
 
   componentWillMount(): void {
