@@ -23,7 +23,7 @@ class LayoutComponent extends Component<any, any> {
     translations: PropTypes.object,
   };
 
-  state: Object = {
+  state = {
     showModal: false,
     linkTarget: '',
     linkTitle: '',
@@ -45,30 +45,30 @@ class LayoutComponent extends Component<any, any> {
     }
   }
 
-  removeLink: Function = (): void => {
+  removeLink = (): void => {
     const { onChange } = this.props;
     onChange('unlink');
   };
 
-  addLink: Function = (): void => {
+  addLink = (): void => {
     const { onChange } = this.props;
     const { linkTitle, linkTarget, linkTargetOption } = this.state;
     onChange('link', linkTitle, linkTarget, linkTargetOption);
   };
 
-  updateValue: Function = (event: Object): void => {
+  updateValue = (event: any): void => {
     this.setState({
       [`${event.target.name}`]: event.target.value,
     });
   };
 
-  updateTarget: Function = (event: Object): void => {
+  updateTarget = (event: any): void => {
     this.setState({
       linkTargetOption: event.target.checked ? '_blank' : '_self',
     });
   };
 
-  hideModal: Function = (): void => {
+  hideModal = (): void => {
     this.setState({
       showModal: false,
     });
@@ -86,7 +86,7 @@ class LayoutComponent extends Component<any, any> {
     });
   }
 
-  forceExpandAndShowModal: Function = (): void => {
+  forceExpandAndShowModal = (): void => {
     const { doExpand, currentState: { link, selectionText } } = this.props;
     const { linkTargetOption } = this.state;
     doExpand();
