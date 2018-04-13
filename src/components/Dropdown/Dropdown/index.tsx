@@ -22,7 +22,7 @@ export class Dropdown extends Component<any, any> {
     title: PropTypes.string,
   };
 
-  state: Object = {
+  state = {
     highlighted: -1,
   };
 
