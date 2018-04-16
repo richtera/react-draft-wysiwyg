@@ -12,23 +12,23 @@ const getImageComponent = config => class Image extends Component<any, any> {
     contentState: PropTypes.object,
   };
 
-  state: Object = {
+  state = {
     hovered: false,
   };
 
-  setEntityAlignmentLeft: Function = (): void => {
+  setEntityAlignmentLeft = (): void => {
     this.setEntityAlignment('left');
   };
 
-  setEntityAlignmentRight: Function = (): void => {
+  setEntityAlignmentRight = (): void => {
     this.setEntityAlignment('right');
   };
 
-  setEntityAlignmentCenter: Function = (): void => {
+  setEntityAlignmentCenter = (): void => {
     this.setEntityAlignment('none');
   };
 
-  setEntityAlignment: Function = (alignment): void => {
+  setEntityAlignment = (alignment): void => {
     const { block, contentState } = this.props;
     const entityKey = block.getEntityAt(0);
     contentState.mergeEntityData(
@@ -41,7 +41,7 @@ const getImageComponent = config => class Image extends Component<any, any> {
     });
   };
 
-  toggleHovered: Function = (): void => {
+  toggleHovered = (): void => {
     const hovered = !this.state.hovered;
     this.setState({
       hovered,

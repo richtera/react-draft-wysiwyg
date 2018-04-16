@@ -19,7 +19,7 @@ class LayoutComponent extends Component<any, any> {
     doCollapse: PropTypes.func,
   };
 
-  state: Object = {
+  state = {
     embeddedLink: '',
     height: this.props.config.defaultSize.height,
     width: this.props.config.defaultSize.width,
@@ -40,13 +40,13 @@ class LayoutComponent extends Component<any, any> {
     }
   }
 
-  onChange: Function = (): void => {
+  onChange = (): void => {
     const { onChange } = this.props;
     const { embeddedLink, height, width } = this.state;
     onChange(embeddedLink, height, width);
   };
 
-  updateValue: Function = (event: Object): void => {
+  updateValue = (event: any): void => {
     this.setState({
       [`${event.target.name}`]: event.target.value,
     });

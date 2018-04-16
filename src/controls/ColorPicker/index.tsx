@@ -3,7 +3,7 @@
 import React from "react";
 import {Component} from "react";
 import {PropTypes} from "prop-types";
-import {getSelectionCustomInlineStyle, toggleCustomInlineStyle,} from "draftjs-utils";
+import {getSelectionCustomInlineStyle, toggleCustomInlineStyle} from "draftjs-utils";
 
 import LayoutComponent from "./Component";
 
@@ -16,11 +16,12 @@ export class colorPicker extends Component<any, any> {
     translations: PropTypes.object,
   };
 
-  state: Object = {
+  state = {
     expanded: false,
     currentColor: undefined,
     currentBgColor: undefined,
   };
+  signalExpanded: boolean;
 
   constructor(props, context) {
     super(props, context);
@@ -37,8 +38,8 @@ export class colorPicker extends Component<any, any> {
     modalHandler.registerCallBack(this.expandCollapse);
   }
 
-  componentWillReceiveProps(properties: Object): void {
-    const newState = {};
+  componentWillReceiveProps(properties: any): void {
+    const newState: any = {};
     if (properties.editorState &&
       this.props.editorState !== properties.editorState) {
       newState.currentColor

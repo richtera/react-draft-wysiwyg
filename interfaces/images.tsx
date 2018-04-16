@@ -1,3 +1,3 @@
 declare module 'images' {
-  declare var exports: { [key: string]: string };
+  var exports: { [key: string]: string };
 }

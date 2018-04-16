@@ -7,7 +7,7 @@ const Embed = ({ block, contentState }) => {
   return (<iframe height={height} width={width} src={src} frameBorder="0" allowFullScreen title="Wysiwyg Embedded Content" />);
 };
 
-Embed.propTypes = {
+Embed['propTypes'] = {
   block: PropTypes.object,
   contentState: PropTypes.object,
 };

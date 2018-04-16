@@ -4,7 +4,7 @@ export default class ModalHandler {
   editorFlag = false;
   suggestionFlag = false;
 
-  closeAllModals = (event: Object) => {
+  closeAllModals = (event: any = null) => {
     this.callBacks.forEach((callBack) => {
       callBack(event);
     });
@@ -45,7 +45,7 @@ export default class ModalHandler {
     }
   }
 
-  closeModals = (event: Object): void => {
+  closeModals = (event: any = null): void => {
     this.closeAllModals(event);
   };
 

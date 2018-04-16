@@ -22,7 +22,7 @@ class LayoutComponent extends Component<any, any> {
     super(props, context);
   }
 
-  onChange: Function = (event: Object): void => {
+  onChange = (event: any): void => {
     const { onChange } = this.props;
     onChange(event.target.innerHTML);
   };
@@ -38,7 +38,6 @@ class LayoutComponent extends Component<any, any> {
           emojis.map((emoji, index) => (<span
             key={index}
             className="rdw-emoji-icon"
-            alt=""
             onClick={this.onChange}
           >{emoji}</span>))
         }

@@ -88,6 +88,16 @@ export class Editor extends Component<any, any> {
     customDecorators: PropTypes.array,
     customBlockRenderMap: PropTypes.object
   };
+  wrapperId: string;
+  editor: any;
+  wrapper: any;
+  modalHandler: ModalHandler;
+  focusHandler: FocusHandler;
+  blockRendererFn: any;
+  editorProps: any;
+  customStyleMap: any;
+  blockRenderMap: any;
+  compositeDecorator: CompositeDecorator;
 
   static defaultProps = {
     toolbarOnFocus: false,
@@ -136,7 +146,7 @@ export class Editor extends Component<any, any> {
   // todo: change decorators depending on properties recceived in componentWillReceiveProps.
 
   componentWillReceiveProps(props) {
-    const newState = {};
+    const newState: any = {};
     if (this.props.toolbar !== props.toolbar) {
       const toolbar = mergeRecursive(defaultToolbar, props.toolbar);
       newState.toolbar = toolbar;
@@ -176,7 +186,7 @@ export class Editor extends Component<any, any> {
     });
   };
 
-  onEditorFocus: Function = (event): void => {
+  onEditorFocus: Function = (event: FocusEvent): void => {
     const { onFocus } = this.props;
     this.setState({
       editorFocused: true,
@@ -186,11 +196,11 @@ export class Editor extends Component<any, any> {
     }
   };
 
-  onEditorMouseDown: Function = (): void => {
+  onEditorMouseDown = (): void => {
     this.focusHandler.onEditorMouseDown();
   }
 
-  onTab: Function = (event): boolean => {
+  onTab = (event): boolean => {
     const { onTab } = this.props;
     if (!onTab || !onTab(event)) {
       const editorState = changeDepth(this.state.editorState, event.shiftKey ? -1 : 1, 4);
@@ -199,29 +209,31 @@ export class Editor extends Component<any, any> {
         event.preventDefault();
       }
     }
+    return false;
   };
 
-  onUpDownArrow: Function = (event): boolean => {
+  onUpDownArrow = (event): boolean => {
     if (SuggestionHandler.isOpen()) {
       event.preventDefault();
     }
+    return false;
   };
 
-  onToolbarFocus: Function = (event): void => {
+  onToolbarFocus = (event: any): void => {
     const { onFocus } = this.props;
     if (onFocus && this.focusHandler.isToolbarFocused()) {
       onFocus(event);
     }
   };
 
-  onWrapperBlur: Function = (event: Object) => {
+  onWrapperBlur = (event: any) => {
     const { onBlur } = this.props;
     if (onBlur && this.focusHandler.isEditorBlur(event)) {
       onBlur(event);
     }
   };
 
-  onChange: Function = (force: boolean, editorState: Object): void => {
+  onChange = (force: boolean, editorState: any): void => {
     const { readOnly, onEditorStateChange } = this.props;
     const isAtomic = getSelectedBlocksType(editorState) === 'atomic';
     const isCollapsed = editorState.getSelection().isCollapsed();
@@ -237,15 +249,15 @@ export class Editor extends Component<any, any> {
     }
   };
 
-  setWrapperReference: Function = (ref: Object): void => {
+  setWrapperReference = (ref: Object): void => {
     this.wrapper = ref;
   };
 
-  setEditorReference: Function = (ref: Object): void => {
+  setEditorReference = (ref: Object): void => {
     this.editor = ref;
   };
 
-  getCompositeDecorator = (): void => {
+  getCompositeDecorator = (): CompositeDecorator => {
     const decorators = [...this.props.customDecorators, getLinkDecorator({
       showOpenOptionOnHover: this.state.toolbar.link.showOpenOptionOnHover,
     })];
@@ -280,7 +292,7 @@ export class Editor extends Component<any, any> {
       if (onContentStateChange) {
         onContentStateChange(convertToRaw(editorState.getCurrentContent()));
       }
-    });
+    }, 0);
   };
 
   isReadOnly = () => this.props.readOnly;
@@ -288,7 +300,7 @@ export class Editor extends Component<any, any> {
   isImageAlignmentEnabled = () => this.state.toolbar.image.alignmentEnabled;
   isMediaAlignmentEnabled = () => this.state.toolbar.media.alignmentEnabled;
 
-  createEditorState = (compositeDecorator) => {
+  createEditorState = (compositeDecorator: CompositeDecorator) => {
     let editorState;
     if (hasProperty(this.props, 'editorState')) {
       if (this.props.editorState) {
@@ -339,13 +351,13 @@ export class Editor extends Component<any, any> {
     return editorState;
   };
 
-  focusEditor: Function = (event): void => {
+  focusEditor = (event: FocusEvent): void => {
     if (this.props.onFocusEditor) {
       if (!this.props.onFocusEditor(event)) {
         return;
       }
     }
-    switch (event.target.tagName) {
+    switch ((event as any).target.tagName) {
       case 'INPUT':
       case 'TEXTAREA':
       case 'BUTTON':
@@ -355,10 +367,10 @@ export class Editor extends Component<any, any> {
     }
     setTimeout(() => {
       this.editor.focus();
-    });
+    }, 0);
   };
 
-  handleKeyCommand: Function = (command: Object): boolean => {
+  handleKeyCommand = (command: any): boolean => {
     const { editorState } = this.state;
     const newState = RichUtils.handleKeyCommand(editorState, command);
     if (newState) {
@@ -368,7 +380,7 @@ export class Editor extends Component<any, any> {
     return false;
   };
 
-  handleReturn: Function = (event: Object): boolean => {
+  handleReturn = (event: Object): boolean => {
     if (SuggestionHandler.isOpen()) {
       return true;
     }
@@ -385,7 +397,7 @@ export class Editor extends Component<any, any> {
     return handlePastedText(text, html, editorState, this.onChange.bind(this, true));
   }
 
-  preventDefault: Function = (event: Object) => {
+  preventDefault = (event: any) => {
     if (event.target.tagName === 'INPUT') {
       this.focusHandler.onInputMouseDown();
     } else {
@@ -480,7 +492,6 @@ export class Editor extends Component<any, any> {
             blockRenderMap={this.blockRenderMap}
             handleKeyCommand={this.handleKeyCommand}
             ariaLabel={ariaLabel || 'rdw-editor'}
-            blockRenderMap={blockRenderMap}
             {...this.editorProps}
           />
         </div>

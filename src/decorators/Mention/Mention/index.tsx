@@ -4,6 +4,8 @@ import classNames from "classnames";
 import './styles.css';
 
 export class Mention {
+  className: string;
+
   constructor(className) {
     this.className = className;
   }
@@ -17,7 +19,7 @@ export class Mention {
         </a>
       );
     };
-    MentionComponent.propTypes = {
+    MentionComponent['propTypes'] = {
       entityKey: PropTypes.number,
       children: PropTypes.array,
       contentState: PropTypes.object,
@@ -25,12 +27,12 @@ export class Mention {
     return MentionComponent;
   };
   getMentionDecorator = () => ({
-    strategy: this.findMentionEntities,
+    strategy: this['findMentionEntities'],
     component: this.getMentionComponent(),
   });
 }
 
-Mention.prototype.findMentionEntities = (contentBlock, callback, contentState) => {
+Mention.prototype['findMentionEntities'] = (contentBlock, callback, contentState) => {
   contentBlock.findEntityRanges(
     (character) => {
       const entityKey = character.getEntity();

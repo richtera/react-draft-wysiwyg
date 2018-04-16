@@ -20,7 +20,7 @@ class LayoutComponent extends Component<any, any> {
     translations: PropTypes.object,
   };
 
-  state: Object = {
+  state = {
     defaultFontFamily: undefined,
   };
 

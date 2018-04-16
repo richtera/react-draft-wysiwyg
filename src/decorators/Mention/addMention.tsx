@@ -1,4 +1,4 @@
-import {EditorState, Modifier,} from "draft-js";
+import {EditorState, Modifier, SelectionState,} from "draft-js";
 import {getSelectedBlock} from "draftjs-utils";
 
 export default function addMention(
@@ -6,7 +6,7 @@ export default function addMention(
   onChange: Function,
   separator: string,
   trigger: string,
-  suggestion: Object,
+  suggestion: any,
 ): void {
   const { value, url } = suggestion;
   const entityKey = editorState
@@ -15,7 +15,7 @@ export default function addMention(
     .getLastCreatedEntityKey();
   const selectedBlock = getSelectedBlock(editorState);
   const selectedBlockText = selectedBlock.getText();
-  let focusOffset = editorState.getSelection().focusOffset;
+  let focusOffset = editorState.getSelection().getFocusOffset();
   const mentionIndex = (selectedBlockText.lastIndexOf(separator + trigger, focusOffset) || 0) + 1;
   let spaceAlreadyPresent = false;
   if (selectedBlockText.length === mentionIndex + 1) {
@@ -27,7 +27,7 @@ export default function addMention(
   let updatedSelection = editorState.getSelection().merge({
     anchorOffset: mentionIndex,
     focusOffset,
-  });
+  }) as SelectionState;
   let newEditorState = EditorState.acceptSelection(editorState, updatedSelection);
   let contentState = Modifier.replaceText(
     newEditorState.getCurrentContent(),
@@ -43,7 +43,7 @@ export default function addMention(
     updatedSelection = newEditorState.getSelection().merge({
       anchorOffset: mentionIndex + value.length + trigger.length,
       focusOffset: mentionIndex + value.length + trigger.length,
-    });
+    }) as SelectionState;
     newEditorState = EditorState.acceptSelection(newEditorState, updatedSelection);
     contentState = Modifier.insertText(
       newEditorState.getCurrentContent(),

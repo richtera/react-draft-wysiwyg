@@ -8,6 +8,8 @@ import SuggestionHandler from "../../../event-handler/suggestions";
 import './styles.css';
 
 export class Suggestion {
+  config: any;
+
   constructor(config) {
     const {
       separator,
@@ -90,11 +92,13 @@ function getSuggestionComponent() {
       children: PropTypes.array,
     };
 
-    state: Object = {
+    state = {
       style: { left: 15 },
       activeOption: -1,
       showSuggestions: true,
     };
+    suggestion: any;
+    dropdown: any;
 
     constructor(props, context) {
       super(props, context);
@@ -141,7 +145,7 @@ function getSuggestionComponent() {
 
     onEditorKeyDown = (event) => {
       const { activeOption } = this.state;
-      const newState = {};
+      const newState: any = {};
       if (event.key === 'ArrowDown') {
         event.preventDefault();
         if (activeOption === this.filteredSuggestions.length - 1) {
@@ -177,15 +181,15 @@ function getSuggestionComponent() {
       });
     }
 
-    setSuggestionReference: Function = (ref: Object): void => {
+    setSuggestionReference = (ref: any): void => {
       this.suggestion = ref;
     };
 
-    setDropdownReference: Function = (ref: Object): void => {
+    setDropdownReference = (ref: any): void => {
       this.dropdown = ref;
     };
 
-    closeSuggestionDropdown: Function = (): void => {
+    closeSuggestionDropdown = (): void => {
       this.setState({
         showSuggestions: false,
       });
@@ -235,7 +239,7 @@ function getSuggestionComponent() {
           {showSuggestions &&
             <span
               className={classNames('rdw-suggestion-dropdown', dropdownClassName)}
-              contentEditable="false"
+              contentEditable={false}
               suppressContentEditableWarning
               style={this.state.style}
               ref={this.setDropdownReference}

@@ -1,6 +1,6 @@
 /* @flow */
 
-import React from "react";
+import React, {ReactChild, ReactFragment} from "react";
 import {Component} from "react";
 import {PropTypes} from "prop-types";
 import classNames from "classnames";
@@ -73,7 +73,8 @@ export class Dropdown extends Component<any, any> {
       disabled
     } = this.props;
     const { highlighted } = this.state;
-    const options = children.slice(1, children.length);
+    const childList = children as Array<ReactChild>;
+    const options = childList.slice(1, childList.length);
     return (
       <div
         className={classNames('rdw-dropdown-wrapper', className)}

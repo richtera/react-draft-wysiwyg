@@ -16,10 +16,11 @@ export class fontFamily extends Component<any, any> {
     translations: PropTypes.object,
   };
 
-  state: Object = {
+  state = {
     expanded: undefined,
     currentFontFamily: undefined,
   };
+  signalExpanded: boolean;
 
   constructor(props, context) {
     super(props, context);
@@ -35,7 +36,7 @@ export class fontFamily extends Component<any, any> {
     modalHandler.registerCallBack(this.expandCollapse);
   }
 
-  componentWillReceiveProps(properties: Object): void {
+  componentWillReceiveProps(properties: any): void {
     if (properties.editorState &&
       this.props.editorState !== properties.editorState) {
       this.setState({

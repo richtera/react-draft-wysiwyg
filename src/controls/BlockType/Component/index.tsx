@@ -28,7 +28,7 @@ class LayoutComponent extends Component<any, any> {
     };
   }
 
-  componentWillReceiveProps(properties: Object): void {
+  componentWillReceiveProps(properties: any): void {
     if (this.props.translations !== properties.translations) {
       this.setState({
         blockTypes: this.getBlockTypes(properties.translations, properties.config),
@@ -47,7 +47,7 @@ class LayoutComponent extends Component<any, any> {
     { label: 'Blockquote', displayName: translations['components.controls.blocktype.blockquote'] },
   ].concat(config.customBlockTypes || []);
 
-  renderFlat(blocks: Array<Object>): void {
+  renderFlat(blocks: Array<any>) {
     const { config: { className }, onChange, currentState: { blockType, rawBlockType } } = this.props;
     return (
       <div className={classNames('rdw-inline-wrapper', className)}>
@@ -68,7 +68,7 @@ class LayoutComponent extends Component<any, any> {
     );
   }
 
-  renderInDropdown(blocks: Array<Object>): void {
+  renderInDropdown(blocks: Array<any>) {
     const {
       config: { className, dropdownClassName, title },
       currentState: { blockType, rawBlockType },
@@ -111,7 +111,7 @@ class LayoutComponent extends Component<any, any> {
     );
   }
 
-  render(): void {
+  render() {
     const { config } = this.props;
     const { inDropdown } = config;
     const { blockTypes } = this.state;

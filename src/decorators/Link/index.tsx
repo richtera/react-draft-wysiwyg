@@ -26,11 +26,11 @@ function getLinkComponent(config) {
       contentState: PropTypes.object,
     };
 
-    state: Object = {
+    state = {
       showPopOver: false,
     };
 
-    openLink: Function = () => {
+    openLink = () => {
       const { entityKey, contentState } = this.props;
       const { url } = contentState.getEntity(entityKey).getData();
       const linkTab = window.open(url, 'blank'); // eslint-disable-line no-undef
@@ -41,7 +41,7 @@ function getLinkComponent(config) {
       super(props, context);
     }
 
-    toggleShowPopOver: Function = () => {
+    toggleShowPopOver = () => {
       const showPopOver = !this.state.showPopOver;
       this.setState({
         showPopOver,

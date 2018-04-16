@@ -16,9 +16,10 @@ export class embedded extends Component<any, any> {
     translations: PropTypes.object,
   };
 
-  state: Object = {
+  state = {
     expanded: false,
   };
+  signalExpanded: boolean;
 
   constructor(props, context) {
     super(props, context);
@@ -34,11 +35,11 @@ export class embedded extends Component<any, any> {
     modalHandler.deregisterCallBack(this.expandCollapse);
   }
 
-  onExpandEvent: Function = (): void => {
+  onExpandEvent = (): void => {
     this.signalExpanded = !this.state.expanded;
   };
 
-  expandCollapse: Function = (): void => {
+  expandCollapse = (): void => {
     this.setState({
       expanded: this.signalExpanded,
     });

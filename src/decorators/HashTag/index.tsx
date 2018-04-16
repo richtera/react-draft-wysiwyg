@@ -4,6 +4,10 @@ import classNames from "classnames";
 import './styles.css';
 
 class Hashtag {
+  className: string;
+  hashCharacter: string;
+  separator: string;
+
   constructor(config) {
     this.className = config.className;
     this.hashCharacter = config.hashCharacter || '#';
@@ -21,7 +25,7 @@ class Hashtag {
         </a>
       );
     };
-    HashtagComponent.propTypes = {
+    HashtagComponent['propTypes'] = {
       children: PropTypes.object,
     };
     return HashtagComponent;
