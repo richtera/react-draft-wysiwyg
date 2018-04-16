@@ -25,7 +25,7 @@ const RemoveComponent = ({ config, onChange, translations }) => {
   );
 };
 
-RemoveComponent.propTypes = {
+RemoveComponent['propTypes'] = {
   onChange: PropTypes.func,
   config: PropTypes.object,
   translations: PropTypes.object,
