@@ -118,8 +118,9 @@ class LayoutComponent extends Component<any, any> {
     });
   };
 
-  addMediaFromState: Function = (): void => {
+  addMediaFromState = (): void => {
     let { mimeType, mediaSrc, height, width, videoId } = this.state;
+    const { onChange } = this.props;
     if (!ReactPlayer.canPlay(mediaSrc) && !/image\//.test(mimeType)) {
       if (this.state.matchMime.test(mimeType)) {
         this.setState({
@@ -159,7 +160,7 @@ class LayoutComponent extends Component<any, any> {
     });
   };
 
-  addMediaFromSrcLink: Function = (mimeType: string, mediaSrc: string): void => {
+  addMediaFromSrcLink = (mimeType: string, mediaSrc: string): void => {
     let { height, width } = this.state;
     const { onChange } = this.props;
     let lookupSrc = mediaSrc;
@@ -209,7 +210,7 @@ class LayoutComponent extends Component<any, any> {
     }
   };
 
-  showMediaURLOption: Function = (): void => {
+  showMediaURLOption = (): void => {
     this.setState({
       uploadHighlighted: false,
     });
@@ -222,7 +223,7 @@ class LayoutComponent extends Component<any, any> {
     });
   };
 
-  updateValue: Function = (event: Object): void => {
+  updateValue = (event: any): void => {
     let {mimeType} = this.state;
     const update = {
       [`${event.target.name}`]: event.target.value,
@@ -257,7 +258,7 @@ class LayoutComponent extends Component<any, any> {
     }
   };
 
-  uploadMedia = (file: Object): void => {
+  uploadMedia = (file: any): void => {
     this.toggleShowMediaLoading();
     const { uploadCallback } = this.props.config;
     uploadCallback(file)

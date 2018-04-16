@@ -17,7 +17,8 @@ export class list extends Component<any, any> {
     translations: PropTypes.object,
   };
 
-  state: Object = {
+  signalExpanded: boolean;
+  state = {
     expanded: false,
     currentBlock: undefined,
   };
@@ -34,7 +35,7 @@ export class list extends Component<any, any> {
     modalHandler.registerCallBack(this.expandCollapse);
   }
 
-  componentWillReceiveProps(properties: Object): void {
+  componentWillReceiveProps(properties: any): void {
     if (properties.editorState &&
       this.props.editorState !== properties.editorState) {
       const currentBlock = getSelectedBlock(properties.editorState);
@@ -47,11 +48,11 @@ export class list extends Component<any, any> {
     modalHandler.deregisterCallBack(this.expandCollapse);
   }
 
-  onExpandEvent: Function = (): void => {
+  onExpandEvent = (): void => {
     this.signalExpanded = !this.state.expanded;
   };
 
-  onChange: Function = (value: string): void => {
+  onChange = (value: string): void => {
     if (value === 'unordered') {
       this.toggleBlockType('unordered-list-item');
     } else if (value === 'ordered') {
@@ -63,26 +64,26 @@ export class list extends Component<any, any> {
     }
   };
 
-  expandCollapse: Function = (): void => {
+  expandCollapse = (): void => {
     this.setState({
       expanded: this.signalExpanded,
     });
     this.signalExpanded = false;
   }
 
-  doExpand: Function = (): void => {
+  doExpand = (): void => {
     this.setState({
       expanded: true,
     });
   };
 
-  doCollapse: Function = (): void => {
+  doCollapse = (): void => {
     this.setState({
       expanded: false,
     });
   };
 
-  toggleBlockType: Function = (blockType: String): void => {
+  toggleBlockType = (blockType: string): void => {
     const { onChange, editorState } = this.props;
     const newState = RichUtils.toggleBlockType(
       editorState,
@@ -93,7 +94,7 @@ export class list extends Component<any, any> {
     }
   };
 
-  adjustDepth: Function = (adjustment): void => {
+  adjustDepth = (adjustment): void => {
     const { onChange, editorState } = this.props;
     const newState = changeDepth(
       editorState,

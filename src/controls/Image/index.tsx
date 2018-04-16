@@ -1,5 +1,3 @@
-/* @flow */
-
 import React from "react";
 import {Component} from "react";
 import {PropTypes} from "prop-types";
@@ -16,9 +14,10 @@ export class image extends Component<any, any> {
     translations: PropTypes.object,
   };
 
-  state: Object = {
+  state = {
     expanded: false,
   };
+  signalExpanded: boolean;
 
   constructor(props, context) {
     super(props, context);
@@ -34,7 +33,7 @@ export class image extends Component<any, any> {
     modalHandler.deregisterCallBack(this.expandCollapse);
   }
 
-  onExpandEvent: Function = (): void => {
+  onExpandEvent = (): void => {
     this.signalExpanded = !this.state.expanded;
   };
 
@@ -50,7 +49,7 @@ export class image extends Component<any, any> {
     });
   };
 
-  expandCollapse: Function = (): void => {
+  expandCollapse = (): void => {
     this.setState({
       expanded: this.signalExpanded,
     });
@@ -59,7 +58,7 @@ export class image extends Component<any, any> {
 
   addImage: Function = (src: string, height: string, width: string, alt: string): void => {
     const { editorState, onChange, config } = this.props;
-    const entityData = { src, height, width };
+    const entityData: any = { src, height, width };
     if (config.alt.present) {
       entityData.alt = alt;
     }

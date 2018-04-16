@@ -1,5 +1,3 @@
-/* @flow */
-
 import React from "react";
 import {Component} from "react";
 import {PropTypes} from "prop-types";
@@ -17,11 +15,13 @@ export class link extends Component<any, any> {
     translations: PropTypes.object,
   };
 
-  state: Object = {
+  state = {
     expanded: false,
     link: undefined,
     selectionText: undefined,
+    currentEntity: undefined
   };
+  signalExpanded: boolean;
 
   constructor(props, context) {
     super(props, context);
@@ -37,8 +37,8 @@ export class link extends Component<any, any> {
     modalHandler.registerCallBack(this.expandCollapse);
   }
 
-  componentWillReceiveProps(properties: Object): void {
-    const newState = {};
+  componentWillReceiveProps(properties: any): void {
+    const newState: any = {};
     if (properties.editorState &&
       this.props.editorState !== properties.editorState) {
       newState.currentEntity = getSelectionEntity(properties.editorState);
@@ -51,7 +51,7 @@ export class link extends Component<any, any> {
     modalHandler.deregisterCallBack(this.expandCollapse);
   }
 
-  onExpandEvent: Function = (): void => {
+  onExpandEvent = (): void => {
     this.signalExpanded = !this.state.expanded;
   };
 
@@ -67,7 +67,7 @@ export class link extends Component<any, any> {
     const { editorState } = this.props;
     const { currentEntity } = this.state;
     const contentState = editorState.getCurrentContent();
-    const currentValues = {};
+    const currentValues: any = {};
     if (currentEntity && (contentState.getEntity(currentEntity).get('type') === 'LINK')) {
       currentValues.link = {};
       const entityRange = currentEntity && getEntityRange(editorState, currentEntity);

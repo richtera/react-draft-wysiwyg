@@ -19,7 +19,7 @@ class LayoutComponent extends Component<any, any> {
     translations: PropTypes.object,
   };
 
-  state: Object = {
+  state = {
     imgSrc: '',
     dragEnter: false,
     uploadHighlighted: this.props.config.uploadEnabled && !!this.props.config.uploadCallback,
@@ -28,12 +28,13 @@ class LayoutComponent extends Component<any, any> {
     width: this.props.config.defaultSize.width,
     alt: '',
   };
+  fileUpload: any;
 
   constructor(props, context) {
     super(props, context);
   }
 
-  componentWillReceiveProps(props: Object): void {
+  componentWillReceiveProps(props: any): void {
     if (this.props.expanded && !props.expanded) {
       this.setState({
         imgSrc: '',
@@ -52,14 +53,14 @@ class LayoutComponent extends Component<any, any> {
     }
   }
 
-  onDragEnter: Function = (event: Object): void => {
+  onDragEnter = (event: Object): void => {
     this.stopPropagation(event);
     this.setState({
       dragEnter: true,
     });
   };
 
-  onImageDrop: Function = (event: Object): void => {
+  onImageDrop = (event: any): void => {
     event.preventDefault();
     event.stopPropagation();
     this.setState({
@@ -85,13 +86,13 @@ class LayoutComponent extends Component<any, any> {
     }
   };
 
-  showImageUploadOption: Function = (): void => {
+  showImageUploadOption = (): void => {
     this.setState({
       uploadHighlighted: true,
     });
   };
 
-  addImageFromState: Function = (): void => {
+  addImageFromState = (): void => {
     const { imgSrc, alt } = this.state;
     let { height, width } = this.state;
     const { onChange } = this.props;
@@ -104,32 +105,32 @@ class LayoutComponent extends Component<any, any> {
     onChange(imgSrc, height, width, alt);
   };
 
-  showImageURLOption: Function = (): void => {
+  showImageURLOption = (): void => {
     this.setState({
       uploadHighlighted: false,
     });
   };
 
-  toggleShowImageLoading: Function = (): void => {
+  toggleShowImageLoading = (): void => {
     const showImageLoading = !this.state.showImageLoading;
     this.setState({
       showImageLoading,
     });
   };
 
-  updateValue: Function = (event: Object): void => {
+  updateValue = (event: any): void => {
     this.setState({
       [`${event.target.name}`]: event.target.value,
     });
   };
 
-  selectImage: Function = (event: Object): void => {
+  selectImage = (event: any): void => {
     if (event.target.files && event.target.files.length > 0) {
       this.uploadImage(event.target.files[0]);
     }
   };
 
-  uploadImage: Function = (file: Object): void => {
+  uploadImage = (file: any): void => {
     this.toggleShowImageLoading();
     const { uploadCallback } = this.props.config;
     uploadCallback(file)
@@ -153,7 +154,7 @@ class LayoutComponent extends Component<any, any> {
     event.stopPropagation();
   }
 
-  stopPropagation: Function = (event: Object): void => {
+  stopPropagation = (event: any): void => {
     if (!this.fileUpload) {
       event.preventDefault();
       event.stopPropagation();

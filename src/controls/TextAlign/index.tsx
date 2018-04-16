@@ -18,7 +18,9 @@ export class textAlign extends Component<any, any> {
 
   state = {
     currentTextAlignment: undefined,
+    expanded: false
   }
+  signalExpanded: boolean;
 
   constructor(props, context) {
     super(props, context);

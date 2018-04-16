@@ -22,6 +22,7 @@ export class remove extends Component<any, any> {
   state = {
     expanded: false,
   }
+  signalExpanded: boolean;
 
   constructor(props, context) {
     super(props, context);
@@ -53,7 +54,7 @@ export class remove extends Component<any, any> {
     onChange(this.removeAllInlineStyles(editorState));
   };
 
-  removeAllInlineStyles: Function = (editorState: EditorState): void => {
+  removeAllInlineStyles = (editorState: EditorState): EditorState => {
     let contentState = editorState.getCurrentContent();
     [
       'BOLD',

@@ -1,4 +1,3 @@
-/* @flow */
 
 import React from "react";
 import {Component} from "react";
@@ -180,13 +179,13 @@ export class Editor extends Component<any, any> {
     this.customStyleMap = getCustomStyleMap();
   }
 
-  onEditorBlur: Function = (): void => {
+  onEditorBlur = (): void => {
     this.setState({
       editorFocused: false,
     });
   };
 
-  onEditorFocus: Function = (event: FocusEvent): void => {
+  onEditorFocus = (event: any): void => {
     const { onFocus } = this.props;
     this.setState({
       editorFocused: true,
@@ -242,7 +241,9 @@ export class Editor extends Component<any, any> {
         onEditorStateChange(editorState, this.props.wrapperId);
       }
       if (!hasProperty(this.props, 'editorState')) {
-        this.setState({ editorState }, this.afterChange(editorState));
+        this.setState({ editorState }, () => {
+          this.afterChange(editorState);
+        });
       } else {
         this.afterChange(editorState);
       }
@@ -283,7 +284,7 @@ export class Editor extends Component<any, any> {
 
   getSuggestions = () => this.props.mention && this.props.mention.suggestions;
 
-  afterChange: Function = (editorState): void => {
+  afterChange = (editorState): void => {
     setTimeout(() => {
       const { onChange, onContentStateChange } = this.props;
       if (onChange) {
@@ -351,7 +352,7 @@ export class Editor extends Component<any, any> {
     return editorState;
   };
 
-  focusEditor = (event: FocusEvent): void => {
+  focusEditor = (event: any): any => {
     if (this.props.onFocusEditor) {
       if (!this.props.onFocusEditor(event)) {
         return;

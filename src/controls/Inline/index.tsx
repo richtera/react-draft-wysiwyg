@@ -21,9 +21,11 @@ export class inline extends Component<any, any> {
   constructor(props, context) {
     super(props, context);
   }
-  
-  state: Object = {
+
+  signalExpanded: boolean;
+  state = {
     currentStyles: {},
+    expanded: false
   };
 
   componentWillMount(): void {
@@ -36,7 +38,7 @@ export class inline extends Component<any, any> {
     modalHandler.registerCallBack(this.expandCollapse);
   }
 
-  componentWillReceiveProps(properties: Object): void {
+  componentWillReceiveProps(properties: any): void {
     if (properties.editorState &&
       this.props.editorState !== properties.editorState) {
       this.setState({

@@ -83,7 +83,7 @@ export class emoji extends Component<any, any> {
         onExpandEvent={this.onExpandEvent}
         doExpand={this.doExpand}
         doCollapse={this.doCollapse}
-        onCollpase={this.closeModal}
+        onCollpase={this['closeModal']}
       />
     );
   }

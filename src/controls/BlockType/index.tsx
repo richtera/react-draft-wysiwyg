@@ -17,10 +17,12 @@ export class blockType extends Component<any, any> {
     translations: PropTypes.object,
   };
 
-  state: Object = {
+  state = {
     expanded: false,
     currentBlockType: 'unstyled',
   };
+  signalExpanded: boolean;
+  blocksTypes: Array<any>;
 
   constructor(props, context) {
     super(props, context);
@@ -47,7 +49,7 @@ export class blockType extends Component<any, any> {
     modalHandler.registerCallBack(this.expandCollapse);
   }
 
-  componentWillReceiveProps(properties: Object): void {
+  componentWillReceiveProps(properties: any): void {
     if (properties.editorState &&
       this.props.editorState !== properties.editorState) {
       this.setState({
@@ -85,7 +87,7 @@ export class blockType extends Component<any, any> {
   };
 
   toggleBlockType: Function = (blockType: string) => {
-    const blockTypeValue = this.blocksTypes.find(bt => bt.label === blockType).style;
+    const blockTypeValue = this['blocksTypes'].find(bt => bt.label === blockType).style;
     const { editorState, onChange } = this.props;
     const newState = RichUtils.toggleBlockType(
       editorState,
