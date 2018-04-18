@@ -9,7 +9,7 @@ import {Editor} from "../../src";
 class ConvertToRawDraftContent extends Component<any, any> {
   state = {
     editorState: EditorState.createEmpty(),
-  }
+  };
 
   onEditorStateChange: Function = (editorState) => {
     this.setState({

@@ -7,7 +7,7 @@ import {Editor} from "../../src";
 class BasicContentState extends Component<any, any> {
   state = {
     contentState: JSON.parse('{"entityMap":{},"blocks":[{"key":"1ljs","text":"Initializing from content state","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]}'),
-  }
+  };
 
   render() {
     const { contentState } = this.state;

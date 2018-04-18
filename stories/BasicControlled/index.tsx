@@ -8,7 +8,7 @@ import {Editor} from "../../src";
 class BasicControlled extends Component<any, any> {
   state = {
     editorState: EditorState.createEmpty(),
-  }
+  };
 
   onEditorStateChange: Function = (editorState) => {
     this.setState({
