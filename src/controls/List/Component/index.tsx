@@ -28,7 +28,7 @@ export default class LayoutComponent extends Component<any, any> {
     super(props, context);
   }
 
-  options: Array = ['unordered', 'ordered', 'indent', 'outdent'];
+  options: Array<string> = ['unordered', 'ordered', 'indent', 'outdent'];
 
   toggleBlockType: Function = (blockType: String): void => {
     const { onChange } = this.props;

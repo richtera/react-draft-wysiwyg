@@ -16,11 +16,12 @@ export class history extends Component<any, any> {
     translations: PropTypes.object,
   };
 
-  state: Object = {
+  state = {
     expanded: false,
     undoDisabled: false,
     redoDisabled: false,
   };
+  signalExpanded: boolean;
 
   constructor(props, context) {
     super(props, context);
@@ -37,7 +38,7 @@ export class history extends Component<any, any> {
     modalHandler.registerCallBack(this.expandCollapse);
   }
 
-  componentWillReceiveProps(properties: Object): void {
+  componentWillReceiveProps(properties: any): void {
     if (properties.editorState &&
       this.props.editorState !== properties.editorState) {
       this.setState({

@@ -15,8 +15,8 @@ export class fontSize extends Component<any, any> {
     config: PropTypes.object,
     translations: PropTypes.object,
   };
-
-  state: Object = {
+  signalExpanded: boolean;
+  state = {
     expanded: undefined,
     currentFontSize: undefined,
   };
@@ -36,7 +36,7 @@ export class fontSize extends Component<any, any> {
     modalHandler.registerCallBack(this.expandCollapse);
   }
 
-  componentWillReceiveProps(properties: Object): void {
+  componentWillReceiveProps(properties: any): void {
     if (properties.editorState &&
       this.props.editorState !== properties.editorState) {
       this.setState({
