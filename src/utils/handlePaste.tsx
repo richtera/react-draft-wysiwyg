@@ -1,7 +1,7 @@
 import {getSelectedBlock} from "draftjs-utils";
 import {EditorState, Modifier} from "draft-js";
 import htmlToDraft from "html-to-draftjs";
-import {OrderedMap} from "immutable";
+import {OrderedMap, Map} from "immutable";
 
 export const handlePastedText = (text, html, editorState, onChange) => {
   const selectedBlock = getSelectedBlock(editorState);
@@ -16,8 +16,8 @@ export const handlePastedText = (text, html, editorState, onChange) => {
     return true;
   } else if (html) {
     const contentBlock = htmlToDraft(html);
-    let blockMap = new OrderedMap({});
-    contentBlock.contentBlocks.forEach(block => {
+    let blockMap: OrderedMap<string, any> = OrderedMap({});
+    contentBlock.contentBlocks.forEach((block) => {
       blockMap = blockMap.set(block.get('key'), block);
     });
     let contentState = editorState.getCurrentContent();
@@ -33,4 +33,4 @@ export const handlePastedText = (text, html, editorState, onChange) => {
     return true;
   }
   return false;
-}
+};

@@ -28,7 +28,7 @@ export class DropdownOption extends Component<any, any> {
     super(props, context);
   }
 
-  onClick: Function = (event): void => {
+  onClick = (event): void => {
     const { onSelect, onClick, value, disabled } = this.props;
     if (!disabled) {
       if (onSelect) {
@@ -39,19 +39,19 @@ export class DropdownOption extends Component<any, any> {
         onClick(value);
       }
     }
-  };
+  }
 
-  setHighlighted: Function = (): void => {
+  setHighlighted = (): void => {
     const { setHighlighted, index } = this.props;
     setHighlighted(index);
-  };
+  }
 
-  resetHighlighted: Function = (): void => {
+  resetHighlighted = (): void => {
     const { setHighlighted } = this.props;
     setHighlighted(-1);
-  };
+  }
 
-  render(): Object {
+  render() {
     const {
       children,
       active,

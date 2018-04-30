@@ -20,7 +20,7 @@ export default class LayoutComponent extends Component<any, any> {
     translations: PropTypes.object,
   };
 
-  state: Object = {
+  state = {
     defaultFontSize: undefined,
   };
 

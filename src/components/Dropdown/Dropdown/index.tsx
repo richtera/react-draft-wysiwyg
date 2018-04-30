@@ -1,6 +1,6 @@
 /* @flow */
 
-import React, {ReactChild, ReactFragment} from "react";
+import React, {ReactChild, ReactFragment, ReactElement} from "react";
 import {Component} from "react";
 import {PropTypes} from "prop-types";
 import classNames from "classnames";
@@ -38,28 +38,28 @@ export class Dropdown extends Component<any, any> {
     }
   }
 
-  onChange: Function = (value: any): void => {
+  onChange = (value: any): void => {
     const { onChange } = this.props;
     if (onChange) {
       onChange(value);
     }
     this.toggleExpansion();
-  };
+  }
 
-  setHighlighted: Function = (highlighted: number): void => {
+  setHighlighted = (highlighted: number): void => {
     this.setState({
       highlighted,
     });
-  };
+  }
 
-  toggleExpansion: Function = (): void => {
+  toggleExpansion = (): void => {
     const { doExpand, doCollapse, expanded, disabled } = this.props;
     if (expanded || disabled) {
       doCollapse();
     } else {
       doExpand();
     }
-  };
+  }
 
   render() {
     const {
@@ -70,10 +70,10 @@ export class Dropdown extends Component<any, any> {
       ariaLabel,
       onExpandEvent,
       title,
-      disabled
+      disabled,
     } = this.props;
     const { highlighted } = this.state;
-    const childList = children as Array<ReactChild>;
+    const childList = children as ReactChild[];
     const options = childList.slice(1, childList.length);
     return (
       <div
@@ -111,7 +111,7 @@ export class Dropdown extends Component<any, any> {
             {
               React.Children.map(options, (option, index) => {
                 const temp = option && React.cloneElement(
-                  option, {
+                  option as ReactElement<any>, {
                     onSelect: this.onChange,
                     highlighted: highlighted === index,
                     setHighlighted: this.setHighlighted,

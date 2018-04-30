@@ -22,12 +22,12 @@ export default class Option extends Component<any, any> {
     super(props, context);
   }
 
-  onClick: Function = () => {
+  onClick = () => {
     const { disabled, onClick, value } = this.props;
     if (!disabled) {
       onClick(value);
     }
-  };
+  }
 
   render() {
     const { children, className, activeClassName, active, disabled, title } = this.props;
