@@ -2,7 +2,7 @@
 
 import React from "react";
 import {Component} from "react";
-import {PropTypes} from "prop-types";
+import PropTypes from "prop-types";
 import {AtomicBlockUtils, EditorState, Modifier} from "draft-js";
 
 import LayoutComponent from "./Component";
@@ -10,7 +10,7 @@ import {getEntityRange} from "draftjs-utils";
 
 export class media extends Component<any, any> {
 
-  static propTypes: Object = {
+  static propTypes = {
     editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     modalHandler: PropTypes.object,
@@ -20,14 +20,14 @@ export class media extends Component<any, any> {
 
   state: any = {
     expanded: false,
-    matchMime: null
+    matchMime: null,
   };
   signalExpanded: boolean;
 
   constructor(props, context) {
     super(props, context);
     const { config: { inputAccept }} = this.props;
-    this.state.matchMime = new RegExp(`^(${inputAccept.split(',').filter(item => !/^(video|audio|image)\/.*$/.test(item)).map(item => `${item.replace('*', '.*')}`).join('|')})$`);
+    this.state.matchMime = new RegExp(`^(${inputAccept.split(',').filter((item) => !/^(video|audio|image)\/.*$/.test(item)).map((item) => `${item.replace('*', '.*')}`).join('|')})$`);
   }
 
   componentWillMount(): void {
@@ -40,30 +40,30 @@ export class media extends Component<any, any> {
     modalHandler.deregisterCallBack(this.expandCollapse);
   }
 
-  onExpandEvent: Function = (): void => {
+  onExpandEvent = (): void => {
     this.signalExpanded = !this.state.expanded;
-  };
+  }
 
-  doExpand: Function = (): void => {
+  doExpand = (): void => {
     this.setState({
       expanded: true,
     });
-  };
+  }
 
-  doCollapse: Function = (): void => {
+  doCollapse = (): void => {
     this.setState({
       expanded: false,
     });
-  };
+  }
 
-  expandCollapse: Function = (): void => {
+  expandCollapse = (): void => {
     this.setState({
       expanded: this.signalExpanded,
     });
     this.signalExpanded = false;
   }
 
-  addMedia: Function = (mimeType: string, src: string, height: string, width: string): void => {
+  addMedia = (mimeType: string, src: string, height: string, width: string): void => {
     if (this.state.matchMime.test(mimeType)) {
       const { editorState, onChange } = this.props;
       let selection = editorState.getSelection();
@@ -112,9 +112,9 @@ export class media extends Component<any, any> {
     );
     onChange(newEditorState);
     this.doCollapse();
-  };
+  }
 
-  render(): Object {
+  render() {
     const { config, translations } = this.props;
     const { expanded } = this.state;
     const MediaComponent = config.component || LayoutComponent;

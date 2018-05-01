@@ -1,6 +1,6 @@
 import React from "react";
 import {Component} from "react";
-import {PropTypes} from "prop-types";
+import PropTypes from "prop-types";
 import classNames from "classnames";
 import addMention from "../addMention";
 import KeyDownHandler from "../../../event-handler/keyDown";
@@ -9,6 +9,7 @@ import './styles.css';
 
 export class Suggestion {
   config: any;
+  getSuggestionComponent = getSuggestionComponent.bind(this);
 
   constructor(config) {
     const {
@@ -77,12 +78,10 @@ export class Suggestion {
     }
   }
 
-  getSuggestionComponent = getSuggestionComponent.bind(this);
-
   getSuggestionDecorator = () => ({
     strategy: this.findSuggestionEntities,
     component: this.getSuggestionComponent(),
-  });
+  })
 }
 
 function getSuggestionComponent() {
@@ -99,6 +98,7 @@ function getSuggestionComponent() {
     };
     suggestion: any;
     dropdown: any;
+    filteredSuggestions = [];
 
     constructor(props, context) {
       super(props, context);
@@ -183,19 +183,17 @@ function getSuggestionComponent() {
 
     setSuggestionReference = (ref: any): void => {
       this.suggestion = ref;
-    };
+    }
 
     setDropdownReference = (ref: any): void => {
       this.dropdown = ref;
-    };
+    }
 
     closeSuggestionDropdown = (): void => {
       this.setState({
         showSuggestions: false,
       });
     }
-
-    filteredSuggestions = [];
 
     filterSuggestions = (props) => {
       const mentionText = props.children[0].props.text.substr(1);

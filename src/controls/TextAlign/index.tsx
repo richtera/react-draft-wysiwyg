@@ -2,7 +2,7 @@
 
 import React from "react";
 import {Component} from "react";
-import {PropTypes} from "prop-types";
+import PropTypes from "prop-types";
 import {getSelectedBlocksMetadata, setBlockData} from "draftjs-utils";
 
 import LayoutComponent from "./Component";
@@ -18,8 +18,8 @@ export class textAlign extends Component<any, any> {
 
   state = {
     currentTextAlignment: undefined,
-    expanded: false
-  }
+    expanded: false,
+  };
   signalExpanded: boolean;
 
   constructor(props, context) {
@@ -44,30 +44,30 @@ export class textAlign extends Component<any, any> {
     modalHandler.deregisterCallBack(this.expandCollapse);
   }
 
-  onExpandEvent: Function = (): void => {
+  onExpandEvent = (): void => {
     this.signalExpanded = !this.state.expanded;
-  };
+  }
 
-  expandCollapse: Function = (): void => {
+  expandCollapse = (): void => {
     this.setState({
       expanded: this.signalExpanded,
     });
     this.signalExpanded = false;
   }
 
-  doExpand: Function = (): void => {
+  doExpand = (): void => {
     this.setState({
       expanded: true,
     });
-  };
+  }
 
-  doCollapse: Function = (): void => {
+  doCollapse = (): void => {
     this.setState({
       expanded: false,
     });
-  };
+  }
 
-  addBlockAlignmentData:Function = (value: string) => {
+  addBlockAlignmentData = (value: string) => {
     const { editorState, onChange } = this.props;
     const { currentTextAlignment } = this.state;
     if (currentTextAlignment !== value) {
@@ -77,7 +77,7 @@ export class textAlign extends Component<any, any> {
     }
   }
 
-  render(): Object {
+  render() {
     const { config, translations } = this.props;
     const { expanded, currentTextAlignment } = this.state;
     const TextAlignmentComponent = config.component || LayoutComponent;
@@ -97,4 +97,3 @@ export class textAlign extends Component<any, any> {
 }
 
 export default textAlign;
-

@@ -2,7 +2,7 @@
 
 import React from "react";
 import {Component} from "react";
-import {PropTypes} from "prop-types";
+import PropTypes from "prop-types";
 const classNames = require('classnames');
 
 import Option from "../../../components/Option";
@@ -15,7 +15,7 @@ require('./styles.css');
 
 class LayoutComponent extends Component<any, any> {
 
-  static propTypes: Object = {
+  static propTypes = {
     expanded: PropTypes.bool,
     onExpandEvent: PropTypes.func,
     doCollapse: PropTypes.func,
@@ -34,7 +34,7 @@ class LayoutComponent extends Component<any, any> {
     showMediaLoading: false,
     height: this.props.config.defaultSize.height,
     width: this.props.config.defaultSize.width,
-    matchMime: null
+    matchMime: null,
   };
   mounted: boolean = false;
   fileUpload: boolean = false;
@@ -42,7 +42,7 @@ class LayoutComponent extends Component<any, any> {
   constructor(props, context) {
     super(props, context);
     const { config: { inputAccept }} = this.props;
-    this.state.matchMime = new RegExp(`^(${inputAccept.split(',').filter(item => !/^(video|audio|image)\/.*$/.test(item)).map(item => `${item.replace('*', '.*')}`).join('|')})$`);
+    this.state.matchMime = new RegExp(`^(${inputAccept.split(',').filter((item) => !/^(video|audio|image)\/.*$/.test(item)).map((item) => `${item.replace('*', '.*')}`).join('|')})$`);
   }
 
   componentWillMount() {
@@ -75,7 +75,7 @@ class LayoutComponent extends Component<any, any> {
     this.setState({
       dragEnter: true,
     });
-  };
+  }
 
   onMediaDrop = (event: any): void => {
     event.preventDefault();
@@ -110,33 +110,34 @@ class LayoutComponent extends Component<any, any> {
         this.uploadMedia(file);
       }
     }
-  };
+  }
 
   showMediaUploadOption = (): void => {
     this.setState({
       uploadHighlighted: true,
     });
-  };
+  }
 
   addMediaFromState = (): void => {
-    let { mimeType, mediaSrc, height, width, videoId } = this.state;
+    const { mediaSrc, videoId } = this.state;
+    let { mimeType, height, width } = this.state;
     const { onChange } = this.props;
     if (!ReactPlayer.canPlay(mediaSrc) && !/image\//.test(mimeType)) {
       if (this.state.matchMime.test(mimeType)) {
         this.setState({
-          error: null
+          error: null,
         }, () => {
           onChange(mimeType, mediaSrc, 0, 0);
         });
         return;
       }
       this.setState({
-        error: "Invalid media URL."
+        error: "Invalid media URL.",
       });
       return;
     }
     this.setState({
-      error: null
+      error: null,
     }, () => {
       const { onChange } = this.props;
       if (!mimeType) {
@@ -158,7 +159,7 @@ class LayoutComponent extends Component<any, any> {
       }
       onChange(mimeType, mediaSrc, height, width);
     });
-  };
+  }
 
   addMediaFromSrcLink = (mimeType: string, mediaSrc: string): void => {
     let { height, width } = this.state;
@@ -173,7 +174,7 @@ class LayoutComponent extends Component<any, any> {
     }
     if (lookupSrc === '') {
       this.setState({
-        error: "This URL cannot be recognized."
+        error: "This URL cannot be recognized.",
       });
       return;
     }
@@ -181,7 +182,7 @@ class LayoutComponent extends Component<any, any> {
       if (this.state.matchMime.test(mimeType)) {
         if (this.mounted) {
           this.setState({
-            error: null
+            error: null,
           }, () => {
             onChange(mimeType, mediaSrc, 0, 0);
           });
@@ -189,7 +190,7 @@ class LayoutComponent extends Component<any, any> {
         }
       }
       this.setState({
-        error: `This URL has type ${mimeType} and is not compatible.`
+        error: `This URL has type ${mimeType} and is not compatible.`,
       });
       return;
     }
@@ -201,33 +202,33 @@ class LayoutComponent extends Component<any, any> {
     }
     if (this.mounted) {
       this.setState({
-        error: null
+        error: null,
       }, () => {
         onChange(mimeType, mediaSrc, height, width);
       });
     } else {
       onChange(mimeType, mediaSrc, height, width);
     }
-  };
+  }
 
   showMediaURLOption = (): void => {
     this.setState({
       uploadHighlighted: false,
     });
-  };
+  }
 
   toggleShowMediaLoading = (): void => {
     const showMediaLoading = !this.state.showMediaLoading;
     this.setState({
       showMediaLoading,
     });
-  };
+  }
 
   updateValue = (event: any): void => {
-    let {mimeType} = this.state;
+    const {mimeType} = this.state;
     const update = {
       [`${event.target.name}`]: event.target.value,
-      error: null
+      error: null,
     };
     if (event.target.name === 'mediaSrc') {
       let mediaSrc = event.target.value;
@@ -237,26 +238,26 @@ class LayoutComponent extends Component<any, any> {
       const mimeType = mime.lookup(mediaSrc);
       if (mediaSrc === '') {
         this.setState({
-          error: "This URL cannot be recognized."
+          error: "This URL cannot be recognized.",
         });
         return;
       }
       if (!ReactPlayer.canPlay(event.target.value) && !/^image\//.test(mimeType)) {
         this.setState({
-          error: `This URL has type ${mimeType} and is not compatible.`
+          error: `This URL has type ${mimeType} and is not compatible.`,
         });
         return;
       }
       update.mimeType = mimeType;
     }
     this.setState(update);
-  };
+  }
 
   selectMedia = (event: any): void => {
     if (event.target.files && event.target.files.length > 0) {
       this.uploadMedia(event.target.files[0]);
     }
-  };
+  }
 
   uploadMedia = (file: any): void => {
     this.toggleShowMediaLoading();
@@ -274,7 +275,7 @@ class LayoutComponent extends Component<any, any> {
         dragEnter: false,
       });
     });
-  };
+  }
 
   fileUploadClick = (event) => {
     this.fileUpload = true;
@@ -288,9 +289,9 @@ class LayoutComponent extends Component<any, any> {
     } else {
       this.fileUpload = false;
     }
-  };
+  }
 
-  renderAddMediaModal(): Object {
+  renderAddMediaModal() {
     const { mediaSrc, mimeType, uploadHighlighted, showMediaLoading, dragEnter, height, width, error } = this.state;
     const {
       config: { popupClassName, uploadCallback, uploadEnabled, urlEnabled, inputAccept },
@@ -416,7 +417,7 @@ class LayoutComponent extends Component<any, any> {
     );
   }
 
-  render(): Object {
+  render() {
     const { config: { icon, className, title }, expanded, onExpandEvent } = this.props;
     return (
       <div

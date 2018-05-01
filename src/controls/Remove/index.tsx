@@ -2,7 +2,7 @@
 
 import React from "react";
 import {Component} from "react";
-import {PropTypes} from "prop-types";
+import PropTypes from "prop-types";
 import {EditorState, Modifier} from "draft-js";
 import {getSelectionCustomInlineStyle} from "draftjs-utils";
 
@@ -21,7 +21,7 @@ export class remove extends Component<any, any> {
 
   state = {
     expanded: false,
-  }
+  };
   signalExpanded: boolean;
 
   constructor(props, context) {
@@ -38,21 +38,21 @@ export class remove extends Component<any, any> {
     modalHandler.deregisterCallBack(this.expandCollapse);
   }
 
-  onExpandEvent: Function = (): void => {
+  onExpandEvent = (): void => {
     this.signalExpanded = !this.state.expanded;
-  };
+  }
 
-  expandCollapse: Function = (): void => {
+  expandCollapse = (): void => {
     this.setState({
       expanded: this.signalExpanded,
     });
     this.signalExpanded = false;
   }
 
-  removeInlineStyles: Function = (): void => {
+  removeInlineStyles = (): void => {
     const { editorState, onChange } = this.props;
     onChange(this.removeAllInlineStyles(editorState));
-  };
+  }
 
   removeAllInlineStyles = (editorState: EditorState): EditorState => {
     let contentState = editorState.getCurrentContent();
@@ -83,21 +83,21 @@ export class remove extends Component<any, any> {
     });
 
     return EditorState.push(editorState, contentState, 'change-inline-style');
-  };
+  }
 
-  doExpand: Function = (): void => {
+  doExpand = (): void => {
     this.setState({
       expanded: true,
     });
-  };
+  }
 
-  doCollapse: Function = (): void => {
+  doCollapse = (): void => {
     this.setState({
       expanded: false,
     });
-  };
+  }
 
-  render(): Object {
+  render() {
     const { config, translations } = this.props;
     const { expanded } = this.state;
     const RemoveComponent = config.component || LayoutComponent;

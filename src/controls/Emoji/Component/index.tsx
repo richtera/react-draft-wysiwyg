@@ -2,7 +2,7 @@
 
 import React from "react";
 import {Component} from "react";
-import {PropTypes} from "prop-types";
+import PropTypes from "prop-types";
 import classNames from "classnames";
 
 import {stopPropagation} from "../../../utils/common";
@@ -10,7 +10,7 @@ import Option from "../../../components/Option";
 import './styles.css';
 
 class LayoutComponent extends Component<any, any> {
-  static propTypes: Object = {
+  static propTypes = {
     expanded: PropTypes.bool,
     onExpandEvent: PropTypes.func,
     onChange: PropTypes.func,
@@ -25,9 +25,9 @@ class LayoutComponent extends Component<any, any> {
   onChange = (event: any): void => {
     const { onChange } = this.props;
     onChange(event.target.innerHTML);
-  };
+  }
 
-  renderEmojiModal(): Object {
+  renderEmojiModal() {
     const { config: { popupClassName, emojis } } = this.props;
     return (
       <div
@@ -45,7 +45,7 @@ class LayoutComponent extends Component<any, any> {
     );
   }
 
-  render(): Object {
+  render() {
     const {
       config: { icon, className, title },
       expanded,

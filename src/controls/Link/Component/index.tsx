@@ -2,7 +2,7 @@
 
 import React from "react";
 import {Component} from "react";
-import {PropTypes} from "prop-types";
+import PropTypes from "prop-types";
 import classNames from "classnames";
 
 import {stopPropagation} from "../../../utils/common";
@@ -48,31 +48,31 @@ class LayoutComponent extends Component<any, any> {
   removeLink = (): void => {
     const { onChange } = this.props;
     onChange('unlink');
-  };
+  }
 
   addLink = (): void => {
     const { onChange } = this.props;
     const { linkTitle, linkTarget, linkTargetOption } = this.state;
     onChange('link', linkTitle, linkTarget, linkTargetOption);
-  };
+  }
 
   updateValue = (event: any): void => {
     this.setState({
       [`${event.target.name}`]: event.target.value,
     });
-  };
+  }
 
   updateTarget = (event: any): void => {
     this.setState({
       linkTargetOption: event.target.checked ? '_blank' : '_self',
     });
-  };
+  }
 
   hideModal = (): void => {
     this.setState({
       showModal: false,
     });
-  };
+  }
 
   signalExpandShowModal = () => {
     const { onExpandEvent, currentState: { link, selectionText } } = this.props;
@@ -154,7 +154,7 @@ class LayoutComponent extends Component<any, any> {
     );
   }
 
-  renderInFlatList(): Object {
+  renderInFlatList() {
     const {
       config: { options, link, unlink, className },
       currentState,
@@ -194,7 +194,7 @@ class LayoutComponent extends Component<any, any> {
     );
   }
 
-  renderInDropDown(): Object {
+  renderInDropDown() {
     const {
       expanded,
       onExpandEvent,
@@ -255,7 +255,7 @@ class LayoutComponent extends Component<any, any> {
     );
   }
 
-  render(): Object {
+  render() {
     const { config: { inDropdown } } = this.props;
     if (inDropdown) {
       return this.renderInDropDown();

@@ -2,13 +2,13 @@
 
 import React from "react";
 import {Component} from "react";
-import {PropTypes} from "prop-types";
+import PropTypes from "prop-types";
 import {AtomicBlockUtils} from "draft-js";
 
 import LayoutComponent from "./Component";
 
 export class embedded extends Component<any, any> {
-  static propTypes: Object = {
+  static propTypes: any = {
     editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     modalHandler: PropTypes.object,
@@ -37,7 +37,7 @@ export class embedded extends Component<any, any> {
 
   onExpandEvent = (): void => {
     this.signalExpanded = !this.state.expanded;
-  };
+  }
 
   expandCollapse = (): void => {
     this.setState({
@@ -46,19 +46,19 @@ export class embedded extends Component<any, any> {
     this.signalExpanded = false;
   }
 
-  doExpand: Function = (): void => {
+  doExpand = (): void => {
     this.setState({
       expanded: true,
     });
-  };
+  }
 
-  doCollapse: Function = (): void => {
+  doCollapse = (): void => {
     this.setState({
       expanded: false,
     });
-  };
+  }
 
-  addEmbeddedLink: Function = (embeddedLink, height, width): void => {
+  addEmbeddedLink = (embeddedLink, height, width): void => {
     const { editorState, onChange } = this.props;
     const entityKey = editorState
       .getCurrentContent()
@@ -71,9 +71,9 @@ export class embedded extends Component<any, any> {
     );
     onChange(newEditorState);
     this.doCollapse();
-  };
+  }
 
-  render(): Object {
+  render() {
     const { config, translations } = this.props;
     const { expanded } = this.state;
     const EmbeddedComponent = config.component || LayoutComponent;

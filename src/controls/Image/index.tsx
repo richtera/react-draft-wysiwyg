@@ -1,12 +1,12 @@
 import React from "react";
 import {Component} from "react";
-import {PropTypes} from "prop-types";
+import PropTypes from "prop-types";
 import {AtomicBlockUtils} from "draft-js";
 
 import LayoutComponent from "./Component";
 
 export class image extends Component<any, any> {
-  static propTypes: Object = {
+  static propTypes = {
     editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     modalHandler: PropTypes.object,
@@ -35,19 +35,19 @@ export class image extends Component<any, any> {
 
   onExpandEvent = (): void => {
     this.signalExpanded = !this.state.expanded;
-  };
+  }
 
-  doExpand: Function = (): void => {
+  doExpand = (): void => {
     this.setState({
       expanded: true,
     });
-  };
+  }
 
-  doCollapse: Function = (): void => {
+  doCollapse = (): void => {
     this.setState({
       expanded: false,
     });
-  };
+  }
 
   expandCollapse = (): void => {
     this.setState({
@@ -56,7 +56,7 @@ export class image extends Component<any, any> {
     this.signalExpanded = false;
   }
 
-  addImage: Function = (src: string, height: string, width: string, alt: string): void => {
+  addImage = (src: string, height: string, width: string, alt: string): void => {
     const { editorState, onChange, config } = this.props;
     const entityData: any = { src, height, width };
     if (config.alt.present) {
@@ -73,9 +73,9 @@ export class image extends Component<any, any> {
     );
     onChange(newEditorState);
     this.doCollapse();
-  };
+  }
 
-  render(): Object {
+  render() {
     const { config, translations } = this.props;
     const { expanded } = this.state;
     const ImageComponent = config.component || LayoutComponent;

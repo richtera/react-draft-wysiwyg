@@ -2,7 +2,7 @@
 
 import React from "react";
 import {Component} from "react";
-import {PropTypes} from "prop-types";
+import PropTypes from "prop-types";
 import {RichUtils} from "draft-js";
 import {changeDepth, getBlockBeforeSelectedBlock, getSelectedBlock, isListBlock} from "draftjs-utils";
 
@@ -50,7 +50,7 @@ export class list extends Component<any, any> {
 
   onExpandEvent = (): void => {
     this.signalExpanded = !this.state.expanded;
-  };
+  }
 
   onChange = (value: string): void => {
     if (value === 'unordered') {
@@ -62,7 +62,7 @@ export class list extends Component<any, any> {
     } else {
       this.adjustDepth(-1);
     }
-  };
+  }
 
   expandCollapse = (): void => {
     this.setState({
@@ -75,13 +75,13 @@ export class list extends Component<any, any> {
     this.setState({
       expanded: true,
     });
-  };
+  }
 
   doCollapse = (): void => {
     this.setState({
       expanded: false,
     });
-  };
+  }
 
   toggleBlockType = (blockType: string): void => {
     const { onChange, editorState } = this.props;
@@ -92,7 +92,7 @@ export class list extends Component<any, any> {
     if (newState) {
       onChange(newState);
     }
-  };
+  }
 
   adjustDepth = (adjustment): void => {
     const { onChange, editorState } = this.props;
@@ -104,7 +104,7 @@ export class list extends Component<any, any> {
     if (newState) {
       onChange(newState);
     }
-  };
+  }
 
   isIndentDisabled = () => {
     const { editorState } = this.props;
@@ -125,7 +125,7 @@ export class list extends Component<any, any> {
     return !currentBlock || !isListBlock(currentBlock) || currentBlock.get('depth') <= 0;
   }
 
-  render(): Object {
+  render() {
     const { config, translations } = this.props;
     const { expanded, currentBlock } = this.state;
     const ListComponent = config.component || LayoutComponent;

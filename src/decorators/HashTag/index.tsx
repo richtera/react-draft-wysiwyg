@@ -1,5 +1,5 @@
 import * as React from "react";
-import {PropTypes} from "prop-types";
+import PropTypes from "prop-types";
 import classNames from "classnames";
 import './styles.css';
 
@@ -29,14 +29,14 @@ class Hashtag {
       children: PropTypes.object,
     };
     return HashtagComponent;
-  };
+  }
 
   findHashtagEntities = (contentBlock, callback) => {
     let text = contentBlock.getText();
     let startIndex = 0;
     let counter = 0;
 
-    for (;text.length > 0 && startIndex >= 0;) {
+    for (; text.length > 0 && startIndex >= 0;) {
       if (text[0] === this.hashCharacter) {
         startIndex = 0;
         counter = 0;
@@ -58,13 +58,13 @@ class Hashtag {
         }
       }
     }
-  };
+  }
 
   getHashtagDecorator = () => ({
     strategy: this.findHashtagEntities,
     component: this.getHashtagComponent(),
-  });
+  })
 }
 
-export const getDecorator = config => (new Hashtag(config)).getHashtagDecorator();
+export const getDecorator = (config) => (new Hashtag(config)).getHashtagDecorator();
 export default getDecorator;

@@ -1,13 +1,13 @@
 import React from "react";
 import {Component} from "react";
-import {PropTypes} from "prop-types";
+import PropTypes from "prop-types";
 import {EditorState} from "draft-js";
 import classNames from "classnames";
 import Option from "../../components/Option";
 import './styles.css';
 
-const getImageComponent = config => class Image extends Component<any, any> {
-  static propTypes: Object = {
+const getImageComponent = (config) => class Image extends Component<any, any> {
+  static propTypes: any = {
     block: PropTypes.object,
     contentState: PropTypes.object,
   };
@@ -18,15 +18,15 @@ const getImageComponent = config => class Image extends Component<any, any> {
 
   setEntityAlignmentLeft = (): void => {
     this.setEntityAlignment('left');
-  };
+  }
 
   setEntityAlignmentRight = (): void => {
     this.setEntityAlignment('right');
-  };
+  }
 
   setEntityAlignmentCenter = (): void => {
     this.setEntityAlignment('none');
-  };
+  }
 
   setEntityAlignment = (alignment): void => {
     const { block, contentState } = this.props;
@@ -39,16 +39,16 @@ const getImageComponent = config => class Image extends Component<any, any> {
     this.setState({
       dummy: true,
     });
-  };
+  }
 
   toggleHovered = (): void => {
     const hovered = !this.state.hovered;
     this.setState({
       hovered,
     });
-  };
+  }
 
-  renderAlignmentOptions(alignment): Object {
+  renderAlignmentOptions(alignment): any {
     return (
       <div
         className={classNames(
@@ -80,7 +80,7 @@ const getImageComponent = config => class Image extends Component<any, any> {
     );
   }
 
-  render(): Object {
+  render() {
     const { block, contentState } = this.props;
     const { hovered } = this.state;
     const { isReadOnly, isImageAlignmentEnabled } = config;

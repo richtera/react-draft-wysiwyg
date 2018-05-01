@@ -2,7 +2,7 @@
 
 import React from "react";
 import {Component} from "react";
-import {PropTypes} from "prop-types";
+import PropTypes from "prop-types";
 import classNames from "classnames";
 
 import Option from "../../../components/Option";
@@ -26,7 +26,7 @@ export default class TextAlign extends Component<any, any> {
     super(props, context);
   }
 
-  renderInFlatList(): Object {
+  renderInFlatList() {
     const {
       config: { options, left, center, right, justify, className },
       onChange,
@@ -87,7 +87,7 @@ export default class TextAlign extends Component<any, any> {
     );
   }
 
-  renderInDropDown(): Object {
+  renderInDropDown() {
     const {
       config,
       expanded,
@@ -163,7 +163,7 @@ export default class TextAlign extends Component<any, any> {
     );
   }
 
-  render(): Object {
+  render() {
     const { config: { inDropdown } } = this.props;
     if (inDropdown) {
       return this.renderInDropDown();

@@ -2,7 +2,7 @@
 
 import React from "react";
 import {Component} from "react";
-import {PropTypes} from "prop-types";
+import PropTypes from "prop-types";
 import classNames from "classnames";
 
 import {stopPropagation} from "../../../utils/common";
@@ -10,7 +10,7 @@ import Option from "../../../components/Option";
 import './styles.css';
 
 class LayoutComponent extends Component<any, any> {
-  static propTypes: Object = {
+  static propTypes: any = {
     expanded: PropTypes.bool,
     onExpandEvent: PropTypes.func,
     onChange: PropTypes.func,
@@ -44,15 +44,15 @@ class LayoutComponent extends Component<any, any> {
     const { onChange } = this.props;
     const { embeddedLink, height, width } = this.state;
     onChange(embeddedLink, height, width);
-  };
+  }
 
   updateValue = (event: any): void => {
     this.setState({
       [`${event.target.name}`]: event.target.value,
     });
-  };
+  }
 
-  rendeEmbeddedLinkModal(): Object {
+  rendeEmbeddedLinkModal(): any {
     const { embeddedLink, height, width } = this.state;
     const { config: { popupClassName }, doCollapse, translations } = this.props;
     return (
@@ -124,7 +124,7 @@ class LayoutComponent extends Component<any, any> {
     );
   }
 
-  render(): Object {
+  render() {
     const {
       config: { icon, className, title },
       expanded,

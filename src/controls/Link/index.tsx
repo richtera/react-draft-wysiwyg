@@ -1,8 +1,8 @@
 import React from "react";
 import {Component} from "react";
-import {PropTypes} from "prop-types";
+import PropTypes from "prop-types";
 import {EditorState, Modifier, RichUtils} from "draft-js";
-import {getEntityRange, getSelectionEntity, getSelectionText,} from "draftjs-utils";
+import {getEntityRange, getSelectionEntity, getSelectionText} from "draftjs-utils";
 
 import LayoutComponent from "./Component";
 
@@ -19,7 +19,7 @@ export class link extends Component<any, any> {
     expanded: false,
     link: undefined,
     selectionText: undefined,
-    currentEntity: undefined
+    currentEntity: undefined,
   };
   signalExpanded: boolean;
 
@@ -53,7 +53,7 @@ export class link extends Component<any, any> {
 
   onExpandEvent = (): void => {
     this.signalExpanded = !this.state.expanded;
-  };
+  }
 
   onChange = (action, title, target, targetOption) => {
     if (action === 'link') {
@@ -79,26 +79,26 @@ export class link extends Component<any, any> {
     return currentValues;
   }
 
-  doExpand: Function = (): void => {
+  doExpand = (): void => {
     this.setState({
       expanded: true,
     });
-  };
+  }
 
-  expandCollapse: Function = (): void => {
+  expandCollapse = (): void => {
     this.setState({
       expanded: this.signalExpanded,
     });
     this.signalExpanded = false;
   }
 
-  doCollapse: Function = (): void => {
+  doCollapse = (): void => {
     this.setState({
       expanded: false,
     });
-  };
+  }
 
-  removeLink: Function = (): void => {
+  removeLink = (): void => {
     const { editorState, onChange } = this.props;
     const { currentEntity } = this.state;
     let selection = editorState.getSelection();
@@ -110,9 +110,9 @@ export class link extends Component<any, any> {
       });
       onChange(RichUtils.toggleLink(editorState, selection, null));
     }
-  };
+  }
 
-  addLink: Function = (linkTitle, linkTarget, linkTargetOption): void => {
+  addLink = (linkTitle, linkTarget, linkTargetOption): void => {
     const { editorState, onChange } = this.props;
     const { currentEntity } = this.state;
     let selection = editorState.getSelection();
@@ -153,9 +153,9 @@ export class link extends Component<any, any> {
     );
     onChange(EditorState.push(newEditorState, contentState, 'insert-characters'));
     this.doCollapse();
-  };
+  }
 
-  render(): Object {
+  render() {
     const { config, translations } = this.props;
     const { expanded } = this.state;
     const { link, selectionText } = this.getCurrentValues();

@@ -2,7 +2,7 @@
 
 import React from "react";
 import {Component} from "react";
-import {PropTypes} from "prop-types";
+import PropTypes from "prop-types";
 import classNames from "classnames";
 
 import Option from "../../../components/Option";
@@ -45,9 +45,9 @@ class LayoutComponent extends Component<any, any> {
     { label: 'H5', displayName: translations['components.controls.blocktype.h5'] },
     { label: 'H6', displayName: translations['components.controls.blocktype.h6'] },
     { label: 'Blockquote', displayName: translations['components.controls.blocktype.blockquote'] },
-  ].concat(config.customBlockTypes || []);
+  ].concat(config.customBlockTypes || [])
 
-  renderFlat(blocks: Array<any>) {
+  renderFlat(blocks: any[]) {
     const { config: { className }, onChange, currentState: { blockType, rawBlockType } } = this.props;
     return (
       <div className={classNames('rdw-inline-wrapper', className)}>
@@ -68,7 +68,7 @@ class LayoutComponent extends Component<any, any> {
     );
   }
 
-  renderInDropdown(blocks: Array<any>) {
+  renderInDropdown(blocks: any[]) {
     const {
       config: { className, dropdownClassName, title },
       currentState: { blockType, rawBlockType },
@@ -80,7 +80,7 @@ class LayoutComponent extends Component<any, any> {
       translations,
     } = this.props;
     const { blockTypes } = this.state;
-    const currentBlockData = blockTypes.filter(blk => blk.label === blockType);
+    const currentBlockData = blockTypes.filter((blk) => blk.label === blockType);
     const currentLabel = currentBlockData && currentBlockData[0] && currentBlockData[0].displayName;
     return (
       <div className="rdw-block-wrapper" aria-label="rdw-block-control">

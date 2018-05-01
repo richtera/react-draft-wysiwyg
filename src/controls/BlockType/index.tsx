@@ -2,7 +2,7 @@
 
 import React from "react";
 import {Component} from "react";
-import {PropTypes} from "prop-types";
+import PropTypes from "prop-types";
 import {getSelectedBlocksType} from "draftjs-utils";
 import {RichUtils} from "draft-js";
 
@@ -22,7 +22,7 @@ export class blockType extends Component<any, any> {
     currentBlockType: 'unstyled',
   };
   signalExpanded: boolean;
-  blocksTypes: Array<any>;
+  blocksTypes: any[];
 
   constructor(props, context) {
     super(props, context);
@@ -63,31 +63,31 @@ export class blockType extends Component<any, any> {
     modalHandler.deregisterCallBack(this.expandCollapse);
   }
 
-  onExpandEvent: Function = (): void => {
+  onExpandEvent = (): void => {
     this.signalExpanded = !this.state.expanded;
-  };
+  }
 
-  expandCollapse: Function = (): void => {
+  expandCollapse = (): void => {
     this.setState({
       expanded: this.signalExpanded,
     });
     this.signalExpanded = false;
   }
 
-  doExpand: Function = (): void => {
+  doExpand = (): void => {
     this.setState({
       expanded: true,
     });
-  };
+  }
 
-  doCollapse: Function = (): void => {
+  doCollapse = (): void => {
     this.setState({
       expanded: false,
     });
-  };
+  }
 
-  toggleBlockType: Function = (blockType: string) => {
-    const blockTypeValue = this['blocksTypes'].find(bt => bt.label === blockType).style;
+  toggleBlockType = (blockType: string) => {
+    const blockTypeValue = this['blocksTypes'].find((bt) => bt.label === blockType).style;
     const { editorState, onChange } = this.props;
     const newState = RichUtils.toggleBlockType(
       editorState,
@@ -96,13 +96,13 @@ export class blockType extends Component<any, any> {
     if (newState) {
       onChange(newState);
     }
-  };
+  }
 
-  render(): Object {
+  render() {
     const { config, translations } = this.props;
     const { expanded, currentBlockType } = this.state;
     const BlockTypeComponent = config.component || LayoutComponent;
-    const blockType = this.blocksTypes.find(bt => bt.style === currentBlockType);
+    const blockType = this.blocksTypes.find((bt) => bt.style === currentBlockType);
     return (
       <BlockTypeComponent
         config={config}

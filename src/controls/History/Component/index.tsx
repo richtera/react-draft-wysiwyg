@@ -2,7 +2,7 @@
 
 import React from "react";
 import {Component} from "react";
-import {PropTypes} from "prop-types";
+import PropTypes from "prop-types";
 import classNames from "classnames";
 
 import {getFirstIcon} from "../../../utils/toolbar";
@@ -31,7 +31,7 @@ export default class History extends Component<any, any> {
     onChange(obj);
   }
 
-  renderInDropDown(): Object {
+  renderInDropDown() {
     const {
       config,
       expanded,
@@ -85,7 +85,7 @@ export default class History extends Component<any, any> {
     );
   }
 
-  renderInFlatList(): Object {
+  renderInFlatList() {
     const {
       config: { options, undo, redo, className },
       currentState: { undoDisabled, redoDisabled },
@@ -121,7 +121,7 @@ export default class History extends Component<any, any> {
     );
   }
 
-  render(): Object {
+  render() {
     const { config } = this.props;
     if (config.inDropdown) {
       return this.renderInDropDown();

@@ -1,8 +1,9 @@
 import React from "react";
 import {Component} from "react";
-import {PropTypes} from "prop-types";
-import openlink from "../../../images/openlink.svg";
+import PropTypes from "prop-types";
 import './styles.css';
+
+const openlink = require("../../../images/openlink.svg");
 
 function findLinkEntities(contentBlock, callback, contentState) {
   contentBlock.findEntityRanges(
@@ -30,15 +31,15 @@ function getLinkComponent(config) {
       showPopOver: false,
     };
 
+    constructor(props, context) {
+      super(props, context);
+    }
+
     openLink = () => {
       const { entityKey, contentState } = this.props;
       const { url } = contentState.getEntity(entityKey).getData();
       const linkTab = window.open(url, 'blank'); // eslint-disable-line no-undef
       linkTab.focus();
-    };
-
-    constructor(props, context) {
-      super(props, context);
     }
 
     toggleShowPopOver = () => {
@@ -46,7 +47,7 @@ function getLinkComponent(config) {
       this.setState({
         showPopOver,
       });
-    };
+    }
 
     render() {
       const { children, entityKey, contentState } = this.props;
@@ -74,7 +75,7 @@ function getLinkComponent(config) {
   };
 }
 
-export default config => ({
+export default (config) => ({
   strategy: findLinkEntities,
   component: getLinkComponent(config),
 });

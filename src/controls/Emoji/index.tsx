@@ -2,13 +2,13 @@
 
 import React from "react";
 import {Component} from "react";
-import {PropTypes} from "prop-types";
+import PropTypes from "prop-types";
 import {EditorState, Modifier} from "draft-js";
 
 import LayoutComponent from "./Component";
 
 export class emoji extends Component<any, any> {
-  static propTypes: Object = {
+  static propTypes = {
     editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     modalHandler: PropTypes.object,
@@ -37,7 +37,7 @@ export class emoji extends Component<any, any> {
 
   onExpandEvent = (): void => {
     this.signalExpanded = !this.state.expanded;
-  };
+  }
 
   expandCollapse = (): void => {
     this.setState({
@@ -50,15 +50,15 @@ export class emoji extends Component<any, any> {
     this.setState({
       expanded: true,
     });
-  };
+  }
 
   doCollapse = (): void => {
     this.setState({
       expanded: false,
     });
-  };
+  }
 
-  addEmoji: Function = (emoji: string): void => {
+  addEmoji = (emoji: string): void => {
     const { editorState, onChange } = this.props;
     const contentState = Modifier.replaceText(
       editorState.getCurrentContent(),
@@ -68,9 +68,9 @@ export class emoji extends Component<any, any> {
     );
     onChange(EditorState.push(editorState, contentState, 'insert-characters'));
     this.doCollapse();
-  };
+  }
 
-  render(): Object {
+  render() {
     const { config, translations } = this.props;
     const { expanded } = this.state;
     const EmojiComponent = config.component || LayoutComponent;

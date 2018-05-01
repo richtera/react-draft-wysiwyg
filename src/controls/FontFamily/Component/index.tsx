@@ -2,7 +2,7 @@
 
 import React from "react";
 import {Component} from "react";
-import {PropTypes} from "prop-types";
+import PropTypes from "prop-types";
 import classNames from "classnames";
 
 import {Dropdown, DropdownOption} from "../../../components/Dropdown";
@@ -54,7 +54,7 @@ class LayoutComponent extends Component<any, any> {
     currentFontFamily = currentFontFamily ||
       (options &&
         defaultFontFamily &&
-        options.some(opt => opt.toLowerCase() === defaultFontFamily.toLowerCase()) &&
+        options.some((opt) => opt.toLowerCase() === defaultFontFamily.toLowerCase()) &&
         defaultFontFamily);
     return (
       <div className="rdw-fontfamily-wrapper" aria-label="rdw-font-family-control">

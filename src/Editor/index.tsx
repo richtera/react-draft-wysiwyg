@@ -1,7 +1,7 @@
 
 import React from "react";
 import {Component} from "react";
-import {PropTypes} from "prop-types";
+import PropTypes from "prop-types";
 import {
   CompositeDecorator,
   convertFromRaw,
@@ -9,7 +9,7 @@ import {
   DefaultDraftBlockRenderMap,
   Editor as BaseEditor,
   EditorState,
-  RichUtils
+  RichUtils,
 } from "draft-js";
 import {
   blockRenderMap,
@@ -39,6 +39,13 @@ import './styles.css';
 import '../../css/Draft.css';
 
 export class Editor extends Component<any, any> {
+  static defaultProps = {
+    toolbarOnFocus: false,
+    toolbarHidden: false,
+    stripPastedStyles: false,
+    localization: { locale: 'en', translations: {} },
+    customDecorators: [],
+  };
 
   static propTypes = {
     onChange: PropTypes.func,
@@ -85,8 +92,9 @@ export class Editor extends Component<any, any> {
     customBlockRenderFunc: PropTypes.func,
     wrapperId: PropTypes.number,
     customDecorators: PropTypes.array,
-    customBlockRenderMap: PropTypes.object
+    customBlockRenderMap: PropTypes.object,
   };
+
   wrapperId: string;
   editor: any;
   wrapper: any;
@@ -97,14 +105,6 @@ export class Editor extends Component<any, any> {
   customStyleMap: any;
   blockRenderMap: any;
   compositeDecorator: CompositeDecorator;
-
-  static defaultProps = {
-    toolbarOnFocus: false,
-    toolbarHidden: false,
-    stripPastedStyles: false,
-    localization: { locale: 'en', translations: {} },
-    customDecorators: [],
-  }
 
   constructor(props) {
     super(props);
@@ -183,7 +183,7 @@ export class Editor extends Component<any, any> {
     this.setState({
       editorFocused: false,
     });
-  };
+  }
 
   onEditorFocus = (event: any): void => {
     const { onFocus } = this.props;
@@ -193,7 +193,7 @@ export class Editor extends Component<any, any> {
     if (onFocus && this.focusHandler.isEditorFocused()) {
       onFocus(event);
     }
-  };
+  }
 
   onEditorMouseDown = (): void => {
     this.focusHandler.onEditorMouseDown();
@@ -209,28 +209,28 @@ export class Editor extends Component<any, any> {
       }
     }
     return false;
-  };
+  }
 
   onUpDownArrow = (event): boolean => {
     if (SuggestionHandler.isOpen()) {
       event.preventDefault();
     }
     return false;
-  };
+  }
 
   onToolbarFocus = (event: any): void => {
     const { onFocus } = this.props;
     if (onFocus && this.focusHandler.isToolbarFocused()) {
       onFocus(event);
     }
-  };
+  }
 
   onWrapperBlur = (event: any) => {
     const { onBlur } = this.props;
     if (onBlur && this.focusHandler.isEditorBlur(event)) {
       onBlur(event);
     }
-  };
+  }
 
   onChange = (force: boolean, editorState: any): void => {
     const { readOnly, onEditorStateChange } = this.props;
@@ -248,15 +248,15 @@ export class Editor extends Component<any, any> {
         this.afterChange(editorState);
       }
     }
-  };
+  }
 
-  setWrapperReference = (ref: Object): void => {
+  setWrapperReference = (ref: any): void => {
     this.wrapper = ref;
-  };
+  }
 
-  setEditorReference = (ref: Object): void => {
+  setEditorReference = (ref: any): void => {
     this.editor = ref;
-  };
+  }
 
   getCompositeDecorator = (): CompositeDecorator => {
     const decorators = [...this.props.customDecorators, getLinkDecorator({
@@ -294,7 +294,7 @@ export class Editor extends Component<any, any> {
         onContentStateChange(convertToRaw(editorState.getCurrentContent()));
       }
     }, 0);
-  };
+  }
 
   isReadOnly = () => this.props.readOnly;
 
@@ -335,14 +335,14 @@ export class Editor extends Component<any, any> {
     return editorState;
   }
 
-  filterEditorProps = props => filter(props, [
+  filterEditorProps = (props) => filter(props, [
     'onChange', 'onEditorStateChange', 'onContentStateChange', 'initialContentState',
     'defaultContentState', 'contentState', 'editorState', 'defaultEditorState', 'locale',
     'localization', 'toolbarOnFocus', 'toolbar', 'toolbarCustomButtons', 'toolbarClassName',
     'editorClassName', 'toolbarHidden', 'wrapperClassName', 'toolbarStyle', 'editorStyle',
     'wrapperStyle', 'uploadCallback', 'onFocus', 'onBlur', 'onTab', 'mention', 'hashtag',
-    'ariaLabel', 'customBlockRenderFunc', 'customDecorators', 'blockRenderMap'
-  ]);
+    'ariaLabel', 'customBlockRenderFunc', 'customDecorators', 'blockRenderMap',
+  ])
 
   changeEditorState = (contentState) => {
     const newContentState = convertFromRaw(contentState);
@@ -350,7 +350,7 @@ export class Editor extends Component<any, any> {
     editorState = EditorState.push(editorState, newContentState, 'insert-characters');
     editorState = EditorState.moveSelectionToEnd(editorState);
     return editorState;
-  };
+  }
 
   focusEditor = (event: any): any => {
     if (this.props.onFocusEditor) {
@@ -369,7 +369,7 @@ export class Editor extends Component<any, any> {
     setTimeout(() => {
       this.editor.focus();
     }, 0);
-  };
+  }
 
   handleKeyCommand = (command: any): boolean => {
     const { editorState } = this.state;
@@ -379,9 +379,9 @@ export class Editor extends Component<any, any> {
       return true;
     }
     return false;
-  };
+  }
 
-  handleReturn = (event: Object): boolean => {
+  handleReturn = (event: any): boolean => {
     if (SuggestionHandler.isOpen()) {
       return true;
     }
@@ -391,7 +391,7 @@ export class Editor extends Component<any, any> {
       return true;
     }
     return false;
-  };
+  }
 
   handlePastedText = (text, html) => {
     const { editorState } = this.state;
@@ -404,7 +404,7 @@ export class Editor extends Component<any, any> {
     } else {
       event.preventDefault();
     }
-  };
+  }
 
   render() {
     const {

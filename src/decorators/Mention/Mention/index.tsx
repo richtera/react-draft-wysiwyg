@@ -1,5 +1,5 @@
 import * as React from "react";
-import {PropTypes} from "prop-types";
+import PropTypes from "prop-types";
 import classNames from "classnames";
 import './styles.css';
 
@@ -25,11 +25,11 @@ export class Mention {
       contentState: PropTypes.object,
     };
     return MentionComponent;
-  };
+  }
   getMentionDecorator = () => ({
     strategy: this['findMentionEntities'],
     component: this.getMentionComponent(),
-  });
+  })
 }
 
 Mention.prototype['findMentionEntities'] = (contentBlock, callback, contentState) => {

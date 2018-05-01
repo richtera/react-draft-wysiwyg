@@ -2,7 +2,7 @@
 
 import React from "react";
 import {Component} from "react";
-import {PropTypes} from "prop-types";
+import PropTypes from "prop-types";
 import classNames from "classnames";
 
 import {stopPropagation} from "../../../utils/common";
@@ -23,16 +23,16 @@ class LayoutComponent extends Component<any, any> {
     currentStyle: 'color',
   };
 
+  constructor(props, context) {
+    super(props, context);
+  }
+
   componentWillReceiveProps(props) {
     if (!this.props.expanded && props.expanded) {
       this.setState({
         currentStyle: 'color',
       });
     }
-  }
-
-  constructor(props, context) {
-    super(props, context);
   }
 
   onChange = (color: string): void => {
@@ -45,15 +45,15 @@ class LayoutComponent extends Component<any, any> {
     this.setState({
       currentStyle: 'color',
     });
-  };
+  }
 
   setCurrentStyleBgcolor = (): void => {
     this.setState({
       currentStyle: 'bgcolor',
     });
-  };
+  }
 
-  renderModal: Function = () => {
+  renderModal = () => {
     const {
       config: { popupClassName, colors },
       currentState: { color, bgColor },
@@ -106,9 +106,9 @@ class LayoutComponent extends Component<any, any> {
         </span>
       </div>
     );
-  };
+  }
 
-  render(): Object {
+  render() {
     const {
       config: { icon, className, title },
       expanded,

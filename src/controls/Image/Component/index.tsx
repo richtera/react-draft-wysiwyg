@@ -2,7 +2,7 @@
 
 import React from "react";
 import {Component} from "react";
-import {PropTypes} from "prop-types";
+import PropTypes from "prop-types";
 import classNames from "classnames";
 
 import Option from "../../../components/Option";
@@ -10,7 +10,7 @@ import Spinner from "../../../components/Spinner";
 import './styles.css';
 
 class LayoutComponent extends Component<any, any> {
-  static propTypes: Object = {
+  static propTypes = {
     expanded: PropTypes.bool,
     onExpandEvent: PropTypes.func,
     doCollapse: PropTypes.func,
@@ -53,12 +53,12 @@ class LayoutComponent extends Component<any, any> {
     }
   }
 
-  onDragEnter = (event: Object): void => {
+  onDragEnter = (event: any): void => {
     this.stopPropagation(event);
     this.setState({
       dragEnter: true,
     });
-  };
+  }
 
   onImageDrop = (event: any): void => {
     event.preventDefault();
@@ -84,13 +84,13 @@ class LayoutComponent extends Component<any, any> {
         this.uploadImage(file);
       }
     }
-  };
+  }
 
   showImageUploadOption = (): void => {
     this.setState({
       uploadHighlighted: true,
     });
-  };
+  }
 
   addImageFromState = (): void => {
     const { imgSrc, alt } = this.state;
@@ -103,32 +103,32 @@ class LayoutComponent extends Component<any, any> {
       width += 'px';
     }
     onChange(imgSrc, height, width, alt);
-  };
+  }
 
   showImageURLOption = (): void => {
     this.setState({
       uploadHighlighted: false,
     });
-  };
+  }
 
   toggleShowImageLoading = (): void => {
     const showImageLoading = !this.state.showImageLoading;
     this.setState({
       showImageLoading,
     });
-  };
+  }
 
   updateValue = (event: any): void => {
     this.setState({
       [`${event.target.name}`]: event.target.value,
     });
-  };
+  }
 
   selectImage = (event: any): void => {
     if (event.target.files && event.target.files.length > 0) {
       this.uploadImage(event.target.files[0]);
     }
-  };
+  }
 
   uploadImage = (file: any): void => {
     this.toggleShowImageLoading();
@@ -147,7 +147,7 @@ class LayoutComponent extends Component<any, any> {
           dragEnter: false,
         });
       });
-  };
+  }
 
   fileUploadClick = (event) => {
     this.fileUpload = true;
@@ -161,9 +161,9 @@ class LayoutComponent extends Component<any, any> {
     } else {
       this.fileUpload = false;
     }
-  };
+  }
 
-  renderAddImageModal(): Object {
+  renderAddImageModal() {
     const {
       imgSrc,
       uploadHighlighted,
@@ -315,7 +315,7 @@ class LayoutComponent extends Component<any, any> {
     );
   }
 
-  render(): Object {
+  render() {
     const {
       config: { icon, className, title },
       expanded,

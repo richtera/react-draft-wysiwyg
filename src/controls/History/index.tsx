@@ -2,7 +2,7 @@
 
 import React from "react";
 import {Component} from "react";
-import {PropTypes} from "prop-types";
+import PropTypes from "prop-types";
 import {EditorState} from "draft-js";
 
 import LayoutComponent from "./Component";
@@ -53,11 +53,11 @@ export class history extends Component<any, any> {
     modalHandler.deregisterCallBack(this.expandCollapse);
   }
 
-  onExpandEvent: Function = (): void => {
+  onExpandEvent = (): void => {
     this.signalExpanded = !this.state.expanded;
-  };
+  }
 
-  onChange: Function = (action) => {
+  onChange = (action) => {
     const { editorState, onChange } = this.props;
     const newState = EditorState[action](editorState);
     if (newState) {
@@ -65,26 +65,26 @@ export class history extends Component<any, any> {
     }
   }
 
-  doExpand: Function = (): void => {
+  doExpand = (): void => {
     this.setState({
       expanded: true,
     });
-  };
+  }
 
-  doCollapse: Function = (): void => {
+  doCollapse = (): void => {
     this.setState({
       expanded: false,
     });
-  };
+  }
 
-  expandCollapse: Function = (): void => {
+  expandCollapse = (): void => {
     this.setState({
       expanded: this.signalExpanded,
     });
     this.signalExpanded = false;
   }
 
-  render(): Object {
+  render() {
     const { config, translations } = this.props;
     const { undoDisabled, redoDisabled, expanded } = this.state;
     const HistoryComponent = config.component || LayoutComponent;
@@ -104,4 +104,3 @@ export class history extends Component<any, any> {
 }
 
 export default history;
-

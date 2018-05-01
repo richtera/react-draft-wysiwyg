@@ -1,6 +1,6 @@
 import React from "react";
 import {Component} from "react";
-import {PropTypes} from "prop-types";
+import PropTypes from "prop-types";
 import {EditorState} from "draft-js";
 import classNames from "classnames";
 import Option from "../../components/Option";
@@ -33,7 +33,8 @@ export class ReactPlayerShowError extends Component<any, any> {
   }
 
   render() {
-    let { src, autoPlay, loop, width, height, error, mimeType } = this.state;
+    let { src } = this.state;
+    const { autoPlay, loop, width, height, error, mimeType } = this.state;
     if (mimeType === 'video/x-youtube') {
       src = `https://www.youtube.com/watch?v=${src}`;
     }
@@ -53,16 +54,16 @@ export class ReactPlayerShowError extends Component<any, any> {
           onError={this.showError}
           file={{
             attributes: {
-              type: mimeType
-            }
+              type: mimeType,
+            },
           }}/>
       </span>
     );
   }
 }
 
-const getMediaComponent = config => class Media extends Component<any, any> {
-  static propTypes: Object = {
+const getMediaComponent = (config) => class Media extends Component<any, any> {
+  static propTypes: any = {
     block: PropTypes.object,
     contentState: PropTypes.object,
   };
@@ -71,19 +72,19 @@ const getMediaComponent = config => class Media extends Component<any, any> {
     hovered: false,
   };
 
-  setEntityAlignmentLeft: Function = (): void => {
+  setEntityAlignmentLeft = (): void => {
     this.setEntityAlignment('left');
-  };
+  }
 
-  setEntityAlignmentRight: Function = (): void => {
+  setEntityAlignmentRight = (): void => {
     this.setEntityAlignment('right');
-  };
+  }
 
-  setEntityAlignmentCenter: Function = (): void => {
+  setEntityAlignmentCenter = (): void => {
     this.setEntityAlignment('none');
-  };
+  }
 
-  setEntityAlignment: Function = (alignment): void => {
+  setEntityAlignment = (alignment): void => {
     const { block, contentState } = this.props;
     const entityKey = block.getEntityAt(0);
     contentState.mergeEntityData(
@@ -94,7 +95,7 @@ const getMediaComponent = config => class Media extends Component<any, any> {
     this.setState({
       dummy: true,
     });
-  };
+  }
 
   toggleHovered = (): boolean => {
     const hovered = !this.state.hovered;
@@ -102,7 +103,7 @@ const getMediaComponent = config => class Media extends Component<any, any> {
       hovered,
     });
     return false;
-  };
+  }
 
   toogleLoop = (): void => {
     const loop = !this.state.loop;
@@ -146,7 +147,7 @@ const getMediaComponent = config => class Media extends Component<any, any> {
     });
   }
 
-  renderAlignmentOptions(alignment): Object {
+  renderAlignmentOptions(alignment): any {
     const { block, contentState } = this.props;
     const { hovered } = this.state;
     const { isReadOnly, isMediaAlignmentEnabled } = config;
@@ -192,7 +193,7 @@ const getMediaComponent = config => class Media extends Component<any, any> {
             className="rdw-media-additional-option"
           >
             {loop ? "Looping" : "Once"}
-          </Option>
+          </Option>,
         ]}
         { false && /^(video|image)\//.test(mimeType) && (
           <div className="form-horizontal rdw-media-additional-option">
@@ -220,7 +221,7 @@ const getMediaComponent = config => class Media extends Component<any, any> {
     }
   }
 
-  render(): Object {
+  render() {
     const { block, contentState } = this.props;
     const { hovered, error } = this.state;
     const { isReadOnly, isMediaAlignmentEnabled } = config;

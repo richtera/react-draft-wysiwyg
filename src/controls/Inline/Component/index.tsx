@@ -2,7 +2,7 @@
 
 import React from "react";
 import {Component} from "react";
-import {PropTypes} from "prop-types";
+import PropTypes from "prop-types";
 import classNames from "classnames";
 
 import {getFirstIcon} from "../../../utils/toolbar";
@@ -27,7 +27,7 @@ export default class Inline extends Component<any, any> {
     super(props, context);
   }
 
-  renderInFlatList(): Object {
+  renderInFlatList() {
     const { config, currentState, onChange, translations } = this.props;
     return (
       <div className={classNames('rdw-inline-wrapper', config.className)} aria-label="rdw-inline-control">
@@ -56,7 +56,7 @@ export default class Inline extends Component<any, any> {
     );
   }
 
-  renderInDropDown(): Object {
+  renderInDropDown() {
     const {
       config,
       expanded,
@@ -107,7 +107,7 @@ export default class Inline extends Component<any, any> {
     );
   }
 
-  render(): Object {
+  render() {
     const { config: { inDropdown } } = this.props;
     if (inDropdown) {
       return this.renderInDropDown();

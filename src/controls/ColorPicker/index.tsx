@@ -2,7 +2,7 @@
 
 import React from "react";
 import {Component} from "react";
-import {PropTypes} from "prop-types";
+import PropTypes from "prop-types";
 import {getSelectionCustomInlineStyle, toggleCustomInlineStyle} from "draftjs-utils";
 
 import LayoutComponent from "./Component";
@@ -55,30 +55,30 @@ export class colorPicker extends Component<any, any> {
     modalHandler.deregisterCallBack(this.expandCollapse);
   }
 
-  onExpandEvent: Function = (): void => {
+  onExpandEvent = (): void => {
     this.signalExpanded = !this.state.expanded;
-  };
+  }
 
-  expandCollapse: Function = (): void => {
+  expandCollapse = (): void => {
     this.setState({
       expanded: this.signalExpanded,
     });
     this.signalExpanded = false;
   }
 
-  doExpand: Function = (): void => {
+  doExpand = (): void => {
     this.setState({
       expanded: true,
     });
-  };
+  }
 
-  doCollapse: Function = (): void => {
+  doCollapse = (): void => {
     this.setState({
       expanded: false,
     });
-  };
+  }
 
-  toggleColor: Function = (style: string, color: string): void => {
+  toggleColor = (style: string, color: string): void => {
     const { editorState, onChange } = this.props;
     const newState = toggleCustomInlineStyle(
       editorState,
@@ -89,9 +89,9 @@ export class colorPicker extends Component<any, any> {
       onChange(newState);
     }
     this.doCollapse();
-  };
+  }
 
-  render(): Object {
+  render() {
     const { config, translations } = this.props;
     const { currentColor, currentBgColor, expanded } = this.state;
     const ColorPickerComponent = config.component || LayoutComponent;

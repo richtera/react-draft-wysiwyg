@@ -2,7 +2,7 @@
 
 import React from "react";
 import {Component} from "react";
-import {PropTypes} from "prop-types";
+import PropTypes from "prop-types";
 import classNames from "classnames";
 
 import {getFirstIcon} from "../../../utils/toolbar";
@@ -23,37 +23,36 @@ export default class LayoutComponent extends Component<any, any> {
     indentDisabled: PropTypes.bool,
     outdentDisabled: PropTypes.bool,
   };
+  options: string[] = ['unordered', 'ordered', 'indent', 'outdent'];
 
   constructor(props, context) {
     super(props, context);
   }
 
-  options: Array<string> = ['unordered', 'ordered', 'indent', 'outdent'];
-
-  toggleBlockType: Function = (blockType: String): void => {
+  toggleBlockType = (blockType: string): void => {
     const { onChange } = this.props;
     onChange(blockType);
-  };
+  }
 
-  indent: Function = (): void => {
+  indent = (): void => {
     const { onChange } = this.props;
     onChange('indent');
-  };
+  }
 
-  outdent: Function = (): void => {
+  outdent = (): void => {
     const { onChange } = this.props;
     onChange('outdent');
-  };
+  }
 
   // todo: evaluate refactoring this code to put a loop there and in other places also in code
   // hint: it will require moving click handlers
-  renderInFlatList(): Object {
+  renderInFlatList() {
     const {
       config,
       currentState: { listType },
       translations,
       indentDisabled,
-      outdentDisabled
+      outdentDisabled,
     } = this.props;
     const { options, unordered, ordered, indent, outdent, className } = config;
     return (
@@ -108,7 +107,7 @@ export default class LayoutComponent extends Component<any, any> {
     );
   }
 
-  renderInDropDown(): Object {
+  renderInDropDown() {
     const {
       config,
       expanded,
@@ -137,7 +136,7 @@ export default class LayoutComponent extends Component<any, any> {
           alt=""
         />
         { this.options
-          .filter(option => options.indexOf(option) >= 0)
+          .filter((option) => options.indexOf(option) >= 0)
           .map((option, index) => (<DropdownOption
             key={index}
             value={option}
@@ -156,7 +155,7 @@ export default class LayoutComponent extends Component<any, any> {
     );
   }
 
-  render(): Object {
+  render() {
     const { config: { inDropdown } } = this.props;
     if (inDropdown) {
       return this.renderInDropDown();

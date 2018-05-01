@@ -2,7 +2,7 @@
 
 import React from "react";
 import {Component} from "react";
-import {PropTypes} from "prop-types";
+import PropTypes from "prop-types";
 import {getSelectionInlineStyle} from "draftjs-utils";
 import {EditorState, Modifier, RichUtils} from "draft-js";
 import {forEach} from "../../utils/common";
@@ -18,15 +18,15 @@ export class inline extends Component<any, any> {
     translations: PropTypes.object,
   };
 
-  constructor(props, context) {
-    super(props, context);
-  }
-
   signalExpanded: boolean;
   state = {
     currentStyles: {},
-    expanded: false
+    expanded: false,
   };
+
+  constructor(props, context) {
+    super(props, context);
+  }
 
   componentWillMount(): void {
     const { editorState, modalHandler } = this.props;
@@ -52,18 +52,18 @@ export class inline extends Component<any, any> {
     modalHandler.deregisterCallBack(this.expandCollapse);
   }
 
-  onExpandEvent: Function = (): void => {
+  onExpandEvent = (): void => {
     this.signalExpanded = !this.state.expanded;
-  };
+  }
 
-  expandCollapse: Function = (): void => {
+  expandCollapse = (): void => {
     this.setState({
       expanded: this.signalExpanded,
     });
     this.signalExpanded = false;
   }
 
-  toggleInlineStyle: Function = (style: string): void => {
+  toggleInlineStyle = (style: string): void => {
     const newStyle = style === 'monospace' ? 'CODE' : style.toUpperCase();
     const { editorState, onChange } = this.props;
     let newState = RichUtils.toggleInlineStyle(
@@ -82,7 +82,7 @@ export class inline extends Component<any, any> {
     if (newState) {
       onChange(newState);
     }
-  };
+  }
 
   changeKeys = (style) => {
     if (style) {
@@ -95,19 +95,19 @@ export class inline extends Component<any, any> {
     return undefined;
   }
 
-  doExpand: Function = (): void => {
+  doExpand = (): void => {
     this.setState({
       expanded: true,
     });
-  };
+  }
 
-  doCollapse: Function = (): void => {
+  doCollapse = (): void => {
     this.setState({
       expanded: false,
     });
-  };
+  }
 
-  render(): Object {
+  render() {
     const { config, translations } = this.props;
     const { expanded, currentStyles } = this.state;
     const InlineComponent = config.component || LayoutComponent;
