@@ -8,7 +8,6 @@ const classNames = require('classnames');
 import Option from "../../../components/Option";
 import Spinner from "../../../components/Spinner";
 import * as mime from "mime-types";
-import _ from "lodash";
 import ReactPlayer from "react-player";
 
 require('./styles.css');
@@ -94,7 +93,7 @@ class LayoutComponent extends Component<any, any> {
       dataIsItems = false;
     }
 
-    for (let i = 0; i < data.length; i += 1) {
+    for (const i in data.length) {
       if (data[i].kind === 'string' && data[i].type.match('^text/plain')) {
         // This item is the target node
         continue;

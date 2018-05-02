@@ -6,12 +6,12 @@ import classNames from "classnames";
 import Option from "../../components/Option";
 import './styles.css';
 import ReactPlayer from "react-player";
-import _ from "lodash";
+import extend from "lodash/extend";
 
 export class ReactPlayerShowError extends Component<any, any> {
   constructor(props, context) {
     super(props, context);
-    this.state = _.extend({}, props);
+    this.state = extend({}, props);
   }
 
   componentWillReceiveProps(props) {
