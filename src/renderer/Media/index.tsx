@@ -1,7 +1,7 @@
 import React from "react";
 import {Component} from "react";
 import PropTypes from "prop-types";
-import {EditorState} from "draft-js";
+import {AtomicBlockUtils, EditorState, Modifier} from "draft-js";
 import classNames from "classnames";
 import Option from "../../components/Option";
 import './styles.css';
@@ -147,13 +147,131 @@ const getMediaComponent = (config) => class Media extends Component<any, any> {
     });
   }
 
+  updateLesson = (videoData, videoId) => {
+    if (videoData.hasUpdatedLesson && !confirm('Are you sure you want to update this lesson?')) {
+      return;
+    }
+
+    this.addSnippetData(videoData, videoId)
+      .then(() => {
+        this.addClosedCaptions(videoId);
+      });
+  }
+
+  addSnippetData = (videoData, videoId) => {
+    return fetch('/youtube_snippet_data', {
+      method: 'POST',
+      body: JSON.stringify({ v: videoId }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => {
+        if (response.status !== 200) {
+          return Promise.reject(new Error('Unable to get snippet data.'));
+        }
+
+        return response.json();
+      })
+      .then((result) => {
+        let editorState = EditorState.createEmpty();
+        let contentState;
+        let data;
+        let entityKey;
+        let entityText;
+
+        // article header
+        data = {
+          stemType: 'article',
+        };
+        entityKey = editorState.getCurrentContent().createEntity('STEM', 'MUTABLE', data).getLastCreatedEntityKey();
+        editorState = AtomicBlockUtils.insertAtomicBlock(editorState, entityKey, ' ');
+
+        // text
+        contentState = Modifier.setBlockType(editorState.getCurrentContent(), editorState.getSelection(), 'header-one');
+        entityText = Modifier.insertText(contentState, editorState.getSelection(), result.title);
+        editorState = EditorState.push(editorState, entityText, 'insert-characters');
+
+        // article abstract
+        data = {
+          stemType: 'article-abstract',
+        };
+        entityKey = editorState.getCurrentContent().createEntity('STEM', 'MUTABLE', data).getLastCreatedEntityKey();
+        editorState = AtomicBlockUtils.insertAtomicBlock(editorState, entityKey, ' ');
+
+        // text
+        entityText = Modifier.insertText(editorState.getCurrentContent(), editorState.getSelection(), result.description);
+        editorState = EditorState.push(editorState, entityText, 'insert-characters');
+
+        // article video
+        data = {
+          stemType: 'stem',
+        };
+        entityKey = editorState.getCurrentContent().createEntity('STEM', 'MUTABLE', data).getLastCreatedEntityKey();
+        editorState = AtomicBlockUtils.insertAtomicBlock(editorState, entityKey, ' ');
+
+        // video
+        data = Object.assign(videoData, {
+          hasUpdatedLesson: true,
+        });
+        entityKey = editorState.getCurrentContent().createEntity('VIDEO', 'MUTABLE', data).getLastCreatedEntityKey();
+        editorState = AtomicBlockUtils.insertAtomicBlock(editorState, entityKey, ' ');
+
+        config.onChange(EditorState.forceSelection(editorState, editorState.getCurrentContent().getSelectionAfter()));
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+  }
+
+  addClosedCaptions = (videoId) => {
+    fetch('/youtube_closed_captions', {
+      method: 'POST',
+      body: JSON.stringify({ v: videoId }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => {
+        if (response.status !== 200) {
+          return Promise.reject(new Error('Unable to get closed captions.'));
+        }
+
+        return response.json();
+      })
+      .then((result) => {
+        let editorState = config.getEditorState();
+
+        for (const closedCaption of result) {
+          // answer type
+          const data = {
+            answerType: 'closed-captions',
+            captionStart: closedCaption.captionStart,
+            captionDuration: closedCaption.captionDuration,
+          };
+          const entityKey = editorState.getCurrentContent().createEntity('ANSWER', 'MUTABLE', data).getLastCreatedEntityKey();
+          editorState = AtomicBlockUtils.insertAtomicBlock(editorState, entityKey, ' ');
+
+          // text
+          const entityText = Modifier.insertText(editorState.getCurrentContent(), editorState.getSelection(), closedCaption.text);
+          editorState = EditorState.push(editorState, entityText, 'insert-characters');
+        }
+
+        config.onChange(EditorState.forceSelection(editorState, editorState.getCurrentContent().getSelectionAfter()));
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+  }
+
   renderAlignmentOptions(alignment): any {
     const { block, contentState } = this.props;
-    const { hovered } = this.state;
-    const { isReadOnly, isMediaAlignmentEnabled } = config;
     const entity = contentState.getEntity(block.getEntityAt(0));
-    const data = entity.getData();
-    const {loop = false, autoPlay = false, mimeType, width, height} = data;
+    const videoData = entity.getData();
+    const { src, loop = false, autoPlay = false, mimeType, width, height } = videoData;
+    const youTubeReg = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/;
+    const match = youTubeReg.exec(src);
+    const videoId = match ? match[5] : null;
     return (
       <div
         className={classNames(
@@ -195,12 +313,20 @@ const getMediaComponent = (config) => class Media extends Component<any, any> {
             {loop ? "Looping" : "Once"}
           </Option>,
         ]}
+        { videoId && (
+          <Option
+            onClick={this.updateLesson.bind(this, videoData, videoId)}
+            className="rdw-media-additional-option"
+          >
+            Update Lesson
+          </Option>
+        )}
         { false && /^(video|image)\//.test(mimeType) && (
           <div className="form-horizontal rdw-media-additional-option">
             <label>Width:</label>
             <input value={width} onChange={this.setData.bind(this, 'width')}/>
             <label>Height:</label>
-            <input value={width} onChange={this.setData.bind(this, 'height')}/>
+            <input value={height} onChange={this.setData.bind(this, 'height')}/>
           </div>
         )}
       </div>
