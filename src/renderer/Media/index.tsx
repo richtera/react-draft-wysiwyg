@@ -153,7 +153,11 @@ const getMediaComponent = (config) => class Media extends Component<any, any> {
     }
 
     this.addSnippetData(videoData, videoId)
-      .then(() => {
+      .then((result) => {
+        if (result.error) {
+          return;
+        }
+
         this.addClosedCaptions(videoId);
       });
   }
@@ -218,9 +222,17 @@ const getMediaComponent = (config) => class Media extends Component<any, any> {
         editorState = AtomicBlockUtils.insertAtomicBlock(editorState, entityKey, ' ');
 
         config.onChange(EditorState.forceSelection(editorState, editorState.getCurrentContent().getSelectionAfter()));
+
+        return {
+          error: false,
+        };
       })
       .catch((error) => {
         alert(error.message);
+
+        return {
+          error: true,
+        };
       });
   }
 
