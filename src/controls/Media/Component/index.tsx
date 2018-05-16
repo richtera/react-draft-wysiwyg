@@ -266,8 +266,12 @@ class LayoutComponent extends Component<any, any> {
         this.setState({
           showMediaLoading: false,
           dragEnter: false,
+          mediaSrc: data.link,
+          mimeType: data.contentType,
         });
-        this.addMediaFromSrcLink(data.contentType, data.link);
+        if (!/^image\//.test(data.contentType)) {
+          this.addMediaFromSrcLink(data.contentType, data.link);
+        }
       }).catch(() => {
       this.setState({
         showMediaLoading: false,
@@ -277,7 +281,6 @@ class LayoutComponent extends Component<any, any> {
   }
 
   fileUploadClick = (event) => {
-    this.fileUpload = true;
     event.stopPropagation();
   }
 
@@ -297,6 +300,7 @@ class LayoutComponent extends Component<any, any> {
       doCollapse,
       translations,
     } = this.props;
+    const showImagePreview = mediaSrc && /^image\//.test(mimeType);
     return (
       <div
         className={classNames('rdw-media-modal', popupClassName)}
@@ -330,42 +334,44 @@ class LayoutComponent extends Component<any, any> {
             />
             </span>}
         </div>
-        {
-          uploadHighlighted ?
-            <div onClick={this.fileUploadClick}>
-              <div
-                onDragEnter={this.onDragEnter}
-                onDragOver={this.stopPropagation}
-                onDrop={this.onMediaDrop}
-                className={classNames(
-                  'rdw-media-modal-upload-option',
-                  { 'rdw-media-modal-upload-option-highlighted': dragEnter })}
-              >
-                <label
-                  htmlFor="file"
-                  className="rdw-media-modal-upload-option-label"
+        { showImagePreview && <img src={mediaSrc} alt="" /> }
+        { !showImagePreview && (
+            uploadHighlighted ?
+              <div onClick={this.fileUploadClick}>
+                <div
+                  onDragEnter={this.onDragEnter}
+                  onDragOver={this.stopPropagation}
+                  onDrop={this.onMediaDrop}
+                  className={classNames(
+                    'rdw-media-modal-upload-option',
+                    { 'rdw-media-modal-upload-option-highlighted': dragEnter })}
                 >
-                  {translations['components.controls.media.dropFileText']}
-                </label>
+                  <label
+                    htmlFor="file"
+                    className="rdw-media-modal-upload-option-label"
+                  >
+                    {translations['components.controls.media.dropFileText']}
+                  </label>
+                </div>
+                <input
+                  type="file"
+                  id="file"
+                  accept={inputAccept}
+                  onChange={this.selectMedia}
+                  className="rdw-media-modal-upload-option-input"
+                />
               </div>
-              <input
-                type="file"
-                id="file"
-                accept={inputAccept}
-                onChange={this.selectMedia}
-                className="rdw-media-modal-upload-option-input"
-              />
-            </div> :
-            <div className="rdw-media-modal-url-section">
-              <input
-                className="rdw-media-modal-url-input"
-                placeholder={translations['components.controls.media.enterlink']}
-                name="mediaSrc"
-                onChange={this.updateValue}
-                onBlur={this.updateValue}
-                value={mediaSrc}
-              />
-            </div>
+              :
+              <div className="rdw-media-modal-url-section">
+                <input
+                  className="rdw-media-modal-url-input"
+                  placeholder={translations['components.controls.media.enterlink']}
+                  name="mediaSrc"
+                  onChange={this.updateValue}
+                  onBlur={this.updateValue}
+                  value={mediaSrc}
+                />
+              </div>)
         }
         <div className="rdw-embedded-modal-size">
           &#8597;&nbsp;
