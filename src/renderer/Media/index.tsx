@@ -264,8 +264,11 @@ const getMediaComponent = (config) => class Media extends Component<any, any> {
           const entityKey = editorState.getCurrentContent().createEntity('ANSWER', 'MUTABLE', data).getLastCreatedEntityKey();
           editorState = AtomicBlockUtils.insertAtomicBlock(editorState, entityKey, ' ');
 
+          // set block type
+          const contentState = Modifier.setBlockType(editorState.getCurrentContent(), editorState.getSelection(), 'paragraph');
+
           // text
-          const entityText = Modifier.insertText(editorState.getCurrentContent(), editorState.getSelection(), closedCaption.text);
+          const entityText = Modifier.insertText(contentState, editorState.getSelection(), closedCaption.text);
           editorState = EditorState.push(editorState, entityText, 'insert-characters');
         }
 
