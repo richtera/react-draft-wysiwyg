@@ -7,6 +7,7 @@ import Option from "../../components/Option";
 import './styles.css';
 import ReactPlayer from "react-player";
 import extend from "lodash/extend";
+import chunk from "lodash/chunk";
 
 export class ReactPlayerShowError extends Component<any, any> {
   constructor(props, context) {
@@ -252,14 +253,19 @@ const getMediaComponent = (config) => class Media extends Component<any, any> {
         return response.json();
       })
       .then((result) => {
+        const closedCaptionsChunks = chunk(result, 25);
         let editorState = config.getEditorState();
 
-        for (const closedCaption of result) {
+        for (const closedCaptions of closedCaptionsChunks) {
+          // vars initialization
+          const firstClosedCaption = closedCaptions[0];
+          const lastClosedCaption = closedCaptions[closedCaptions.length - 1];
+
           // answer type
           const data = {
             answerType: 'closed-captions',
-            captionStart: closedCaption.captionStart,
-            captionDuration: closedCaption.captionDuration,
+            captionStart: firstClosedCaption.captionStart,
+            captionDuration: parseFloat((lastClosedCaption.captionStart - firstClosedCaption.captionStart + lastClosedCaption.captionDuration).toFixed(3)),
           };
           const entityKey = editorState.getCurrentContent().createEntity('ANSWER', 'MUTABLE', data).getLastCreatedEntityKey();
           editorState = AtomicBlockUtils.insertAtomicBlock(editorState, entityKey, ' ');
@@ -268,7 +274,7 @@ const getMediaComponent = (config) => class Media extends Component<any, any> {
           const contentState = Modifier.setBlockType(editorState.getCurrentContent(), editorState.getSelection(), 'paragraph');
 
           // text
-          const entityText = Modifier.insertText(contentState, editorState.getSelection(), closedCaption.text);
+          const entityText = Modifier.insertText(contentState, editorState.getSelection(), closedCaptions.map((closedCaption) => closedCaption.text).join(' '));
           editorState = EditorState.push(editorState, entityText, 'insert-characters');
         }
 
