@@ -62,6 +62,10 @@ export const pl = {
   'components.controls.link.link': 'Wstaw odnośnik',
   'components.controls.link.unlink': 'Usuń odnośnik',
 
+  // PubMed Link
+  'components.controls.pubmedlink.pubmedlink': 'PubMed Link',
+  'components.controls.pubmedlink.pubMedId': 'PubMed ID',
+
   // List
   'components.controls.list.list': 'Lista',
   'components.controls.list.unordered': 'Lista nieuporządkowana',

@@ -67,6 +67,10 @@ export const pt = {
   'components.controls.link.link': 'Adicionar Link',
   'components.controls.link.unlink': 'Remover link',
 
+  // PubMed Link
+  'components.controls.pubmedlink.pubmedlink': 'PubMed Link',
+  'components.controls.pubmedlink.pubMedId': 'PubMed ID',
+
   // List
   'components.controls.list.list': 'Lista',
   'components.controls.list.unordered': 'Sem ordenção',

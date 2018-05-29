@@ -12,3 +12,4 @@ export * from "./Image";
 export * from "./Remove";
 export * from "./History";
 export * from "./Media";
+export * from "./PubMedLink";

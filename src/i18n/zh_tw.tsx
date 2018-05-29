@@ -62,6 +62,10 @@ export const zh_tw = {
     'components.controls.link.link': '連結',
     'components.controls.link.unlink': '刪除連結',
 
+    // PubMed Link
+    'components.controls.pubmedlink.pubmedlink': 'PubMed Link',
+    'components.controls.pubmedlink.pubMedId': 'PubMed ID',
+
     // List
     'components.controls.list.list': '列表',
     'components.controls.list.unordered': '項目符號',

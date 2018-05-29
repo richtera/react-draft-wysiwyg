@@ -67,6 +67,10 @@ export const zh = {
   'components.controls.link.link': '链接',
   'components.controls.link.unlink': '删除链接',
 
+  // PubMed Link
+  'components.controls.pubmedlink.pubmedlink': 'PubMed Link',
+  'components.controls.pubmedlink.pubMedId': 'PubMed ID',
+
   // List
   'components.controls.list.list': '列表',
   'components.controls.list.unordered': '项目符号',

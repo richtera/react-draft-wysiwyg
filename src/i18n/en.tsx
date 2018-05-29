@@ -67,6 +67,10 @@ export const en = {
   'components.controls.link.link': 'Link',
   'components.controls.link.unlink': 'Unlink',
 
+  // PubMed Link
+  'components.controls.pubmedlink.pubmedlink': 'PubMed Link',
+  'components.controls.pubmedlink.pubMedId': 'PubMed ID',
+
   // List
   'components.controls.list.list': 'List',
   'components.controls.list.unordered': 'Unordered',

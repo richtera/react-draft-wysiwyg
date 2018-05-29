@@ -67,6 +67,10 @@ export const ko = {
   'components.controls.link.link': '링크',
   'components.controls.link.unlink': '링크 제거',
 
+  // PubMed Link
+  'components.controls.pubmedlink.pubmedlink': 'PubMed Link',
+  'components.controls.pubmedlink.pubMedId': 'PubMed ID',
+
   // List
   'components.controls.list.list': '리스트',
   'components.controls.list.unordered': '일반 리스트',

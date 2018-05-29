@@ -67,6 +67,10 @@ export const ru = {
   'components.controls.link.link': 'Ссылка',
   'components.controls.link.unlink': 'Убрать ссылку',
 
+  // PubMed Link
+  'components.controls.pubmedlink.pubmedlink': 'PubMed Link',
+  'components.controls.pubmedlink.pubMedId': 'PubMed ID',
+
   // List
   'components.controls.list.list': 'Список',
   'components.controls.list.unordered': 'Неупорядоченный',

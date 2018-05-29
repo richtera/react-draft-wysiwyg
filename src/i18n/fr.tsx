@@ -66,6 +66,10 @@ export const fr = {
   'components.controls.link.link': 'Lier',
   'components.controls.link.unlink': 'Délier',
 
+  // PubMed Link
+  'components.controls.pubmedlink.pubmedlink': 'PubMed Link',
+  'components.controls.pubmedlink.pubMedId': 'PubMed ID',
+
   // List
   'components.controls.list.list': 'Liste',
   'components.controls.list.unordered': 'Désordonnée',

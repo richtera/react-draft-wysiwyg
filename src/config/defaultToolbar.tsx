@@ -16,6 +16,7 @@ const justify = require('../../images/align-justify.svg');
 const color = require('../../images/color.svg');
 const eraser = require('../../images/eraser.svg');
 const link = require('../../images/link.svg');
+const pubmedlink = require('../../images/pubmedlink.png');
 const unlink = require('../../images/unlink.svg');
 const emoji = require('../../images/emoji.svg');
 const embedded = require('../../images/embedded.svg');
@@ -30,7 +31,7 @@ const superscript = require('../../images/superscript.svg');
 * whatever user passes in toolbar property is deeply merged with this to over-ride defaults.
 */
 export default {
-  options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker', 'link', 'embedded', 'emoji', 'image', 'remove', 'history'],
+  options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker', 'link', 'pubmedlink', 'embedded', 'emoji', 'image', 'remove', 'history'],
   inline: {
     inDropdown: false,
     className: undefined,
@@ -117,6 +118,13 @@ export default {
     options: ['link', 'unlink'],
     link: { icon: link, className: undefined, title: undefined },
     unlink: { icon: unlink, className: undefined, title: undefined },
+  },
+  pubmedlink: {
+    icon: pubmedlink,
+    className: undefined,
+    component: undefined,
+    popupClassName: undefined,
+    title: undefined,
   },
   emoji: {
     icon: emoji,

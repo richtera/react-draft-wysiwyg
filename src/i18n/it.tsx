@@ -62,6 +62,10 @@ export const it = {
   'components.controls.link.link': 'Inserisci link',
   'components.controls.link.unlink': 'Rimuovi link',
 
+  // PubMed Link
+  'components.controls.pubmedlink.pubmedlink': 'PubMed Link',
+  'components.controls.pubmedlink.pubMedId': 'PubMed ID',
+
   // List
   'components.controls.list.list': 'Lista',
   'components.controls.list.unordered': 'Elenco puntato',
