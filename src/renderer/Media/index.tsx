@@ -264,6 +264,7 @@ const getMediaComponent = (config) => class Media extends Component<any, any> {
           // answer type
           const data = {
             answerType: 'closed-captions',
+            videoId,
             captionStart: firstClosedCaption.captionStart,
             captionDuration: parseFloat((lastClosedCaption.captionStart - firstClosedCaption.captionStart + lastClosedCaption.captionDuration).toFixed(3)),
           };
@@ -274,7 +275,13 @@ const getMediaComponent = (config) => class Media extends Component<any, any> {
           const contentState = Modifier.setBlockType(editorState.getCurrentContent(), editorState.getSelection(), 'paragraph');
 
           // text
-          const entityText = Modifier.insertText(contentState, editorState.getSelection(), closedCaptions.map((closedCaption) => closedCaption.text).join(' '));
+          const entityText = Modifier.insertText(
+            contentState,
+            editorState.getSelection(),
+            closedCaptions.map((closedCaption) => closedCaption.text).join(' '),
+            null,
+            entityKey,
+          );
           editorState = EditorState.push(editorState, entityText, 'insert-characters');
         }
 
