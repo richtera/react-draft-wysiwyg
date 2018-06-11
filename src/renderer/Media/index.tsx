@@ -349,6 +349,19 @@ const getMediaComponent = (config) => class Media extends Component<any, any> {
             Update Lesson
           </Option>
         )}
+        { videoId && (
+          <a
+            href={`https://www.youtube.com/timedtext_video?v=${videoId}`}
+            target="_blank"
+          >
+            <Option
+              onClick={() => null}
+              className="rdw-media-additional-option"
+            >
+              Edit Captions
+            </Option>
+          </a>
+        )}
         { false && /^(video|image)\//.test(mimeType) && (
           <div className="form-horizontal rdw-media-additional-option">
             <label>Width:</label>
